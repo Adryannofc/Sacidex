@@ -1,5 +1,4 @@
 //=========================== Objetos no projeto "Sacidex" =====================================
-
 class Pokemon {
     constructor(id, nome, tipagem, imagem, regiao, status, moves, altura, peso, descricao, capturado = false) {
         this.id = id;
@@ -20,6 +19,7 @@ class Pokemon {
         const card = document.createElement("div");
         card.classList.add("card");
 
+        //Header
         const header = document.createElement("div");
         header.classList.add("card-header");
         
