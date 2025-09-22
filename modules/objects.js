@@ -19,6 +19,8 @@ class Pokemon {
         const card = document.createElement("div");
         card.innerHTML = `<img src="${this.imagem} " width="60px" height="60px"/>`;
         return card;
+
+        
     }
 }
 
