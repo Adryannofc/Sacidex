@@ -68,8 +68,24 @@ const Pikachu = new Pokemon(
     false
 );
 
+const Psyduck = new Pokemon(
+    54,
+    "Psyduck",
+    ["Aquático"],
+    "https://img.pokemondb.net/artwork/large/psyduck.jpg",
+    "Kanto",
+    { hp: 50, attack: 52, defense: 48 },
+    ["Water Gun", "Surf", "Confusion"],
+    0.8,
+    19.6,
+    "Psyduck é um pokemon de tipo aquático, conhecido pela sua aparencia semelhante a um pato.",
+    false
+
+);
+
 const cards = document.getElementsByClassName("cards-container")[0];
 cards.appendChild(Pikachu.createCard());
+cards.appendChild(Psyduck.createCard());
 
 const stringjson = JSON.stringify(Pikachu)
 localStorage.setItem("pokemons Capturados", stringjson);
