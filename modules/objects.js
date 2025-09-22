@@ -16,11 +16,41 @@ class Pokemon {
     }
 
     createCard() {
+        // Card
         const card = document.createElement("div");
-        card.innerHTML = `<img src="${this.imagem} " width="60px" height="60px"/>`;
-        return card;
+        card.classList.add("card");
 
+        const header = document.createElement("div");
+        header.classList.add("card-header");
         
+        // Name
+        const name = document.createElement("p");
+        name.classList.add("name");
+        name.textContent = `${this.nome}`;
+
+        // ID
+        const id = document.createElement("span");
+        id.classList.add("id");
+        id.textContent = `#${this.id}`;
+
+        // Image
+        const image = document.createElement("img");
+        image.classList.add("card-image");
+        image.src = this.imagem
+
+        // Type
+        const type = document.createElement("p");
+        type.classList.add("type");
+        type.textContent = `${this.tipagem}`;
+
+        header.appendChild(name);
+        header.appendChild(id);
+
+        card.appendChild(header);
+        card.appendChild(image);
+        card.appendChild(type);
+        
+        return card;
     }
 }
 
@@ -40,7 +70,6 @@ const Pikachu = new Pokemon(
 
 const cards = document.getElementsByClassName("cards-container")[0];
 cards.appendChild(Pikachu.createCard());
-
 
 const stringjson = JSON.stringify(Pikachu)
 localStorage.setItem("pokemons Capturados", stringjson);
