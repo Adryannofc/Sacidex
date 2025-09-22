@@ -87,7 +87,7 @@ const cards = document.getElementsByClassName("cards-container")[0];
 cards.appendChild(Pikachu.createCard());
 cards.appendChild(Psyduck.createCard());
 
-const stringjson = JSON.stringify(Pikachu)
+const stringjson = JSON.stringify(Pikachu);
 localStorage.setItem("pokemons Capturados", stringjson);
 
 localStorage.removeItem("") // <--- Caso precisar remover intem da local storage
