@@ -83,11 +83,42 @@ const Psyduck = new Pokemon(
 
 );
 
+const Charizard = new Pokemon(
+    "00" + 6,
+    "Charizard",
+    ["Fogo"],
+    "https://img.pokemondb.net/artwork/vector/large/charizard.png",
+    "Kanto",
+    { hp: 78, attack: 84, defense: 78},
+    ["Flamethrower", "Ember", "Dragon Claw"],
+    1.7,
+    90.5,
+    "Indicutivelmente o melhor Pokemon de todos",
+    false
+);
+
+const Archaludon = new Pokemon(
+    1018,
+    "Archaludon",
+    ["Dragão de Aço"],
+    "https://img.pokemondb.net/artwork/large/archaludon.jpg",
+    "Beast",
+    {hp: 90, attack: 105, defense: 130},
+    ["Metal Claw", "Dragon Claw", "Hyper Beam"],
+    2.0,
+    60.0,
+    "Archaludon é um pokemon de aço conhecido por sua forte restência",
+    false
+
+);
 const cards = document.getElementsByClassName("cards-container")[0];
 cards.appendChild(Pikachu.createCard());
 cards.appendChild(Psyduck.createCard());
+cards.appendChild(Charizard.createCard());
+cards.appendChild(Archaludon.createCard());
 
 const stringjson = JSON.stringify(Pikachu);
 localStorage.setItem("pokemons Capturados", stringjson);
 
 localStorage.removeItem("") // <--- Caso precisar remover intem da local storage
+
