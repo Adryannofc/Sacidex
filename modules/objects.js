@@ -83,9 +83,24 @@ const Psyduck = new Pokemon(
 
 );
 
+const Charizard = new Pokemon(
+    "00" + 6,
+    "Charizard",
+    ["Fogo"],
+    "https://img.pokemondb.net/artwork/vector/large/charizard.png",
+    "Kanto",
+    { hp: 78, attack: 84, defense: 78},
+    ["Flamethrower", "Ember", "Dragon Claw"],
+    1.7,
+    90.5,
+    "Indicutivelmente o melhor Pokemon de todos",
+    false
+);
+
 const cards = document.getElementsByClassName("cards-container")[0];
 cards.appendChild(Pikachu.createCard());
 cards.appendChild(Psyduck.createCard());
+cards.appendChild(Charizard.createCard());
 
 const stringjson = JSON.stringify(Pikachu);
 localStorage.setItem("pokemons Capturados", stringjson);
