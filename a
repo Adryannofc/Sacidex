@@ -1,0 +1,128 @@
+[33mcommit 486e5e418108c0fabecb51afdc486aaba0febf66[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Guilherme RM <emaildoguilherme16@gmail.com>
+Date:   Tue Sep 23 00:21:47 2025 +0000
+
+    README atualizado: Descrição do projeto adcionada
+
+[33mcommit 9ee814b2f76b7ba5e86d49b4b3f4faa24b4b0814[m
+Merge: aba626e c4a272f
+Author: Vitor Cassel <106541098+VitorCassel@users.noreply.github.com>
+Date:   Mon Sep 22 20:52:59 2025 -0300
+
+    adicionei o prototipo
+
+[33mcommit aba626ee86e43cbcbc2049dc856cb7bee85ddd14[m
+Author: Vitor Cassel <106541098+VitorCassel@users.noreply.github.com>
+Date:   Mon Sep 22 20:47:45 2025 -0300
+
+    adicionei o prototipo de alta fidelidade
+
+[33mcommit c4a272f843f4223d48801acac9296befebb1faa6[m
+Merge: 5644321 259affe
+Author: Adryann Felix <adryannofc@gmail.com>
+Date:   Mon Sep 22 20:45:38 2025 -0300
+
+    Merge branch 'main' of https://github.com/GuilhermeRM-a1/Sacidex
+
+[33mcommit 56443215391473a601db57bb2934a2d7186eabae[m
+Author: Adryann Felix <adryannofc@gmail.com>
+Date:   Mon Sep 22 20:38:08 2025 -0300
+
+    Atualização
+
+[33mcommit 259affebe5f6b001d3d1eb7d95e81d5a0cc559ab[m
+Author: Adryann Felix <121260900+Adryannofc@users.noreply.github.com>
+Date:   Mon Sep 22 20:33:06 2025 -0300
+
+    Update README.md
+
+[33mcommit dc38278bbf5b7fe879c4f14bb421dc3f835b2095[m
+Merge: ab53b24 484eb07
+Author: luanlexe <luan12049@gmail.com>
+Date:   Mon Sep 22 20:31:37 2025 -0300
+
+    Novo pokemon modelado
+
+[33mcommit ab53b24754a9c7ea843b7cc228f7334199dce015[m
+Author: luanlexe <luan12049@gmail.com>
+Date:   Mon Sep 22 20:24:15 2025 -0300
+
+    Adicionei a modelagem de um novo pokemon
+
+[33mcommit 484eb07a3c67ab8a9aec5c2c753459dc051f9d25[m
+Author: Adryann Felix <121260900+Adryannofc@users.noreply.github.com>
+Date:   Mon Sep 22 20:23:14 2025 -0300
+
+    Update README.md
+
+[33mcommit 42734001fc4a2f482189624132b9c2c47eee0783[m
+Author: Adryann Felix <121260900+Adryannofc@users.noreply.github.com>
+Date:   Mon Sep 22 20:20:52 2025 -0300
+
+    Home
+
+[33mcommit 49e958d65af30343d25a9442c377df9f789b47af[m
+Author: Adryann Felix <121260900+Adryannofc@users.noreply.github.com>
+Date:   Mon Sep 22 20:13:51 2025 -0300
+
+    Update README.md
+
+[33mcommit 9e493ab54ba39f448d0197929e69d3f0ff16fc6f[m
+Author: Adryann Felix <adryannofc@gmail.com>
+Date:   Mon Sep 22 19:55:31 2025 -0300
+
+    ✨ Adiciona pokebola.png e atualiza módulos HTML e JS
+
+[33mcommit 997702bf6fbedcf46d2cd92f9fd7fb511b19d80a[m
+Author: Adryann Felix <adryannofc@gmail.com>
+Date:   Mon Sep 22 16:06:12 2025 -0300
+
+    ✨ Implementar estrutura completa dos cards dos Pokémon
+    
+    🏗️ Refatorado método createCard() com estrutura HTML organizada
+    📋 Adicionados elementos: header, nome, ID, imagem e tipo
+    🎯 Aplicadas classes CSS para estilização
+    🧹 Removido espaço em branco desnecessário
+
+[33mcommit b49854d688924ff5dd629bb7db47feed1340307c[m
+Author: Adryann Felix <adryannofc@gmail.com>
+Date:   Mon Sep 22 16:05:42 2025 -0300
+
+    🎨 Adicionar estilos CSS para imagens dos cards
+    
+    ✨ Definido tamanho de 200px para imagens dos cards
+    🖼️ Melhor apresentação visual dos Pokémon
+
+[33mcommit 75752340bbb17d10373553d9b9a69abbe8aaa7c9[m
+Author: Adryann Felix <adryannofc@gmail.com>
+Date:   Mon Sep 22 15:35:10 2025 -0300
+
+    📁 Reestruturação do projeto: organização em módulos e adição de assets
+    
+    ✨ Movidos arquivos principais para diretório modules/
+    🖼️ Adicionadas imagens dos Pokémon (Bulbasaur e Pikachu) em assets/
+    🔧 Melhor organização da estrutura de arquivos do projeto
+
+[33mcommit f5a5586b89bb7028dcb46fb6158e927398f07b4c[m[33m ([m[1;31morigin/Pedro[m[33m, [m[1;32mPedro[m[33m)[m
+Author: Pedro Kleinhans <pedrokleinhans@gmail.com>
+Date:   Mon Sep 22 15:02:29 2025 -0300
+
+    kickof objetos
+
+[33mcommit 0930cda647417f26e1a65f2ec0d08f1172e6ff22[m
+Author: VitorCassel <vitorcassel8@gmail.com>
+Date:   Wed Sep 10 17:14:48 2025 -0300
+
+    Primeiro Commit
+
+[33mcommit a999a16d168a8fe06f3cfb13caf61795ba3dc7dc[m
+Author: Vitor Cassel <106541098+VitorCassel@users.noreply.github.com>
+Date:   Thu Sep 4 08:38:20 2025 -0300
+
+    Adicionei Html, CSS, e JS a nossa pasta
+
+[33mcommit c2b3f93db892a2febe2d37efcb572973f70b7157[m
+Author: GuilhermeRM-a1 <emaildoguilherme16@gmail.com>
+Date:   Wed Sep 3 21:14:43 2025 -0300
+
+    Initial commit
