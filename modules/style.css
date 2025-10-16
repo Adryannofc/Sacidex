@@ -25,6 +25,11 @@ body {
 .logo img {
     width: 50px;
     cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.logo img:hover {
+    transform: rotate(360deg);
 }
 
 .nav ul {
@@ -34,51 +39,71 @@ body {
 }
 
 .nav a {
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
     text-decoration: none;
     color: #000;
     font-weight: 500;
 }
 
+nav a:hover {
+    font-weight: 550;
+    color: #4d4d4d;
+    transform: scale(1.05);
+}
+
 .search {
-  display: inline-block;
-  position: relative;
+    display: inline-block;
+    position: relative;
 }
 
 .search input {
-  width: 200px;
-  padding: 10px;
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  outline: none;
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
+    outline: none;
+    padding-left: 25px;
 }
 
 .search button {
-  background-color: #ffffff;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  padding: 10px 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  top: 0;
-  right: 0;
-  transition: .9s ease;
+    background-color: #ffffff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.055);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: .9s ease;
 }
 
-.search button:hover{
-  transform: scale(1.05);
-  color: rgb(255, 255, 255);
-  background-color: rgba(83, 83, 83, 0.308);
+.search button:hover {
+    transform: scale(1.05);
+    color: rgb(255, 255, 255);
+    background-color: rgba(83, 83, 83, 0.123);
 }
 
 .search img {
     width: 10px;
+
 }
 
-.toggle-theme button{
+.toggle-theme button {
     cursor: pointer;
     border: none;
     background: none;
+}
+
+/* Borda ilustrativa Temporaria*/
+.card-container {
+    width: 90%;
+    height: 85vh;
+    border-radius: 10px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
 }
