@@ -22,14 +22,27 @@ body {
     box-shadow: 1px 1px 5px #ccc;
 }
 
-.logo img {
-    width: 50px;
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo .icon {
+    width: 45px;
     cursor: pointer;
     transition: transform 0.5s ease;
 }
 
-.logo img:hover {
+.icon:hover {
     transform: rotate(360deg);
+}
+
+.sacidex {
+    margin-top: 0.5rem;
+    margin-left: 5px;
+    width: 120px;
+    
 }
 
 .nav ul {
