@@ -1,5 +1,5 @@
 export function createPokemonCard(pokemon) {
-    const container = document.querySelector('.card-container');
+    const container = document.querySelector('.cards');
 
     const card = document.createElement('article');
     card.classList.add('card');
