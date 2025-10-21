@@ -1,0 +1,39 @@
+.pokemon-id {
+    font-size: 64px;
+    ;
+}
+
+.pokeimg {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pokeimg img {
+    width: 175px;
+}
+
+.container {
+    bottom: 0;
+    position: fixed;
+    height: 400px;
+    width: 100%;
+    height: 50%;
+}
+
+body {
+    background: #ff4e03;
+    background: -webkit-linear-gradient(90deg, rgba(255, 78, 3, 1) 0%, rgba(237, 214, 83, 1) 100%);
+    background: -moz-linear-gradient(90deg, rgba(255, 78, 3, 1) 0%, rgba(237, 214, 83, 1) 100%);
+    background: linear-gradient(90deg, rgba(255, 78, 3, 1) 0%, rgba(237, 214, 83, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FF4E03", endColorstr="#EDD653", GradientType=1);
+}
+
+.cont {
+    border-radius: 10px 10px 0 0;
+    background: #fff;
+    padding: 1rem;
+    margin: 0 15rem;
+    height: 100%;
+}
