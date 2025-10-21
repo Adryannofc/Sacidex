@@ -39,5 +39,5 @@ export function createPokemonCard(pokemon) {
     card.appendChild(imageContainer);
     card.appendChild(types);
 
-    container.appendChild(card);
+    return card;
 }
