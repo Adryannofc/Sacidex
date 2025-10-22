@@ -45,7 +45,8 @@ Este projeto foi desenvolvido pela equipe **Saciscode**, composta por:
 * Adryann ([@Adryann Felix](https://github.com/Adryannofc))
 * Guilherme ([@GuilhermeRM-a1](https://github.com/GuilhermeRM-a1))
 * Luan
-* Thiago Pedro
+* Thiago
+* Pedro
 
 ## 📄 Licença
 
