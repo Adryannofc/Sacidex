@@ -9,7 +9,7 @@ Este foi desenvolvido como parte de um Projeto Integrador (PI) pela equipe **Sac
 * **Listagem de Pokémon:** Exibe uma grade ou lista com vários Pokémon.
 * **Consumo de API:** Busca dados em tempo real da [PokeAPI](https://pokeapi.co/) (ou outra fonte de dados) para exibir informações precisas.
 * **Detalhes do Pokémon:** (Possivelmente) Ao clicar em um Pokémon, exibe seus status, tipos, habilidades, etc.
-* **Design Temático:** Interface estilizada inspirada no universo Pokémon.
+* **Design Temático:** Limpa e minimalista.
 
 ## 🚀 Tecnologias Utilizadas
 
