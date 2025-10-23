@@ -41,3 +41,9 @@ export function createPokemonCard(pokemon) {
 
     return card;
 }
+
+
+export function createDeatailCard(pokemon) {
+    const container = document.querySelector('.pokemon-id');
+    container.textContent = `#${pokemon.id.toString().padStart(4, '0')}`;
+}

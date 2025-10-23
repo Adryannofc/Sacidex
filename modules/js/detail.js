@@ -1,8 +1,6 @@
-import { getPokemon } from "./js/api.js";
-import { createPokemonCard } from "./js/ui.js";
-import { createDeatailCard } from "./js/ui.js";
+import { createDeatailCard } from "./ui.js"; // Importa a função de UI
 
-export const pokemons = [
+const pokemons = [
     {
         id: 1,
         name: "Bulbasaur",
@@ -53,27 +51,18 @@ export const pokemons = [
     }
 ];
 
-const campoBusca = document.getElementById("busca");
-const container = document.getElementById("cards");
+function loadDetail() {
+    // Escolhe um Pokémon do array para preencher a div ".pokemon-id"
+    // Vamos usar o Charmander, que está no índice 1 do array.
+    const pokemonDetail = pokemons[1]; // Charmander (ID 4)
 
-async function main(lista = pokemons) {
-  // limpa o container antes de recriar
-  container.innerHTML = "";
-
-  for (const item of lista) {
-    const card = createPokemonCard(item); // cria o elemento
-    container.appendChild(card);          // adiciona aqui
-  }
-
+    if (pokemonDetail) {
+        // Chama a função para preencher a div .pokemon-id com o ID do Charmander (#0004)
+        createDeatailCard(pokemonDetail);
+    } else {
+        console.error("Pokémon não encontrado no índice especificado.");
+    }
 }
 
-
-// mostra todos
-main();
-
-// busca dinâmica
-campoBusca.addEventListener("input", () => {
-  const texto = campoBusca.value.toLowerCase();
-  const filtrados = pokemons.filter(p => p.name.toLowerCase().includes(texto));
-  main(filtrados);
-});
+// Inicia o carregamento dos detalhes na página
+loadDetail();
