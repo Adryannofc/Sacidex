@@ -66,6 +66,20 @@ nav a:hover {
     transform: scale(1.05);
 }
 
+nav #favorite-btn {
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        font-size: 20px;
+    }
+
+    nav #favorite-btn:hover {
+        font-weight: 550;
+        color: #4d4d4d;
+        transform: scale(1.05);
+    }
+
+
 .search {
     display: inline-block;
     position: relative;

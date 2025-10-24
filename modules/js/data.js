@@ -5,6 +5,7 @@ export const pokemons = [
         id: 1,
         name: "Bulbasaur",
         types: [{ type: { name: "grass" } }, { type: { name: "poison" } }],
+        favorite: true,
         sprites: {
             other: {
                 "official-artwork": {
@@ -20,6 +21,7 @@ export const pokemons = [
         id: 4,
         name: "Charmander",
         types: [{ type: { name: "fire" } }],
+        favorite: true,
         sprites: {
             other: {
                 "official-artwork": {
@@ -35,6 +37,7 @@ export const pokemons = [
         id: 6,
         name: "Charizard",
         types: [{ type: { name: "fire" } }, { type: { name: "flying" } }],
+        favorite: true,
         sprites: {
             other: {
                 "official-artwork": {
@@ -51,6 +54,7 @@ export const pokemons = [
         id: 25,
         name: "Pikachu",
         types: [{ type: { name: "electric" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -68,6 +72,7 @@ export const pokemons = [
         id: 39,
         name: "Jigglypuff",
         types: [{ type: { name: "normal" } }, { type: { name: "fairy" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -83,6 +88,7 @@ export const pokemons = [
         id: 54,
         name: "Psyduck",
         types: [{ type: { name: "water" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -98,6 +104,7 @@ export const pokemons = [
         id: 58,
         name: "Growlithe",
         types: [{ type: { name: "fire" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -113,6 +120,7 @@ export const pokemons = [
         id: 92,
         name: "Gastly",
         types: [{ type: { name: "ghost" } }, { type: { name: "poison" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -128,6 +136,7 @@ export const pokemons = [
         id: 94,
         name: "Gengar",
         types: [{ type: { name: "ghost" } }, { type: { name: "poison" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -144,6 +153,7 @@ export const pokemons = [
         id: 63,
         name: "Abra",
         types: [{ type: { name: "psychic" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -159,6 +169,7 @@ export const pokemons = [
         id: 129,
         name: "Magikarp",
         types: [{ type: { name: "water" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -174,6 +185,7 @@ export const pokemons = [
         id: 131,
         name: "Lapras",
         types: [{ type: { name: "water" } }, { type: { name: "ice" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -189,6 +201,7 @@ export const pokemons = [
         id: 143,
         name: "Snorlax",
         types: [{ type: { name: "normal" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
@@ -204,6 +217,7 @@ export const pokemons = [
         id: 150,
         name: "Mewtwo",
         types: [{ type: { name: "psychic" } }],
+        favorite: false,
         sprites: {
             other: {
                 "official-artwork": {
