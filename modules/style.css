@@ -18,7 +18,7 @@ body {
     align-items: center;
     background-color: #ffffff;
     padding: 0 6rem;
-    height: 70px;
+    height: 80px;
     box-shadow: 1px 1px 5px #ccc;
     margin-bottom: 25px;
 }
@@ -57,28 +57,13 @@ body {
     transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
     text-decoration: none;
     color: #000;
-    font-weight: 400;
+    font-weight: 500;
 }
 
-nav a:hover {
-    font-weight: 550;
-    color: #4d4d4d;
-    transform: scale(1.05);
+a:hover {
+  color: #000000;
+  transform: scale(1.1);
 }
-
-nav #favorite-btn {
-        border: none;
-        cursor: pointer;
-        transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-        font-size: 20px;
-    }
-
-    nav #favorite-btn:hover {
-        font-weight: 550;
-        color: #4d4d4d;
-        transform: scale(1.05);
-    }
-
 
 .search {
     display: inline-block;

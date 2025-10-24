@@ -1,5 +1,4 @@
 // Em modules/js/data.js
-
 export const pokemons = [
     {
         id: 1,

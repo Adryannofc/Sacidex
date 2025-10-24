@@ -162,7 +162,7 @@ body.type-steel {
 }
 
 .pokeimg img {
-    width: 260px;
+    width: 350px;
     height: auto;
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
     animation: float 3s ease-in-out infinite;
@@ -304,7 +304,7 @@ body.type-steel {
 .type.fire { background: #f08030; }
 .type.water { background: #6890f0; }
 .type.grass { background: #78c850; }
-.type.electric { background: #f8d030; color: #333; }
+.type.electric { background: #f8d030;}
 .type.psychic { background: #f85888; }
 .type.ice { background: #98d8d8; }
 .type.dragon { background: #7038f8; }
@@ -381,7 +381,7 @@ body.type-steel {
 .progress-gender-custom {
     position: relative;
     width: 200px;
-    height: 12px;
+    height: 20px;
     border-radius: 10px;
     background-color: #ffccdd;
     overflow: hidden;
@@ -403,7 +403,7 @@ body.type-steel {
 .progress-text {
     position: relative;
     font-size: 11px;
-    color: #333;
+    color: #ffffff;
     font-weight: 600;
     z-index: 10;
 }
@@ -411,7 +411,7 @@ body.type-steel {
 .progress-catchrate-custom {
     position: relative;
     width: 100px;
-    height: 12px;
+    height: 20px;
     border-radius: 10px;
     background-color: #e0e0e0;
     overflow: hidden;
