@@ -39,59 +39,110 @@
         </div>
     </header>
 
-    <div class="pokemon-id"></div>
-    <div class="pokeimg"> <img src="" alt="Imagem do Pokémon">
-    </div>
+    <section class="pokemon-main-section">
+        <!-- Navigation arrows -->
+        <button class="nav-arrow prev" onclick="navigatePokemon('prev')">‹</button>
+        <button class="nav-arrow next" onclick="navigatePokemon('next')">›</button>
 
-    <div class="container">
-        <div class="cont">
-            <div class="typeinfo">
-                <div id="tipopoke">
-                    <p>Types</p>
-                    <span id="TypesIMG"><br></span>
-                </div>
-                <div id="weaknesspoke">
-                    <p>Weaknesses</p>
-                    <span id="WeaknessesIMG"><br></span>
-                </div>
-            </div>
+        <!-- Pokemon ID -->
+        <div class="pokemon-id"></div>
 
-            <div class="percentinfo">
-                <div class="genderrate">
-                    <div class="gender-text-row"> <span>♂</span>
-                        <span>Gender Rate</span>
-                        <span>♀</span>
-                    </div>
-                    <div class="catchpercente">
-                        <div class="progress-gender-custom">
-                            <div class="progress-fill-male" style="width: 0%;"></div> <span
-                                class="progress-text"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="catchrate">
-                    <div class="catchrate-content">
-                        <div class="catchrate-title-row"> <span>
-                                <img id="pokebola" src="../../assets/img/pokebola.png" alt=""> </span>
-                            <span>Catch Rate</span>
-                        </div>
-                        <div class="catchrate-bar-and-text">
-                            <div class="progress-catchrate-custom">
-                                <div class="progress-fill-catch" style="width: 0%;"></div>
-                            </div>
-                            <span class="catchrate-text"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sobrepokemon">
-                <p>Carregando informações...</p>
-            </div>
-
+        <!-- Pokemon image -->
+        <div class="pokeimg">
+            <span class="sparkle" style="top: 15%; right: 35%;">✦</span>
+            <img src="" alt="Imagem do Pokémon">
         </div>
-    </div>
+
+        <!-- Main container -->
+        <div class="container">
+            <div class="cont">
+                <!-- Tabs navigation -->
+                <div class="tabs-nav">
+                    <button class="tab-button active" data-tab="sobre">Sobre</button>
+                    <button class="tab-button" data-tab="status">Status</button>
+                    <button class="tab-button" data-tab="moves">Moves</button>
+                    <button class="tab-button" data-tab="evolucoes">Evoluções</button>
+                </div>
+
+                <!-- Tab: Sobre -->
+                <div class="tab-content active" id="sobre-tab">
+                    <div class="typeinfo">
+                        <div id="tipopoke">
+                            <p>Types</p>
+                            <span id="TypesIMG"></span>
+                        </div>
+                        <div id="weaknesspoke">
+                            <p>Weaknesses</p>
+                            <span id="WeaknessesIMG"></span>
+                        </div>
+                    </div>
+
+                    <div class="percentinfo">
+                        <div class="genderrate">
+                            <div class="gender-text-row">
+                                <span>♂</span>
+                                <span>Gender Rate</span>
+                                <span>♀</span>
+                            </div>
+                            <div class="progress-gender-custom">
+                                <div class="progress-fill-male" style="width: 0%;"></div>
+                                <span class="progress-text"></span>
+                            </div>
+                        </div>
+
+                        <div class="catchrate">
+                            <div class="catchrate-title-row">
+                                <span><img id="pokebola" src="../../assets/img/pokebola.png" alt=""></span>
+                                <span>Catch Rate</span>
+                            </div>
+                            <div class="catchrate-bar-and-text">
+                                <div class="progress-catchrate-custom">
+                                    <div class="progress-fill-catch" style="width: 0%;"></div>
+                                </div>
+                                <span class="catchrate-text"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sobrepokemon">
+                        <p>Carregando informações...</p>
+                    </div>
+
+                    <div class="pokemon-bottom-info">
+                        <div class="info-item">
+                            <span>⚖️</span>
+                            <span class="pokemon-weight">90.5kg</span>
+                        </div>
+                        <div class="info-item">
+                            <span>📏</span>
+                            <span class="pokemon-height">1.70m</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Status -->
+                <div class="tab-content" id="status-tab">
+                    <div style="padding: 40px; text-align: center;">
+                        <p style="color: #999;">Status information coming soon...</p>
+                    </div>
+                </div>
+
+                <!-- Tab: Moves -->
+                <div class="tab-content" id="moves-tab">
+                    <div style="padding: 40px; text-align: center;">
+                        <p style="color: #999;">Moves information coming soon...</p>
+                    </div>
+                </div>
+
+                <!-- Tab: Evoluções -->
+                <div class="tab-content" id="evolucoes-tab">
+                    <div style="padding: 40px; text-align: center;">
+                        <p style="color: #999;">Evolution information coming soon...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 <script src="../js/details.js" type="module"></script>
