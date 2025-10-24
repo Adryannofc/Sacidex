@@ -1,121 +1,369 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+    .grass {
+        background-color: #78C850;
+    }
 
-img {
-    width: 30px;
-}
+    .fire {
+        background-color: #F08030;
+    }
 
-body {
-    background-color: #ececec;
-}
+    .water {
+        background-color: #6890F0;
+    }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 0 6rem;
-    height: 70px;
-    box-shadow: 1px 1px 5px #ccc;
-}
+    .bug {
+        background-color: #A8B820;
+    }
 
-.logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .electric {
+        background-color: #F8D030;
+        color: #000;
+    }
 
-.logo .icon {
-    width: 45px;
-    cursor: pointer;
-    transition: transform 0.5s ease;
-}
+    .normal {
+        background-color: #A8A878;
+    }
 
-.icon:hover {
-    transform: rotate(360deg);
-}
+    .psychic {
+        background-color: #F85888;
+    }
 
-.sacidex {
-    margin-top: 0.5rem;
-    margin-left: 5px;
-    width: 120px;
+    .ice {
+        background-color: #98D8D8;
+        color: #000;
+    }
 
-}
+    .dragon {
+        background-color: #7038F8;
+    }
 
-.nav ul {
-    display: flex;
-    gap: 3rem;
-    list-style: none;
-}
+    .dark {
+        background-color: #705848;
+    }
 
-.nav a {
-    display: inline-block;
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-    text-decoration: none;
-    color: #000;
-    font-weight: 400;
-}
+    .fairy {
+        background-color: #EE99AC;
+        color: #000;
+    }
 
-nav a:hover {
-    font-weight: 550;
-    color: #4d4d4d;
-    transform: scale(1.05);
-}
+    .fighting {
+        background-color: #C03028;
+    }
 
-.search {
-    display: inline-block;
-    position: relative;
-}
+    .rock {
+        background-color: #B8A038;
+    }
 
-.search input {
-    width: 200px;
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    letter-spacing: 2px;
-    outline: none;
-    padding-left: 25px;
-}
+    .ground {
+        background-color: #E0C068;
+        color: #000;
+    }
 
-.search button {
-    background-color: #ffffff;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.055);
-    position: absolute;
-    top: 0;
-    right: 0;
-    transition: .9s ease;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
 
-.search button:hover {
-    transform: scale(1.05);
-    color: rgb(255, 255, 255);
-    background-color: rgba(83, 83, 83, 0.123);
-}
+    img {
+        width: 30px;
+    }
 
-.search img {
-    width: 10px;
+    body {
+        background-color: #ececec;
+    }
 
-}
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 0 6rem;
+        height: 70px;
+        box-shadow: 1px 1px 5px #ccc;
+        margin-bottom: 25px;
+    }
 
-.toggle-theme button {
-    cursor: pointer;
-    border: none;
-    background: none;
-}
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-/* Borda ilustrativa Temporaria*/
-#cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    border: 1px solid #ccc
-}
+    .logo .icon {
+        width: 45px;
+        cursor: pointer;
+        transition: transform 0.5s ease;
+    }
+
+    .icon:hover {
+        transform: rotate(360deg);
+    }
+
+    .sacidex {
+        margin-top: 0.5rem;
+        margin-left: 5px;
+        width: 120px;
+
+    }
+
+    .nav ul {
+        display: flex;
+        gap: 3rem;
+        list-style: none;
+    }
+
+    .nav a {
+        display: inline-block;
+        transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        text-decoration: none;
+        color: #000;
+        font-weight: 400;
+    }
+
+    nav a:hover {
+        font-weight: 550;
+        color: #4d4d4d;
+        transform: scale(1.05);
+    }
+
+    .search {
+        display: inline-block;
+        position: relative;
+    }
+
+    .search input {
+        width: 200px;
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        letter-spacing: 2px;
+        outline: none;
+        padding-left: 25px;
+    }
+
+    .search button {
+        background-color: #ffffff;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.055);
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: .9s ease;
+    }
+
+    .search button:hover {
+        transform: scale(1.05);
+        color: rgb(255, 255, 255);
+        background-color: rgba(83, 83, 83, 0.123);
+    }
+
+    .search img {
+        width: 10px;
+
+    }
+
+    .toggle-theme button {
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
+
+    /* Borda ilustrativa Temporaria*/
+    #cards {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        border: px solid #ccc
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 20px;
+
+
+    }
+
+    .card-header {
+        background-color: rgb(255, 255, 255);
+    }
+
+
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        justify-content: center;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+       
+    }
+
+    
+    .card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
+    }
+
+   
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .card-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-transform: capitalize;
+        color: #222;
+    }
+
+    .card-id {
+        font-weight: 500;
+        font-size: 0.9rem;
+
+    }
+
+    
+    .card-image {
+
+        border-radius: 12px;
+        padding: 10px;
+        margin-bottom: 12px;
+    }
+
+    .card-image img {
+        width: 120px;
+        height: 120px;
+    }
+
+    
+    .card-types {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+
+    }
+
+    .type {
+        padding: 6px 12px;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 0.8rem;
+        text-transform: capitalize;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    
+    .type.normal {
+        background-color: #A8A77A;
+    }
+
+    .type.fire {
+        background-color: #EE8130;
+    }
+
+    .type.water {
+        background-color: #6390F0;
+    }
+
+    .type.electric {
+        background-color: #F7D02C;
+        
+    }
+
+    .type.grass {
+        background-color: #7AC74C;
+    }
+
+    .type.ice {
+        background-color: #96D9D6;
+       
+    }
+
+    .type.fighting {
+        background-color: #C22E28;
+    }
+
+    .type.poison {
+        background-color: #A33EA1;
+    }
+
+    .type.ground {
+        background-color: #E2BF65;
+        
+    }
+
+    .type.flying {
+        background-color: #A98FF3;
+    }
+
+    .type.psychic {
+        background-color: #F95587;
+    }
+
+    .type.bug {
+        background-color: #A6B91A;
+    }
+
+    .type.rock {
+        background-color: #B6A136;
+        
+    }
+
+    .type.ghost {
+        background-color: #735797;
+    }
+
+    .type.dragon {
+        background-color: #6F35FC;
+    }
+
+    .type.dark {
+        background-color: #705746;
+    }
+
+    .type.steel {
+        background-color: #B7B7CE;
+        
+    }
+
+    .type.fairy {
+        background-color: #D685AD;
+    }
+
+    
+    @media (max-width: 600px) {
+        .card {
+            padding: 12px;
+        }
+
+        .card-image img {
+            width: 100px;
+            height: 100px;
+        }
+    }

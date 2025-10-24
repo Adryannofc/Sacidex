@@ -2,55 +2,151 @@ import { getPokemon } from "./js/api.js";
 import { createPokemonCard } from "./js/ui.js";
 
 const pokemons = [
-    {
-        id: 1,
-        name: "Bulbasaur",
-        types: [{ type: { name: "Grama" } }, { type: { name: "Venenoso" } }],
-        sprites: {
-            other: {
-                "official-artwork": {
-                    front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-                }
-            }
+  {
+    id: 1,
+    name: "bulbasaur",
+    types: [
+      { type: { name: "grass" } },
+      { type: { name: "poison" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
         }
-    },
-    {
-        id: 4,
-        name: "Charmander",
-        types: [{ type: { name: "Fogo" } }],
-        sprites: {
-            other: {
-                "official-artwork": {
-                    front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
-                }
-            }
-        }
-    },
-    {
-        id: 7,
-        name: "Squirtle",
-        types: [{ type: { name: "Água" } }],
-        sprites: {
-            other: {
-                "official-artwork": {
-                    front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-                }
-            }
-        }
-    },
-    {
-        id: 25,
-        name: "Pikachu",
-        types: [{ type: { name: "Elétrico" } }],
-        sprites: {
-            other: {
-                "official-artwork": {
-                    front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
-                }
-            }
-        }
+      }
     }
+  },
+  {
+    id: 4,
+    name: "charmander",
+    types: [
+      { type: { name: "fire" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+        }
+      }
+    }
+  },
+  {
+    id: 7,
+    name: "squirtle",
+    types: [
+      { type: { name: "water" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+        }
+      }
+    }
+  },
+  {
+    id: 25,
+    name: "pikachu",
+    types: [
+      { type: { name: "electric" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+        }
+      }
+    }
+  },
+  {
+    id: 39,
+    name: "jigglypuff",
+    types: [
+      { type: { name: "normal" } },
+      { type: { name: "fairy" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png"
+        }
+      }
+    }
+  },
+  {
+    id: 52,
+    name: "meowth",
+    types: [
+      { type: { name: "normal" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/52.png"
+        }
+      }
+    }
+  },
+  {
+    id: 133,
+    name: "eevee",
+    types: [
+      { type: { name: "normal" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png"
+        }
+      }
+    }
+  },
+  {
+    id: 37,
+    name: "vulpix",
+    types: [
+      { type: { name: "fire" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/37.png"
+        }
+      }
+    }
+  },
+  {
+    id: 92,
+    name: "gastly",
+    types: [
+      { type: { name: "ghost" } },
+      { type: { name: "poison" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/92.png"
+        }
+      }
+    }
+  },
+  {
+    id: 150,
+    name: "mewtwo",
+    types: [
+      { type: { name: "psychic" } }
+    ],
+    sprites: {
+      other: {
+        "official-artwork": {
+          front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png"
+        }
+      }
+    }
+  }
 ];
+
 
 const campoBusca = document.getElementById("busca");
 const container = document.getElementById("cards");
