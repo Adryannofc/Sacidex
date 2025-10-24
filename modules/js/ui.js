@@ -1,15 +1,20 @@
 export function createPokemonCard(pokemon) {
-    const container = document.querySelector('.cards');
-
-    const card = document.createElement('article');
+    const card = document.createElement('a'); 
     card.classList.add('card');
+    
+    // 2. Defina o destino do link para a página de detalhes
+    // O caminho é relativo de 'modules/index.html' para 'modules/pages/pokemon.html'
+    card.href = `pages/pokemon.html?id=${pokemon.id}`;
+
+    card.style.textDecoration = 'none'; // Remove sublinhado
+    card.style.color = 'inherit';     // Usa a cor do texto normal do card
 
     const header = document.createElement('div');
     header.classList.add('card-header');
 
     const id = document.createElement('span');
     id.classList.add('card-id');
-    id.textContent = `#${pokemon.id.toString().padStart(4, '0')}`;
+    id.textContent = `#${pokemon.id.toString().padStart(4, '0')}`
 
     const name = document.createElement('h2');
     name.classList.add('card-name');
@@ -41,7 +46,6 @@ export function createPokemonCard(pokemon) {
 
     return card;
 }
-
 
 export function createDeatailCard(pokemon) {
     const container = document.querySelector('.pokemon-id');
