@@ -1,6 +1,3 @@
-// 1. Importa o array de dados
-// O caminho './data.js' está correto porque 'detail.js' e 'data.js'
-// estão ambos na mesma pasta 'modules/js/'
 import { pokemons } from './data.js'; 
 
 /**
