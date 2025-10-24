@@ -112,7 +112,7 @@ nav a:hover {
     background: none;
 }
 
-#pokemon-id{
+.pokemon-id{
     font-size: 64px;; 
 }
 .pokeimg{
@@ -120,9 +120,12 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 10;
 }
 .pokeimg img{
-    width: 175px;
+    width: 370px;
+    margin-top: +50px;
 }
 .container{
     bottom: 0;
@@ -145,12 +148,157 @@ body{
     padding: 1rem;
     margin: 0 15rem;
     height: 100%;
+    position: relative; 
+    z-index: 5;
+}
+
+.typeinfo {
+    display: flex;
+    justify-content: space-between; 
+    padding: 0 30px; 
+}
+
+#tipopoke,
+#weaknesspoke {
+    flex-shrink: 0; 
 }
 
 #tipopoke{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#weaknesspoke{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#TypesIMG{
     display: flex;
-    left: 20px;
-    padding-left: 50px;
-    padding-top: 10px;
-    align-content: center;
+    position: relative;
+}
+
+#WeaknessesIMG{
+    display: flex;
+    position: relative;
+}
+
+.type1{
+    width: 30px;
+    margin-left: 9px;
+}
+
+.weak1{
+    width: 30px;
+    margin-left: 40px;
+}
+
+.percentinfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px 30px;
+}
+
+.genderrate{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gender-text-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.percentinfo span{
+    font-size: 20px;
+}
+
+#pokebola{
+    width: 15px;
+}
+
+.progress-gender-custom {
+    position: relative;
+    width: 150px; 
+    height: 15px; 
+    border-radius: 10px;
+    background-color: #ffcccc; 
+    overflow: hidden; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+.progress-fill-male {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #3b4cca; 
+    border-radius: 10px 0 0 10px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    position: relative; 
+    font-size: 10px; 
+    color: white; 
+    font-weight: bold;
+    z-index: 10; 
+}
+
+.catchrate {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.catchrate-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.catchrate-bar-and-text {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+}
+
+.progress-catchrate-custom {
+    position: relative;
+    width: 150px; 
+    height: 15px; 
+    border-radius: 10px;
+    background-color: #cccccc; 
+    overflow: hidden; 
+}
+
+.progress-fill-catch {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #55a8a8; 
+    border-radius: 10px 0 0 10px;
+    transition: width 0.3s ease;
+}
+
+.catchrate-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+    line-height: 15px; 
+}
+
+.sobrepokemon{
+    display: flex;
+    ;
+    padding: 0 300px;
+    align-items: center;
 }

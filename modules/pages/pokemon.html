@@ -12,13 +12,11 @@
 
 <body>
     <header class="header">
-        <!--Logo-->
         <a class="logo" href="#">
             <img class="icon" src="../../assets/img/pokebola-logo.png" alt="Logo-Home">
             <img class="sacidex" src="../../assets/img/logo-sacidex.png" alt="">
         </a>
 
-        <!--Links-->
         <nav class="nav">
             <ul>
                 <li><a href="#">Home</a></li>
@@ -28,7 +26,6 @@
             </ul>
         </nav>
 
-        <!--Search-->
         <div class="search">
             <input type="text" placeholder="Buscar">
             <button type="submit">
@@ -36,33 +33,83 @@
             </button>
         </div>
 
-        <!--Theme-->
         <div class="toggle-theme">
             <button>
                 <img id="Moon-icon" src="../../assets/img/moon-icon.png" alt="Moon-icon"></img>
             </button>
         </div>
     </header>
-    
+
     <div class="pokemon-id"></div>
     <div class="pokeimg">
         <img src="../../assets/img/charizard.png" alt="Pikachu">
     </div>
     <div class="container">
-        <div class="cont">
+    <div class="cont">
+        <div class="typeinfo"> 
             <div id="tipopoke">
-                <h2>
+                <p>
                     Types
-                </h2>
-                <div id="TypesIMG">
-                    <img src="../../assets/img/fogo.png" alt="">
-                </div>
+                </p>
+                <spam id="TypesIMG">
+                    <br>
+                    <img class="type1" src="../../assets/img/fogo.png" alt="">
+                </spam>
             </div>
+            <div id="weaknesspoke">
+                <p>
+                    Weaknesses
+                </p>
+                <spam id="WeaknessesIMG">
+                    <br>
+                    <img class="weak1" src="../../assets/img/agua.jpg" alt="">
+            </div>
+        </div>
+        
+        <div class="percentinfo">
+            <div class="genderrate">
+                <div class="gender-text-row">
+                    <span>♂</span>
+                    <span>Gender Rate</span>
+                    <span>♀</span>
+                </div>
+                <div class="catchpercente">
+                    <div class="progress-gender-custom">
+                        <div class="progress-fill-male" style="width: 87.5%;"></div>
+                        <span class="progress-text">87.5% / 12.5%</span>
+                    </div>
+                </div>    
+            </div>
+            
+            <div class="catchrate">
+                <div class="catchrate-content">
+                    <div class="catchrate-title-row">
+                        <span> 
+                            <img id="pokebola" src="../../assets/img/pokebola.png" alt="">
+                        </span>
+                        <span>Catch Rate</span>
+                    </div>
+                    
+                    <div class="catchrate-bar-and-text">
+                        <div class="progress-catchrate-custom">
+                            <div class="progress-fill-catch" style="width: 17.64%;"></div>
+                        </div>
+                        <span class="catchrate-text">17.64%</span>
+                    </div>
+                </div>
+            </div>   
+        </div>
+        <div class="sobrepokemon">
+            <p>
+                Charizard, the final form of Charmander, is a Fire/Flying type Pokémon. It is one of the most recognizable Pokémon from Generation 1, with its large wings and the ability to breathe intense flames. Charizard's fearsome and majestic appearance, combined with its ability to fly and unleash powerful fire-based attacks, make it a highly sought-after Pokémon for any trainer's team.
+            </p>
+
         </div>
 
     </div>
-    </body>
+</div>
+</body>
 
-    <script src="../js/detail.js" type="module"></script>
-    
-    </html>
+<script src="../js/detail.js" type="module"></script>
+
+</html>

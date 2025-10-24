@@ -53,16 +53,13 @@ const pokemons = [
 
 function loadDetail() {
     // Escolhe um Pokémon do array para preencher a div ".pokemon-id"
-    // Vamos usar o Charmander, que está no índice 1 do array.
-    const pokemonDetail = pokemons[1]; // Charmander (ID 4)
+    const pokemonDetail = pokemons[1]; 
 
     if (pokemonDetail) {
-        // Chama a função para preencher a div .pokemon-id com o ID do Charmander (#0004)
         createDeatailCard(pokemonDetail);
     } else {
         console.error("Pokémon não encontrado no índice especificado.");
     }
 }
 
-// Inicia o carregamento dos detalhes na página
 loadDetail();
