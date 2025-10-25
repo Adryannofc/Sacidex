@@ -1,6 +1,3 @@
-/* Cores centralizadas para tipos de Pokemon */
-
-/* Gradientes de fundo para body */
 body.type-fire {
     background: linear-gradient(135deg, #f7b733 0%, #fc4a1a 100%);
 }
