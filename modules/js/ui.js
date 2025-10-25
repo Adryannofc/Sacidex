@@ -1,10 +1,25 @@
 export function createPokemonCard(pokemon) {
-    const card = document.createElement('a'); 
+    // 1. Crie o elemento do card
+    const card = document.createElement('div'); 
     card.classList.add('card');
-    
+
     // 2. Defina o destino do link para a página de detalhes
     // O caminho é relativo de 'modules/index.html' para 'modules/pages/pokemon.html'
-    card.href = `pages/pokemon.html?id=${pokemon.id}`;
+    card.addEventListener("click", () => {
+    window.location.href = `pages/pokemon.html?id=${pokemon.id}`;
+  });
+
+  // 🔹 Cria o botão dinamicamente
+    const button = document.createElement("button");
+    button.textContent = "Favoritar";
+    button.classList.add("card-favoriteButton");
+
+    // 🔹 Define o que o botão faz ao clicar
+    button.addEventListener("click", (event) => {
+        event.stopPropagation(); // Impede que o clique no botão dispare o evento do card
+        // EXEMPLO DE REDIRECIONAMENTO(EXEMPLO APENAS)
+        window.location.href = `pages/favorite.html?id=${pokemon.id}`;
+    });
 
     card.style.textDecoration = 'none'; // Remove sublinhado
     card.style.color = 'inherit';     // Usa a cor do texto normal do card
@@ -43,6 +58,7 @@ export function createPokemonCard(pokemon) {
     card.appendChild(header);
     card.appendChild(imageContainer);
     card.appendChild(types);
+    card.appendChild(button);
 
     return card;
 }

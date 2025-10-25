@@ -4,6 +4,7 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     padding: 2rem 8rem;
+    cursor: pointer;
 }
 
 .card {
@@ -37,6 +38,22 @@
 .card:hover {
     transform: translateY(-12px) scale(1.02);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-favoriteButton {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff5555;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.card-favoriteButton:hover {
+  background-color: #ff0000;
 }
 
 .card-header {

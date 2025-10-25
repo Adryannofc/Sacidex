@@ -1,5 +1,9 @@
 import { pokemons } from './data.js'; 
 
+const botao = document.getElementById("botao");
+const busca = document.getElementById("busca");
+const favoriteButton = document.getElementById("favorite-btn");
+
 /**
  * Mapa de cores de fundo por tipo de Pokemon
  */
@@ -195,3 +199,22 @@ window.navigatePokemon = function(direction) {
 
 // Roda o script assim que a página carrega
 loadDetail();
+
+// Evento do botão de busca que salva no localStorage e volta para a index
+botao.addEventListener("click", () => {
+    const textoBusca = busca.value;
+    localStorage.setItem("busca", textoBusca);
+    window.location.href = "../index.html";
+});
+// Evento do botão de favoritos que salva a página atual no localStorage e volta para a index
+favoriteButton.addEventListener("click", () => {
+    localStorage.setItem("page", "outraPage");
+    window.location.href = "../index.html";
+});
+
+// Evento para permitir busca ao pressionar Enter
+busca.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    botao.click(); // simula o clique do botão
+  }
+});
