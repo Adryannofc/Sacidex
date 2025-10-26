@@ -14,7 +14,7 @@ campoBusca.addEventListener("input", () => {
 
 // botão de favoritos
 favoriteButton.addEventListener("click", () => {
-
+  localStorage.setItem("pageFavorite","true");
   const getFavoritos = localStorage.getItem("favoritos");
   const parseFavoritos = JSON.parse(getFavoritos);
   main(parseFavoritos);
@@ -22,7 +22,7 @@ favoriteButton.addEventListener("click", () => {
 });
 
 // função principal de criação dos cards
-async function main(lista) {
+export async function main(lista) {
   // limpa o container antes de recriar
   container.innerHTML = "";
 
@@ -55,14 +55,20 @@ function outraPage() {
   if(storagePage === "outraPage") {
     const getFavoritos = localStorage.getItem("favoritos");
     const parseFavoritos = JSON.parse(getFavoritos);
+    localStorage.setItem("pageFavorite", "true");
     localStorage.removeItem("page");
-    console.log(parseFavoritos);
     main(parseFavoritos);
   };
   
 };
 
+function removeFavoritePage() {
+localStorage.removeItem("pageFavorite");
+localStorage.removeItem("clickFavorite");
+}
+
 // mostra todos
+removeFavoritePage();
 main(pokemons);
 buscaLocalStorage();
 outraPage();

@@ -1,3 +1,4 @@
+import { main } from '../main.js';
 export function createPokemonCard(pokemon) {
     // 1. Crie o elemento do card
     const card = document.createElement('div');
@@ -29,10 +30,13 @@ export function createPokemonCard(pokemon) {
     button.addEventListener("click", (event) => {
     event.stopPropagation(); // Impede que o clique no botão dispare o evento do card
 
+    const pageFavorite = localStorage.getItem("pageFavorite");
+    if (pageFavorite === 'true') {
+        localStorage.setItem("clickFavorite", 'true');
+    }
+
     // Pega os favoritos salvos (ou cria um array vazio)
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-
-    localStorage.setItem("favoriteClick", "clicked");
 
     // Verifica se o Pokémon já está favoritado
     const index = favoritos.findIndex(p => p.id === pokemon.id);
@@ -51,6 +55,19 @@ export function createPokemonCard(pokemon) {
 
     // Salva de volta no localStorage
     localStorage.setItem("favoritos", JSON.stringify(favoritos));
+
+    function verificarFavoritePage() {
+        if (pageFavorite === 'true') {
+        const getFavoritos = localStorage.getItem("favoritos");
+        const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        localStorage.removeItem("clickFavorite");
+        main(favoritos);
+        }
+    }
+
+    verificarFavoritePage();
+
+
 });
 
 // Retorna o css certo segundo o estado de favorito
