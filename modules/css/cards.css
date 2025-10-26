@@ -70,6 +70,18 @@
   background-image: url('/assets/img/POKEBOLL SIMPLES.png');
 }
 
+.card-favoriteButton.Capture 
+{
+  display: block;
+  background-image: url('/assets/img/POKEBOLA ALTERADA.png');
+}
+
+.card-favoriteButton.removeCapture
+{
+  display: block;
+  background-image: url('/assets/img/POKEBOLL SIMPLES.png');
+}
+
 @keyframes shake {
   0% {
     transform: translateX(0) rotate(0);

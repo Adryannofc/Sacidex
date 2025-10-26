@@ -26,11 +26,50 @@ export function createPokemonCard(pokemon) {
     });
 
 
-    // Define o que o botão faz ao clicar
     button.addEventListener("click", (event) => {
-        event.stopPropagation(); // Impede que o clique no botão dispare o evento do card
-        button.classList.toggle('active')
-    });
+    event.stopPropagation(); // Impede que o clique no botão dispare o evento do card
+
+    // Pega os favoritos salvos (ou cria um array vazio)
+    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    localStorage.setItem("favoriteClick", "clicked");
+
+    // Verifica se o Pokémon já está favoritado
+    const index = favoritos.findIndex(p => p.id === pokemon.id);
+
+    if (index >= 0) {
+        // Se já estiver, remove (desfavorita)
+        favoritos.splice(index, 1);
+        button.classList.remove('active');
+        button.classList.add('removeCapture');
+    } else {
+        // Se não estiver, adiciona
+        favoritos.push(pokemon);
+        button.classList.remove('removeCapture');
+        button.classList.add('active');
+    }
+
+    // Salva de volta no localStorage
+    localStorage.setItem("favoritos", JSON.stringify(favoritos));
+});
+
+// Retorna o css certo segundo o estado de favorito
+function verificarCaptura() {
+     const favoritos = JSON.parse(localStorage.getItem("favoritos"));
+
+        // Verifica se o Pokémon já está favoritado
+        const index = favoritos.findIndex(p => p.id === pokemon.id);
+
+        if (index >= 0) {
+            button.classList.remove('removeCapture');
+            button.classList.add('Capture');
+        } else {
+            button.classList.remove('Capture');
+            button.classList.add('removeCapture');
+        }
+    }
+
+    verificarCaptura();
 
     card.style.textDecoration = 'none'; // Remove sublinhado
     card.style.color = 'inherit';     // Usa a cor do texto normal do card
