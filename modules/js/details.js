@@ -1,32 +1,6 @@
-import { pokemons } from './data.js'; 
+import { pokemons } from './data.js';
 
-const botao = document.getElementById("botao");
-const busca = document.getElementById("busca");
-const favoriteButton = document.getElementById("favorite-btn");
-
-/**
- * Mapa de cores de fundo por tipo de Pokemon
- */
-const typeColors = {
-    fire: ['#f08030', '#f5ac78'],
-    water: ['#6890f0', '#9db7f5'],
-    grass: ['#78c850', '#a7db8d'],
-    electric: ['#f8d030', '#fae078'],
-    psychic: ['#f85888', '#fa92b2'],
-    ice: ['#98d8d8', '#bce6e6'],
-    dragon: ['#7038f8', '#a27dfa'],
-    dark: ['#705848', '#a29288'],
-    fairy: ['#ee99ac', '#f4bdc9'],
-    normal: ['#a8a878', '#c6c6a7'],
-    fighting: ['#c03028', '#d67873'],
-    flying: ['#a890f0', '#c6b7f5'],
-    poison: ['#a040a0', '#c183c1'],
-    ground: ['#e0c068', '#ebd69d'],
-    rock: ['#b8a038', '#d1c17d'],
-    bug: ['#a8b820', '#c6d16e'],
-    ghost: ['#705898', '#a292bc'],
-    steel: ['#b8b8d0', '#d1d1e0']
-};
+// Mapa de cores removido - agora usando classes CSS com gradientes
 
 /**
  * Tabela de fraquezas por tipo
@@ -84,7 +58,7 @@ function fillPageWithPokemonData(pokemon) {
     // Aplica cor de fundo baseada no tipo primário
     const primaryType = pokemon.types[0].type.name;
     applyBackgroundColor(primaryType);
-    
+
     // Pokemon ID
     document.querySelector('.pokemon-id').textContent = `#${pokemon.id.toString().padStart(3, '0')}`;
 
@@ -103,11 +77,11 @@ function fillPageWithPokemonData(pokemon) {
     // Catch rate
     document.querySelector('.progress-fill-catch').style.width = `${pokemon.catchRate}%`;
     document.querySelector('.catchrate-text').textContent = `${pokemon.catchRate}%`;
-    
+
     // Types
     const typesContainer = document.querySelector('#TypesIMG');
     typesContainer.innerHTML = "";
-    
+
     pokemon.types.forEach(typeInfo => {
         const typeName = typeInfo.type.name;
         const typeSpan = document.createElement('span');
@@ -119,7 +93,7 @@ function fillPageWithPokemonData(pokemon) {
     // Weaknesses
     const weaknessContainer = document.querySelector('#WeaknessesIMG');
     weaknessContainer.innerHTML = "";
-    
+
     const weaknesses = getWeaknesses(pokemon.types);
     weaknesses.forEach(weakness => {
         const weakSpan = document.createElement('span');
@@ -134,11 +108,14 @@ function fillPageWithPokemonData(pokemon) {
 }
 
 /**
- * Aplica cor de fundo baseada no tipo do Pokemon
+ * Aplica classe CSS de gradiente baseada no tipo do Pokemon
  */
 function applyBackgroundColor(type) {
-    const colors = typeColors[type] || ['#eb7c44', '#f5ac78'];
-    document.body.style.background = `linear-gradient(135deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+    // Remove todas as classes de tipo existentes
+    document.body.className = document.body.className.replace(/type-\w+/g, '');
+
+    // Adiciona a nova classe de tipo
+    document.body.classList.add(`type-${type}`);
 }
 
 /**
@@ -146,13 +123,13 @@ function applyBackgroundColor(type) {
  */
 function getWeaknesses(types) {
     const weaknessSet = new Set();
-    
+
     types.forEach(typeInfo => {
         const typeName = typeInfo.type.name;
         const weaknesses = typeWeaknesses[typeName] || [];
         weaknesses.forEach(w => weaknessSet.add(w));
     });
-    
+
     return Array.from(weaknessSet).slice(0, 3); // Limita a 3 fraquezas principais
 }
 
@@ -180,41 +157,22 @@ function setupTabs() {
 /**
  * Navegação entre Pokemon
  */
-window.navigatePokemon = function(direction) {
+window.navigatePokemon = function (direction) {
     const params = new URLSearchParams(window.location.search);
     const currentId = parseInt(params.get('id'));
-    
+
     const currentIndex = pokemons.findIndex(p => p.id === currentId);
     let newIndex;
-    
+
     if (direction === 'prev') {
         newIndex = currentIndex > 0 ? currentIndex - 1 : pokemons.length - 1;
     } else {
         newIndex = currentIndex < pokemons.length - 1 ? currentIndex + 1 : 0;
     }
-    
+
     const newPokemonId = pokemons[newIndex].id;
     window.location.href = `pokemon.html?id=${newPokemonId}`;
 }
 
 // Roda o script assim que a página carrega
 loadDetail();
-
-// Evento do botão de busca que salva no localStorage e volta para a index
-botao.addEventListener("click", () => {
-    const textoBusca = busca.value;
-    localStorage.setItem("busca", textoBusca);
-    window.location.href = "../index.html";
-});
-// Evento do botão de favoritos que salva a página atual no localStorage e volta para a index
-favoriteButton.addEventListener("click", () => {
-    localStorage.setItem("page", "outraPage");
-    window.location.href = "../index.html";
-});
-
-// Evento para permitir busca ao pressionar Enter
-busca.addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
-    botao.click(); // simula o clique do botão
-  }
-});

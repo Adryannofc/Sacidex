@@ -5,98 +5,19 @@
 }
 
 body {
-    background: #eb7c44;
-    background: -webkit-linear-gradient(103deg, rgba(235, 124, 68, 1) 36%, rgba(237, 221, 83, 1) 88%);
-    background: -moz-linear-gradient(103deg, rgba(235, 124, 68, 1) 36%, rgba(237, 221, 83, 1) 88%);
-    background: linear-gradient(103deg, rgba(235, 124, 68, 1) 36%, rgba(237, 221, 83, 1) 88%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#EB7C44", endColorstr="#EDDD53", GradientType=0);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
     overflow: hidden;
 }
 
-/* Cores dinâmicas por tipo de Pokemon */
-body.type-fire {
-    background: linear-gradient(135deg, #f08030 0%, #f5ac78 100%);
-}
 
-body.type-water {
-    background: linear-gradient(135deg, #6890f0 0%, #9db7f5 100%);
-}
-
-body.type-grass {
-    background: linear-gradient(135deg, #78c850 0%, #a7db8d 100%);
-}
-
-body.type-electric {
-    background: linear-gradient(135deg, #f8d030 0%, #fae078 100%);
-}
-
-body.type-psychic {
-    background: linear-gradient(135deg, #f85888 0%, #fa92b2 100%);
-}
-
-body.type-ice {
-    background: linear-gradient(135deg, #98d8d8 0%, #bce6e6 100%);
-}
-
-body.type-dragon {
-    background: linear-gradient(135deg, #7038f8 0%, #a27dfa 100%);
-}
-
-body.type-dark {
-    background: linear-gradient(135deg, #705848 0%, #a29288 100%);
-}
-
-body.type-fairy {
-    background: linear-gradient(135deg, #ee99ac 0%, #f4bdc9 100%);
-}
-
-body.type-normal {
-    background: linear-gradient(135deg, #a8a878 0%, #c6c6a7 100%);
-}
-
-body.type-fighting {
-    background: linear-gradient(135deg, #c03028 0%, #d67873 100%);
-}
-
-body.type-flying {
-    background: linear-gradient(135deg, #a890f0 0%, #c6b7f5 100%);
-}
-
-body.type-poison {
-    background: linear-gradient(135deg, #a040a0 0%, #c183c1 100%);
-}
-
-body.type-ground {
-    background: linear-gradient(135deg, #e0c068 0%, #ebd69d 100%);
-}
-
-body.type-rock {
-    background: linear-gradient(135deg, #b8a038 0%, #d1c17d 100%);
-}
-
-body.type-bug {
-    background: linear-gradient(135deg, #a8b820 0%, #c6d16e 100%);
-}
-
-body.type-ghost {
-    background: linear-gradient(135deg, #705898 0%, #a292bc 100%);
-}
-
-body.type-steel {
-    background: linear-gradient(135deg, #b8b8d0 0%, #d1d1e0 100%);
-}
-
-/* Pokemon main section */
 .pokemon-main-section {
     position: relative;
     padding-top: 20px;
     min-height: calc(100vh - 95px);
 }
 
-/* Pokemon ID */
 .pokemon-id {
     font-size: 150px;
     font-weight: 700;
@@ -109,7 +30,6 @@ body.type-steel {
     user-select: none;
 }
 
-/* Navigation arrows */
 .nav-arrow {
     position: absolute;
     top: 50%;
@@ -137,7 +57,6 @@ body.type-steel {
     right: 20px;
 }
 
-/* Pokemon image sparkle decoration */
 .sparkle {
     position: absolute;
     color: rgba(255, 255, 255, 0.5);
@@ -146,13 +65,21 @@ body.type-steel {
 }
 
 @keyframes sparkle {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
 }
 
-/* Pokemon image container */
 .pokeimg {
-    top: -5px;
+    top: -30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,11 +96,17 @@ body.type-steel {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-3px); }
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
 }
 
-/* Main container */
 .container {
     bottom: 0;
     position: fixed;
@@ -184,7 +117,6 @@ body.type-steel {
     align-items: flex-end;
 }
 
-/* Content card */
 .cont {
     border-radius: 30px 30px 0 0;
     background: #fff;
@@ -199,7 +131,6 @@ body.type-steel {
     overflow: hidden;
 }
 
-/* Tabs navigation */
 .tabs-nav {
     display: flex;
     justify-content: center;
@@ -234,7 +165,6 @@ body.type-steel {
     font-weight: 600;
 }
 
-/* Tab content */
 .tab-content {
     display: none;
     padding: 30px 60px;
@@ -246,8 +176,15 @@ body.type-steel {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Types and Weaknesses section */
@@ -300,25 +237,6 @@ body.type-steel {
     text-transform: capitalize;
 }
 
-/* Type colors */
-.type.fire { background: #f08030; }
-.type.water { background: #6890f0; }
-.type.grass { background: #78c850; }
-.type.electric { background: #f8d030;}
-.type.psychic { background: #f85888; }
-.type.ice { background: #98d8d8; }
-.type.dragon { background: #7038f8; }
-.type.dark { background: #705848; }
-.type.fairy { background: #ee99ac; }
-.type.normal { background: #a8a878; }
-.type.fighting { background: #c03028; }
-.type.flying { background: #a890f0; }
-.type.poison { background: #a040a0; }
-.type.ground { background: #e0c068; }
-.type.rock { background: #b8a038; }
-.type.bug { background: #a8b820; }
-.type.ghost { background: #705898; }
-.type.steel { background: #b8b8d0; }
 
 /* Stats section */
 .percentinfo {
@@ -476,7 +394,7 @@ body.type-steel {
     .cont {
         margin: 0 4rem;
     }
-    
+
     .pokemon-id {
         font-size: 150px;
         left: 40px;
@@ -489,38 +407,38 @@ body.type-steel {
         left: 20px;
         top: 20px;
     }
-    
+
     .pokeimg img {
         width: 300px;
     }
-    
+
     .cont {
         margin: 0 1rem;
     }
-    
+
     .tab-button {
         padding: 15px 20px;
         font-size: 16px;
     }
-    
+
     .typeinfo {
         flex-direction: column;
         gap: 20px;
     }
-    
+
     #weaknesspoke {
         text-align: left;
     }
-    
+
     #WeaknessesIMG {
         justify-content: flex-start;
     }
-    
+
     .percentinfo {
         flex-direction: column;
         gap: 30px;
     }
-    
+
     .sobrepokemon {
         padding: 20px 30px;
     }

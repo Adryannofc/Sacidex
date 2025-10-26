@@ -43,7 +43,6 @@ body {
     margin-top: 0.5rem;
     margin-left: 5px;
     width: 120px;
-
 }
 
 .nav ul {
@@ -62,8 +61,8 @@ body {
 }
 
 a:hover {
-  color: #000000;
-  transform: scale(1.1);
+    color: #000000;
+    transform: scale(1.1);
 }
 
 
@@ -105,11 +104,9 @@ a:hover {
 
 .search img {
     width: 10px;
-
 }
 
-.toggle-theme button {
-    cursor: pointer;
+.toggle-theme button{
     border: none;
     background: none;
 }
