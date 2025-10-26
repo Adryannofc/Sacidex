@@ -40,20 +40,62 @@
 }
 
 .card-favoriteButton {
-    margin-top: 8px;
-    padding: 6px 10px;
-    border: none;
-    border-radius: 8px;
-    background-color: #ff5555;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
+  margin-top: 8px;
+  margin-left: 25px;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;    
+  width: 28px;
+  height: 28px;
+  background-image: url('/assets/img/POKEBOLL SIMPLES.png'); /* imagem inicial */
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease; /* suaviza o aumento */
 }
 
 .card-favoriteButton:hover {
-    background-color: #ff0000;
+  background-image: url('/assets/img/Pokebola-aberta.png');
+  transform: scale(1.60);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
+
+.card-favoriteButton.active
+{
+  display: block;
+  animation: shake 1s  3 , catch 0.2s 3s forwards;
+  background-image: url('/assets/img/POKEBOLL SIMPLES.png');
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0) rotate(0);
+  }
+  20% {
+    transform: translateX(-10px) rotate(-20deg);
+  }
+  30% {
+    transform: translateX(10px) rotate(20deg);
+  }
+  50% {
+    transform: translateX(-10px) rotate(-10deg);
+  }
+  60% {
+    transform: translateX(10px) rotate(10deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0);
+  }
+}
+@keyframes catch {
+  to {
+    background-image: url('/assets/img/POKEBOLA ALTERADA.png');
+  }
+}
+
 
 .card-header {
     display: flex;
