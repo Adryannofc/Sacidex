@@ -109,6 +109,17 @@ a:hover {
 .toggle-theme button{
     border: none;
     background: none;
+    transition: 0.9s ease;
+    
+}
+
+.toggle-theme button:hover
+{
+    background: none;
+    transform: scale(1.15);
+    
+    border: none;
+    
 }
 
 @media (max-width: 600px) {

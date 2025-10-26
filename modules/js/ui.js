@@ -1,3 +1,5 @@
+
+
 export function createPokemonCard(pokemon) {
     // 1. Crie o elemento do card
     const card = document.createElement('div');
@@ -18,18 +20,58 @@ export function createPokemonCard(pokemon) {
     const button = document.createElement("button");
     const imageButton = document.createElement("img")
     button.classList.add("card-favoriteButton");
-    
 
-    button.addEventListener('click', function (event) {
-        // Impede o comportamento padrão do evento
-        event.preventDefault();
+
+    //As seguintes linhas de código a seguir foram tiradas diretamente do CHAT GPT com fins de estilização da pagina
+    button.addEventListener('click', (e) => {
+        // Checa se o botão já está ativo
+        const isActive = button.classList.contains('activec');
+        button.classList.toggle('active');
+
+        // Alterna a classe
+        button.classList.toggle('activec');
+
+        // Só dispara partículas se ele **ficou ativo** agora
+        if (!isActive) {
+            setTimeout(() => {
+                const numStars = 20;
+                for (let i = 0; i < numStars; i++) {
+                    const star = document.createElement('span');
+                    star.classList.add('star');
+
+
+
+                    // direção aleatória para cima
+                    const distance = 50 + Math.random() * 50;
+                    const xDir = (Math.random() - 0.5) * distance * 2; // pode ir para esquerda (-) ou direita (+)
+                    const yDir = -distance; // sempre sobe
+
+                    star.style.setProperty('--x', `${xDir}px`);
+                    star.style.setProperty('--y', `${yDir}px`);
+
+                    button.appendChild(star);
+
+                    // remove depois de 1s
+                    setTimeout(() => {
+                        star.remove();
+                    }, 8000);
+                }
+            }, 3000); // delay 3 segundos
+        }
     });
+
+    // Ultima linha tirada do Chat gpt
+
+
+  
 
 
     // 🔹 Define o que o botão faz ao clicar
     button.addEventListener("click", (event) => {
-        event.stopPropagation(); // Impede que o clique no botão dispare o evento do card
-        button.classList.toggle('active');
+        console.log(3)
+        event.stopPropagation(); 
+        
+        
     });
 
     card.style.textDecoration = 'none'; // Remove sublinhado
@@ -70,14 +112,14 @@ export function createPokemonCard(pokemon) {
 
     header.appendChild(name)
     header.appendChild(id);
-    
-    
+
+
 
 
     card.appendChild(header);
     card.appendChild(imageContainer);
     card.appendChild(types);
-    
+
 
 
 
