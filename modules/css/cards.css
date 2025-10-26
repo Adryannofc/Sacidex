@@ -40,98 +40,106 @@
 }
 
 .card-favoriteButton {
-  margin-top: 8px;
-  margin-left: 25px;
-  border: none;
-  background: none;
-  color: white;
-  cursor: pointer;    
-  width: 28px;
-  height: 28px;
-  background-image: url('/assets/img/POKEBOLL SIMPLES.png'); /* imagem inicial */
-  background-size: cover;
-  background-repeat: no-repeat;
-  transition: transform 0.3s ease; /* suaviza o aumento */
+    margin-top: 8px;
+    margin-left: 25px;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    background-image: url('/assets/img/POKEBOLL SIMPLES.png');
+    /* imagem inicial */
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+    /* suaviza o aumento */
 }
 
-.card-favoriteButton:hover {
-  background-image: url('/assets/img/Pokebola-aberta.png');
-  transform: scale(1.60);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-}
 
 .star {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: yellow;
-  clip-path: polygon(
-    50% 0%, 61% 35%, 98% 35%, 68% 57%, 
-    79% 91%, 50% 70%, 21% 91%, 32% 57%, 
-    2% 35%, 39% 35%
-  ); /* estrela de 5 pontas */
-  opacity: 0;
-  pointer-events: none;
-  animation: flyUp 1s ease-out forwards;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: yellow;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%,
+            79% 91%, 50% 70%, 21% 91%, 32% 57%,
+            2% 35%, 39% 35%);
+    /* estrela de 5 pontas */
+    opacity: 0;
+    pointer-events: none;
+    animation: flyUp 1s ease-out forwards;
 }
 
 @keyframes flyUp {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(var(--x), var(--y)) scale(0.5);
-    opacity: 0;
-  }
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0.5);
+        opacity: 0;
+    }
 }
 
-.card-favoriteButton.active
-{
-  display: block;
-  animation: shake 1s  3 , catch 0.2s 3s forwards;
-  background-image: url('/assets/img/POKEBOLL SIMPLES.png');
+.card-favoriteButton.active {
+    display: block;
+    animation: shake 1s 3, catch 0.2s 3s forwards;
+    background-image: url('/assets/img/POKEBOLL SIMPLES.png');
 }
 
-.card-favoriteButton.Capture 
+.card-favoriteButton.removeCapture:hover
 {
-  display: block;
-  background-image: url('/assets/img/POKEBOLA ALTERADA.png');
+    background-image: url('/assets/img/Pokebola-aberta.png');
+    transform: scale(1.60);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+
 }
 
-.card-favoriteButton.removeCapture
-{
-  display: block;
-  background-image: url('/assets/img/POKEBOLL SIMPLES.png');
+.card-favoriteButton.Capture {
+    display: block;
+    background-image: url('/assets/img/POKEBOLA ALTERADA.png');
+}
+
+.card-favoriteButton.removeCapture {
+    display: block;
+    background-image: url('/assets/img/POKEBOLL SIMPLES.png');
 }
 
 @keyframes shake {
-  0% {
-    transform: translateX(0) rotate(0);
-  }
-  20% {
-    transform: translateX(-10px) rotate(-20deg);
-  }
-  30% {
-    transform: translateX(10px) rotate(20deg);
-  }
-  50% {
-    transform: translateX(-10px) rotate(-10deg);
-  }
-  60% {
-    transform: translateX(10px) rotate(10deg);
-  }
-  100% {
-    transform: translateX(0) rotate(0);
-  }
+    0% {
+        transform: translateX(0) rotate(0);
+    }
+
+    20% {
+        transform: translateX(-10px) rotate(-20deg);
+    }
+
+    30% {
+        transform: translateX(10px) rotate(20deg);
+    }
+
+    50% {
+        transform: translateX(-10px) rotate(-10deg);
+    }
+
+    60% {
+        transform: translateX(10px) rotate(10deg);
+    }
+
+    100% {
+        transform: translateX(0) rotate(0);
+    }
 }
+
 @keyframes catch {
-  to {
-    background-image: url('/assets/img/POKEBOLA ALTERADA.png');
-  }
+    to {
+        background-image: url('/assets/img/POKEBOLA ALTERADA.png');
+    }
 }
 
 

@@ -57,13 +57,12 @@ function outraPage() {
     const parseFavoritos = JSON.parse(getFavoritos);
     localStorage.removeItem("page");
     console.log(parseFavoritos);
-    main(parseFavoritos);
-  };
-  
 };
+};
+
+
 
 // mostra todos
 main(pokemons);
 buscaLocalStorage();
 outraPage();
-console.log('ola')

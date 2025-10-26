@@ -56,7 +56,7 @@ export function createPokemonCard(pokemon) {
                         star.remove();
                     }, 8000);
                 }
-            }, 3000); // delay 3 segundos
+            }, 3400); // delay 3 segundos
         }
     });
 
@@ -94,7 +94,7 @@ export function createPokemonCard(pokemon) {
 });
 
 // Retorna o css certo segundo o estado de favorito
-function verificarCaptura() {
+ function verificarCaptura() {
      const favoritos = JSON.parse(localStorage.getItem("favoritos"));
 
         // Verifica se o Pokémon já está favoritado
