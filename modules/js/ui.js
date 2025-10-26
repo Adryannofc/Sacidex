@@ -9,7 +9,7 @@ export function createPokemonCard(pokemon) {
         window.location.href = `pages/pokemon.html?id=${pokemon.id}`;
     });
 
-    // 🔹 Cria o botão dinamicamente
+    // Cria o botão dinamicamente
     const divButton = document.createElement('div');
     divButton.classList.add('button-favorite')
 
@@ -26,10 +26,10 @@ export function createPokemonCard(pokemon) {
     });
 
 
-    // 🔹 Define o que o botão faz ao clicar
+    // Define o que o botão faz ao clicar
     button.addEventListener("click", (event) => {
         event.stopPropagation(); // Impede que o clique no botão dispare o evento do card
-        button.classList.toggle('active');
+        button.classList.toggle('active')
     });
 
     card.style.textDecoration = 'none'; // Remove sublinhado
