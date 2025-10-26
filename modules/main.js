@@ -12,17 +12,13 @@ campoBusca.addEventListener("input", () => {
   main(filtrados);
 });
 
-// LocalStorage para favoritos
-  const favoritos = pokemons.filter(p => p.favorite);
-  const storageFavoritos = JSON.stringify(favoritos);
-  localStorage.setItem("favoritos", storageFavoritos);
-
-
 // botão de favoritos
 favoriteButton.addEventListener("click", () => {
+
   const getFavoritos = localStorage.getItem("favoritos");
   const parseFavoritos = JSON.parse(getFavoritos);
   main(parseFavoritos);
+
 });
 
 // função principal de criação dos cards
@@ -70,3 +66,4 @@ function outraPage() {
 main(pokemons);
 buscaLocalStorage();
 outraPage();
+console.log('ola')
