@@ -66,3 +66,4 @@ function outraPage() {
 main(pokemons);
 buscaLocalStorage();
 outraPage();
+console.log('ola')
