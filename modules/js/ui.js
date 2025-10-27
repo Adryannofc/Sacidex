@@ -123,7 +123,6 @@ export function createPokemonCard(pokemon) {
     }
 
     verificarCaptura();
-
     card.style.textDecoration = 'none'; // Remove sublinhado
     card.style.color = 'inherit';     // Usa a cor do texto normal do card
 
@@ -166,9 +165,12 @@ export function createPokemonCard(pokemon) {
 
 
 
+
+
     card.appendChild(header);
     card.appendChild(imageContainer);
     card.appendChild(types);
+
 
 
 
