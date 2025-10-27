@@ -40,20 +40,17 @@
 }
 
 .card-favoriteButton {
-    margin-top: 8px;
-    margin-left: 25px;
-    border: none;
-    background: none;
-    color: white;
-    cursor: pointer;
-    width: 28px;
-    height: 28px;
-    background-image: url('/assets/img/POKEBOLL SIMPLES.png');
-    /* imagem inicial */
-    background-size: cover;
-    background-repeat: no-repeat;
-    transition: transform 0.3s ease;
-    /* suaviza o aumento */
+  margin-top: 8px;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;    
+  width: 28px;
+  height: 28px;
+  background-image: url('/assets/img/POKEBOLL SIMPLES.png'); /* imagem inicial */
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease; /* suaviza o aumento */
 }
 
 
