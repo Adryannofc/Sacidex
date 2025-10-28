@@ -12,6 +12,16 @@ body {
     background-color: #ececec;
 }
 
+body.dark {
+    background-color: #000;
+}
+
+#toggleTheme {
+    cursor: pointer;
+}
+
+
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -109,6 +119,10 @@ a:hover {
 .toggle-theme button{
     border: none;
     background: none;
+}
+
+.toggle-theme button.dark {
+    background-image: url("/assets/img/sun.png");
 }
 
 @media (max-width: 600px) {

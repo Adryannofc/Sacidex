@@ -97,11 +97,6 @@
 
 }
 
-.card-favoriteButton.Capture {
-    display: block;
-    background-image: url('/assets/img/POKEBOLA ALTERADA.png');
-}
-
 .card-favoriteButton.removeCapture {
     display: block;
     background-image: url('/assets/img/POKEBOLL SIMPLES.png');
