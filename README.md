@@ -1,6 +1,10 @@
 # 🔴⚪ Sacidex (Pokédex)
 
 Bem-vindo(a) ao Sacidex! Este projeto é uma Pokédex digital desenvolvida para listar e exibir informações sobre diversos Pokémon. ⚡️
+<img width="1905" height="1199" alt="image" src="https://github.com/user-attachments/assets/dd73c201-c382-49b2-8ab0-6adebae7a572" />
+<img width="1919" height="1199" alt="image" src="https://github.com/user-attachments/assets/297b2d03-c041-4551-927d-418e1a29ca42" />
+<img width="1919" height="1199" alt="image" src="https://github.com/user-attachments/assets/2a8abba4-2267-4241-8ed4-50719c5eb1f4" />
+
 
 Este foi desenvolvido como parte de um Projeto Integrador (PI) pela equipe **Saciscode**, com o objetivo de aplicar conhecimentos de front-end para criar uma aplicação web interativa.
 
