@@ -8,7 +8,8 @@ export const pokemons = [
         sprites: {
             other: {
                 "official-artwork": {
-                    "front_default": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
+                    "front_default": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
+                    "shine_version": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png"
                 }
             }
         },
