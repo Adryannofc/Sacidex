@@ -111,8 +111,7 @@ function fillPageWithPokemonData(pokemon) {
         {
             imgElement.src = pokemon.sprites.other["official-artwork"].front_default;
             clickedShine = false;
-            
-
+            imgElement.classList.add('noshine');
         }
     });
      
