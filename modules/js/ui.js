@@ -54,7 +54,11 @@ export function createPokemonCard(pokemon) {
                     // remove depois de 1s
                     setTimeout(() => {
                         star.remove();
+<<<<<<< Updated upstream
                     }, 8000);
+=======
+                    }, 3000);
+>>>>>>> Stashed changes
                 }
             }, 3400); // delay 3 segundos
         }
