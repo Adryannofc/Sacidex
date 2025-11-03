@@ -1,5 +1,4 @@
-
-
+import { main } from '../main.js';
 export function createPokemonCard(pokemon) {
     // 1. Crie o elemento do card
     const card = document.createElement('div');
@@ -20,25 +19,23 @@ export function createPokemonCard(pokemon) {
     const button = document.createElement("button");
     const imageButton = document.createElement("img")
     button.classList.add("card-favoriteButton");
-
-
-    //As seguintes linhas de código a seguir foram tiradas diretamente do CHAT GPT com fins de estilização da pagina
     button.addEventListener('click', (e) => {
         // Checa se o botão já está ativo
-        const isActive = button.classList.contains('activec');
-        button.classList.toggle('active');
+        const isActive = button.classList.contains('active');
 
         // Alterna a classe
-        button.classList.toggle('activec');
+        button.classList.toggle('active');
 
         // Só dispara partículas se ele **ficou ativo** agora
         if (!isActive) {
+            // delay de 3 segundos antes das partículas
             setTimeout(() => {
-                const numStars = 20;
+                const numStars = 15;
                 for (let i = 0; i < numStars; i++) {
                     const star = document.createElement('span');
                     star.classList.add('star');
 
+                    // posição inicial
 
 
                     // direção aleatória para cima
@@ -49,53 +46,69 @@ export function createPokemonCard(pokemon) {
                     star.style.setProperty('--x', `${xDir}px`);
                     star.style.setProperty('--y', `${yDir}px`);
 
+
                     button.appendChild(star);
 
-                    // remove depois de 1s
+                    // remove depois de 3s
                     setTimeout(() => {
                         star.remove();
-                    }, 8000);
+                    }, 3000);
                 }
-            }, 3400); // delay 3 segundos
+            }, 3300); // delay 3 segundos
         }
     });
-
-    // Ultima linha tirada do Chat gpt
-
-
-  
+    button.addEventListener('click', function (event) {
+        // Impede o comportamento padrão do evento
+        event.preventDefault();
+    });
 
 
     button.addEventListener("click", (event) => {
-    event.stopPropagation(); // Impede que o clique no botão dispare o evento do card
+        event.stopPropagation(); // Impede que o clique no botão dispare o evento do card
 
-    // Pega os favoritos salvos (ou cria um array vazio)
-    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        const pageFavorite = localStorage.getItem("pageFavorite");
+        if (pageFavorite === 'true') {
+            localStorage.setItem("clickFavorite", 'true');
+        }
 
-    localStorage.setItem("favoriteClick", "clicked");
+        // Pega os favoritos salvos (ou cria um array vazio)
+        const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
-    // Verifica se o Pokémon já está favoritado
-    const index = favoritos.findIndex(p => p.id === pokemon.id);
+        // Verifica se o Pokémon já está favoritado
+        const index = favoritos.findIndex(p => p.id === pokemon.id);
 
-    if (index >= 0) {
-        // Se já estiver, remove (desfavorita)
-        favoritos.splice(index, 1);
-        button.classList.remove('active');
-        button.classList.add('removeCapture');
-    } else {
-        // Se não estiver, adiciona
-        favoritos.push(pokemon);
-        button.classList.remove('removeCapture');
-        button.classList.add('active');
-    }
+        if (index >= 0) {
+            // Se já estiver, remove (desfavorita)
+            favoritos.splice(index, 1);
+            button.classList.remove('active');
+            button.classList.add('removeCapture');
+        } else {
+            // Se não estiver, adiciona
+            favoritos.push(pokemon);
+            button.classList.remove('removeCapture');
+            button.classList.add('active');
+        }
 
-    // Salva de volta no localStorage
-    localStorage.setItem("favoritos", JSON.stringify(favoritos));
-});
+        // Salva de volta no localStorage
+        localStorage.setItem("favoritos", JSON.stringify(favoritos));
 
-// Retorna o css certo segundo o estado de favorito
- function verificarCaptura() {
-     const favoritos = JSON.parse(localStorage.getItem("favoritos"));
+        function verificarFavoritePage() {
+            if (pageFavorite === 'true') {
+                const getFavoritos = localStorage.getItem("favoritos");
+                const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+                localStorage.removeItem("clickFavorite");
+                main(favoritos);
+            }
+        }
+
+        verificarFavoritePage();
+
+
+    });
+
+    // Retorna o css certo segundo o estado de favorito
+    function verificarCaptura() {
+        const favoritos = JSON.parse(localStorage.getItem("favoritos"));
 
         // Verifica se o Pokémon já está favoritado
         const index = favoritos.findIndex(p => p.id === pokemon.id);
@@ -152,9 +165,12 @@ export function createPokemonCard(pokemon) {
 
 
 
+
+
     card.appendChild(header);
     card.appendChild(imageContainer);
     card.appendChild(types);
+
 
 
 

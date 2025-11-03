@@ -86,6 +86,11 @@
     background-image: url('/assets/img/POKEBOLL SIMPLES.png');
 }
 
+.card-favoriteButton.Capture {
+  display: block;
+  background-image: url('/assets/img/POKEBOLA ALTERADA.png');
+}
+
 .card-favoriteButton.removeCapture:hover
 {
     background-image: url('/assets/img/Pokebola-aberta.png');
@@ -97,15 +102,47 @@
 
 }
 
-.card-favoriteButton.Capture {
-    display: block;
-    background-image: url('/assets/img/POKEBOLA ALTERADA.png');
-}
-
 .card-favoriteButton.removeCapture {
     display: block;
     background-image: url('/assets/img/POKEBOLL SIMPLES.png');
 }
+
+.card-favoriteButton.removeCapture:hover
+{
+    background-image: url('/assets/img/Pokebola-aberta.png');
+  transform: scale(1.60);
+  background-size: cover;
+  background-position: center;
+}
+
+/* partículas de estrela */
+.star {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: yellow;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 
+    79% 91%, 50% 70%, 21% 91%, 32% 57%, 
+    2% 35%, 39% 35%
+  ); /* estrela de 5 pontas */
+  opacity: 0;
+  pointer-events: none;
+  animation: flyUp 0.8s;
+}
+
+/* animação para subir e sumir */
+@keyframes flyUp {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) ;
+    opacity: 0;
+  }
+}
+
 
 @keyframes shake {
     0% {

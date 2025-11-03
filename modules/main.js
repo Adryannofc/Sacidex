@@ -4,6 +4,7 @@ import { pokemons } from "./js/data.js";
 const campoBusca = document.getElementById("busca");
 const favoriteButton = document.getElementById("favorite-btn");
 const container = document.getElementById("cards");
+const toggleTheme = document.getElementById("toggleTheme");
 
 // busca dinâmica
 campoBusca.addEventListener("input", () => {
@@ -14,15 +15,50 @@ campoBusca.addEventListener("input", () => {
 
 // botão de favoritos
 favoriteButton.addEventListener("click", () => {
-
+  localStorage.setItem("pageFavorite","true");
   const getFavoritos = localStorage.getItem("favoritos");
   const parseFavoritos = JSON.parse(getFavoritos);
   main(parseFavoritos);
 
 });
 
+
+// verifica o tema atual do usuario
+verificarTheme();
+
+// botao do tema
+toggleTheme.addEventListener("click", () => {
+  const getTheme = localStorage.getItem("theme");
+
+  if (getTheme === "dark") {
+    // claro
+    document.body.classList.remove("dark");
+    toggleTheme.src = "/assets/img/moon-icon.png";
+    localStorage.setItem("theme", "light");
+  } else {
+    // escuro
+    document.body.classList.add("dark");
+    toggleTheme.src = "/assets/img/sun.png";
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+// funcao que verifica o tema salvo
+function verificarTheme() {
+  const getTheme = localStorage.getItem("theme");
+
+  if (getTheme === "dark") {
+    document.body.classList.add("dark");
+    toggleTheme.src = "/assets/img/sun.png";
+  } else {
+    document.body.classList.remove("dark");
+    toggleTheme.src = "/assets/img/moon-icon.png";
+    localStorage.setItem("theme", "light"); // garante o valor inicial
+  }
+}
+
 // função principal de criação dos cards
-async function main(lista) {
+export async function main(lista) {
   // limpa o container antes de recriar
   container.innerHTML = "";
 
@@ -33,7 +69,7 @@ async function main(lista) {
 
 }
 
-// busca por localStorage
+// busca por localStorage 
 function buscaLocalStorage() {
 const storageBusca = localStorage.getItem("busca");
 
@@ -55,14 +91,25 @@ function outraPage() {
   if(storagePage === "outraPage") {
     const getFavoritos = localStorage.getItem("favoritos");
     const parseFavoritos = JSON.parse(getFavoritos);
+    localStorage.setItem("pageFavorite", "true");
     localStorage.removeItem("page");
-    console.log(parseFavoritos);
+    main(parseFavoritos);
+  };
+  
 };
-};
 
+function removeFavoritePage() {
+localStorage.removeItem("pageFavorite");
+localStorage.removeItem("clickFavorite");
+}
 
+//==== principais funcoes===== //
 
-// mostra todos
+// reseta localStorage que indica que o usuario esta em favoritos
+removeFavoritePage();
+// cria os cards do catalogo e funcao geral para criar cards
 main(pokemons);
+// para interatividade da busca com outra página
 buscaLocalStorage();
+// Verifica se veio da página de outra página para mostrar favoritos 
 outraPage();
