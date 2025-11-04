@@ -13,8 +13,9 @@ body {
 }
 
 body.dark {
-    background-color: #000;
+    background-color: #1A1A1A;
 }
+
 
 #toggleTheme {
     cursor: pointer;
@@ -33,6 +34,50 @@ body.dark {
     margin-bottom: 25px;
 }
 
+.header.dark-header
+{
+    background-color: #252525;
+    
+
+}
+.header.dark-header a
+{
+    color: white;
+
+}
+.header.dark-header .search input
+{
+    color: rgb(255, 6, 6);
+    background-color: #464646       ;
+    
+
+}
+
+.header.dark-header .search button
+{
+    color: rgb(255, 6, 6);
+    background-color: #464646;
+    
+
+}
+
+
+.header.dark-header .search button:hover {
+    transform: scale(1.05);
+    color: rgb(255, 255, 255);
+    background-color: rgb(91, 91, 91);
+}
+
+.header.dark-header .dark-mode
+{
+    height: auto;
+    width: 38px;
+}
+
+
+
+
+
 .logo {
     display: flex;
     justify-content: center;
@@ -43,7 +88,7 @@ body.dark {
     width: 45px;
     cursor: pointer;
     transition: transform 0.5s ease;
-}
+}   
 
 .icon:hover {
     transform: rotate(360deg);
@@ -79,6 +124,7 @@ a:hover {
 .search {
     display: inline-block;
     position: relative;
+    
 }
 
 .search input {
@@ -121,9 +167,8 @@ a:hover {
     background: none;
 }
 
-.toggle-theme button.dark {
-    background-image: url("/assets/img/sun.png");
-}
+
+
 
 @media (max-width: 600px) {
     .card {
