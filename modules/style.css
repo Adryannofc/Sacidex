@@ -12,71 +12,6 @@ body {
     background-color: #ececec;
 }
 
-body.dark {
-    background-color: #1A1A1A;
-}
-
-
-#toggleTheme {
-    cursor: pointer;
-}
-
-
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 0 6rem;
-    height: 80px;
-    box-shadow: 1px 1px 5px #ccc;
-    margin-bottom: 25px;
-}
-
-.header.dark-header
-{
-    background-color: #252525;
-    
-
-}
-.header.dark-header a
-{
-    color: white;
-
-}
-.header.dark-header .search input
-{
-    color: rgb(255, 6, 6);
-    background-color: #464646       ;
-    
-
-}
-
-.header.dark-header .search button
-{
-    color: rgb(255, 6, 6);
-    background-color: #464646;
-    
-
-}
-
-
-.header.dark-header .search button:hover {
-    transform: scale(1.05);
-    color: rgb(255, 255, 255);
-    background-color: rgb(91, 91, 91);
-}
-
-.header.dark-header .dark-mode
-{
-    height: auto;
-    width: 38px;
-}
-
-
-
-
 
 .logo {
     display: flex;
@@ -132,8 +67,7 @@ a:hover {
     padding: 10px;
     border: none;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    letter-spacing: 2px;
+     letter-spacing: 2px;
     outline: none;
     padding-left: 25px;
 }
@@ -149,10 +83,11 @@ a:hover {
     position: absolute;
     top: 0;
     right: 0;
-    transition: .9s ease;
+    transition: 0.7s ease-out;
 }
 
 .search button:hover {
+    
     transform: scale(1.05);
     color: rgb(255, 255, 255);
     background-color: rgba(83, 83, 83, 0.123);

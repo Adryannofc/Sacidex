@@ -25,19 +25,22 @@ favoriteButton.addEventListener("click", () => {
 
 // verifica o tema atual do usuario
 verificarTheme();
-const headertheme = document.querySelector('header');
-const toggleThemeButton = document.querySelector('#toggleTheme')
-const iconimglogo = document.querySelector('.icon')
-const logo = document.querySelector('.sacidex')
-
+  const headertheme = document.querySelector('header');
+  const iconimglogo = document.querySelector('.icon');
+  const logo = document.querySelector('.sacidex');
+  
 // botao do tema
 toggleTheme.addEventListener("click", () => {
-  const getTheme = localStorage.getItem("theme");
-
+  const getTheme = localStorage.getItem('theme');
+  const cardtheme = document.querySelectorAll('.card');
+  const id = document.querySelectorAll('.card-id');
+  
   if (getTheme === "dark") {
     // claro
     document.body.classList.remove("dark");
-    headertheme.classList.remove("dark-header")
+    headertheme.classList.remove("dark-header");
+    cardtheme.forEach(card => card.classList.remove("dark-card"));
+    id.forEach(idcard => idcard.classList.remove("dark"));
     toggleTheme.src = "/assets/img/moon-icon.png";
     iconimglogo.src = "/assets/img/pokebola-logo.png";
     logo.src = "/assets/img/logo-sacidex.png";
@@ -46,10 +49,13 @@ toggleTheme.addEventListener("click", () => {
     // escuro
     document.body.classList.add("dark");
     headertheme.classList.add("dark-header")
-    toggleThemeButton.classList.add('dark-mode')
+    cardtheme.forEach(card => card.classList.add("dark-card"));
+    id.forEach(idcard => idcard.classList.add("dark"));
     toggleTheme.src = "/assets/img/sunwhite.png";
     iconimglogo.src = "/assets/img/pokebola-logo-branca.png";
     logo.src = "/assets/img/logo-sacidex-branca.png";
+
+
     localStorage.setItem("theme", "dark");
   }
 });
@@ -57,13 +63,31 @@ toggleTheme.addEventListener("click", () => {
 // funcao que verifica o tema salvo
 function verificarTheme() {
   const getTheme = localStorage.getItem("theme");
+  const headertheme = document.querySelector('header');
+  const iconimglogo = document.querySelector('.icon')
+  const cardtheme = document.querySelectorAll('.card');
+  const logo = document.querySelector('.sacidex')
+  const id = document.querySelectorAll('.card-id');
 
+  document.addEventListener("DOMContentLoaded", verificarTheme);
+
+  
   if (getTheme === "dark") {
     document.body.classList.add("dark");
+    headertheme.classList.add("dark-header")
+    cardtheme.forEach(card => card.classList.add("dark-card"));
+    id.forEach(idcard => idcard.classList.add("dark"));
     toggleTheme.src = "/assets/img/sun.png";
-  } else {
+    toggleTheme.src = "/assets/img/sunwhite.png";
+    iconimglogo.src = "/assets/img/pokebola-logo-branca.png";
+    logo.src = "/assets/img/logo-sacidex-branca.png";
+  } else { 
     document.body.classList.remove("dark");
+    headertheme.classList.remove("dark-header")
+    id.forEach(idcard => idcard.classList.remove("dark"));
     toggleTheme.src = "/assets/img/moon-icon.png";
+    iconimglogo.src = "/assets/img/pokebola-logo.png";
+    logo.src = "/assets/img/logo-sacidex.png";
     localStorage.setItem("theme", "light"); // garante o valor inicial
   }
 }

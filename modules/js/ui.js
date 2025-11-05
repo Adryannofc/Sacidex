@@ -3,6 +3,7 @@ export function createPokemonCard(pokemon) {
     // 1. Crie o elemento do card
     const card = document.createElement('div');
     card.classList.add('card');
+    
 
     // 2. Defina o destino do link para a página de detalhes
     // O caminho é relativo de 'modules/index.html' para 'modules/pages/pokemon.html'
