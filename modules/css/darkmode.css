@@ -1,0 +1,78 @@
+body.dark {
+    background-color: #1A1A1A;
+}
+
+
+#toggleTheme {
+    cursor: pointer;
+    transition: 0.3s ease-in;
+}
+
+#toggleTheme:hover
+{
+    transform: scale(1.15);
+}
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0 6rem;
+    height: 80px;
+    box-shadow: 1px 1px 5px #ccc;
+    margin-bottom: 25px;
+}
+
+.header.dark-header
+{
+    background-color: #252525;
+    
+
+}
+.header.dark-header a
+{
+    color: white;
+
+}
+.header.dark-header .search input
+{
+    color: rgb(255, 6, 6);
+    background-color: #464646;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+
+
+}
+
+.header.dark-header .search button
+{
+    background-color: #464646;
+}
+
+
+.header.dark-header .search button:hover {
+    transform: scale(1.05);
+    color: rgb(255, 255, 255);
+    background-color: rgb(91, 91, 91);
+}
+
+.header.dark-header .dark-mode
+{
+    height: auto;
+    width: 38px;
+}
+
+
+.card.dark-card
+{
+        background: linear-gradient(135deg, #252525 0%, #252525 100%);
+
+}
+
+.card-id.dark
+{
+    background-color: #3d3c3c;
+    color: #ccc;
+}
