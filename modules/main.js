@@ -1,4 +1,4 @@
-import { createPokemonCard } from "./js/ui.js";
+import { createPokemonCard } from "../modules/js/ui.js";
 import { pokemons } from "./js/data.js";
 
 const campoBusca = document.getElementById("busca");
