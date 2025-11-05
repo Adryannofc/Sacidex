@@ -11,6 +11,17 @@ body {
     overflow: hidden;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0 6rem;
+    height: 80px;
+    box-shadow: 1px 1px 5px #ccc;
+    margin-bottom: 25px;
+}
+
 
 .pokemon-main-section {
     position: relative;
