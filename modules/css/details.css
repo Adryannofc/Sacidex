@@ -11,6 +11,17 @@ body {
     overflow: hidden;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 0 6rem;
+    height: 80px;
+    box-shadow: 1px 1px 5px #ccc;
+    margin-bottom: 25px;
+}
+
 
 .pokemon-main-section {
     position: relative;
@@ -62,6 +73,16 @@ body {
     color: rgba(255, 255, 255, 0.5);
     font-size: 30px;
     animation: sparkle 2s infinite ease-in-out;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.sparkle
+{
+        transform: translateY(-50%) scale(1.1);
+
+
 }
 
 @keyframes sparkle {

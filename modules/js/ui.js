@@ -3,6 +3,7 @@ import { main } from '../main.js';
 export function createPokemonCard(pokemon) {
     const card = document.createElement('div');
     card.classList.add('card');
+    
 
     card.addEventListener("click", () => {
         window.location.href = `pages/pokemon.html?id=${pokemon.id}`;
@@ -99,20 +100,21 @@ export function createPokemonCard(pokemon) {
     });
 
     // Retorna o css certo segundo o estado de favorito
-    function verificarCaptura() {
-        const favoritos = JSON.parse(localStorage.getItem("favoritos"));
+    // Retorna o css certo segundo o estado de favorito
+function verificarCaptura() {
+    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || []; // 👈 ADICIONE O '|| []'
 
-        // Verifica se o Pokémon já está favoritado
-        const index = favoritos.findIndex(p => p.id === pokemon.id);
+    // Verifica se o Pokémon já está favoritado
+    const index = favoritos.findIndex(p => p.id === pokemon.id);
 
-        if (index >= 0) {
-            button.classList.remove('removeCapture');
-            button.classList.add('Capture');
-        } else {
-            button.classList.remove('Capture');
-            button.classList.add('removeCapture');
-        }
+    if (index >= 0) {
+        button.classList.remove('removeCapture');
+        button.classList.add('Capture');
+    } else {
+        button.classList.remove('Capture');
+        button.classList.add('removeCapture');
     }
+}
 
     verificarCaptura();
     card.style.textDecoration = 'none'; // Remove sublinhado
