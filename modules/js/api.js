@@ -3,7 +3,7 @@ import { createPokemonCard } from "./ui.js";
 export const pokemons = []; // ✅ lista global
 
 const cardsContainer = document.getElementById("cards");
-const QUANTIDADE = 151;
+const QUANTIDADE = 1025;
 
 export async function loadPokemons() {
     for (let id = 1; id <= QUANTIDADE; id++) {
