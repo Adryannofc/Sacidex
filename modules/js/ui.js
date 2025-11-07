@@ -1,4 +1,5 @@
-import { main } from '../main.js';
+
+
 export function createPokemonCard(pokemon) {
     // 1. Crie o elemento do card
     const card = document.createElement('div');

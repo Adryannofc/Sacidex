@@ -1,5 +1,6 @@
 import { createPokemonCard } from "../modules/js/ui.js";
-import { pokemons } from "./js/data.js";
+import { pokemons } from "../modules/js/api.js";
+
 
 const campoBusca = document.getElementById("busca");
 const favoriteButton = document.getElementById("favorite-btn");
@@ -148,3 +149,4 @@ main(pokemons);
 buscaLocalStorage();
 // Verifica se veio da página de outra página para mostrar favoritos 
 outraPage();
+
