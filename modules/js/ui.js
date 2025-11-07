@@ -1,13 +1,10 @@
 
 
 export function createPokemonCard(pokemon) {
-    // 1. Crie o elemento do card
     const card = document.createElement('div');
     card.classList.add('card');
     
 
-    // 2. Defina o destino do link para a página de detalhes
-    // O caminho é relativo de 'modules/index.html' para 'modules/pages/pokemon.html'
     card.addEventListener("click", () => {
         window.location.href = `pages/pokemon.html?id=${pokemon.id}`;
     });
@@ -15,8 +12,6 @@ export function createPokemonCard(pokemon) {
     // Cria o botão dinamicamente
     const divButton = document.createElement('div');
     divButton.classList.add('button-favorite')
-
-
 
     const button = document.createElement("button");
     const imageButton = document.createElement("img")
@@ -48,15 +43,12 @@ export function createPokemonCard(pokemon) {
                     star.style.setProperty('--x', `${xDir}px`);
                     star.style.setProperty('--y', `${yDir}px`);
 
-
                     button.appendChild(star);
-
-                    // remove depois de 3s
                     setTimeout(() => {
                         star.remove();
                     }, 3000);
                 }
-            }, 3300); // delay 3 segundos
+            }, 3300); 
         }
     });
     button.addEventListener('click', function (event) {
@@ -104,7 +96,6 @@ export function createPokemonCard(pokemon) {
         }
 
         verificarFavoritePage();
-
 
     });
 
@@ -165,18 +156,9 @@ function verificarCaptura() {
     header.appendChild(name)
     header.appendChild(id);
 
-
-
-
-
-
     card.appendChild(header);
     card.appendChild(imageContainer);
     card.appendChild(types);
-
-
-
-
 
     return card;
 }
