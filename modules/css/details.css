@@ -1,36 +1,71 @@
+/* ============================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-bg: #ffffff;
+    --secondary-bg: #f8f8f8;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border-color: #f0f0f0;
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 -10px 40px rgba(0, 0, 0, 0.1);
+    --transition-fast: 0.3s ease;
+    --transition-smooth: 0.5s ease;
+    --gradient-success: linear-gradient(90deg, #4caf50, #8bc34a);
+    --male-color: #3b4cca;
+    --female-color: #ff69b4;
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+    --spacing-2xl: 60px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
 }
 
 body {
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     overflow: hidden;
 }
 
+/* ============================================
+   HEADER
+   ============================================ */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
+    background-color: var(--primary-bg);
     padding: 0 6rem;
     height: 80px;
-    box-shadow: 1px 1px 5px #ccc;
+    box-shadow: var(--shadow-light);
     margin-bottom: 25px;
 }
 
-
+/* ============================================
+   SEÇÃO PRINCIPAL DO POKÉMON
+   ============================================ */
 .pokemon-main-section {
     position: relative;
-    padding-top: 20px;
+    padding-top: var(--spacing-md);
     min-height: calc(100vh - 95px);
 }
 
 .pokemon-id {
-    font-size: 150px;
+    font-size: clamp(100px, 15vw, 150px);
     font-weight: 700;
     color: rgba(255, 255, 255, 0.15);
     position: absolute;
@@ -41,6 +76,9 @@ body {
     user-select: none;
 }
 
+/* ============================================
+   NAVEGAÇÃO
+   ============================================ */
 .nav-arrow {
     position: absolute;
     top: 50%;
@@ -51,8 +89,8 @@ body {
     color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
     z-index: 100;
-    transition: all 0.3s ease;
-    padding: 20px;
+    transition: all var(--transition-fast);
+    padding: var(--spacing-md);
 }
 
 .nav-arrow:hover {
@@ -60,45 +98,37 @@ body {
     transform: translateY(-50%) scale(1.1);
 }
 
-.nav-arrow.prev {
-    left: 20px;
-}
+.nav-arrow.prev { left: 20px; }
+.nav-arrow.next { right: 20px; }
 
-.nav-arrow.next {
-    right: 20px;
-}
-
+/* ============================================
+   EFEITO SPARKLE
+   ============================================ */
 .sparkle {
     position: absolute;
     color: rgba(255, 255, 255, 0.5);
     font-size: 30px;
-    animation: sparkle 2s infinite ease-in-out;
     background: none;
     border: none;
     cursor: pointer;
-}
-
-.sparkle
-{
-        transform: translateY(-50%) scale(1.1);
-
-
+    transform: translateY(-50%) scale(1.1);
+    animation: sparkle 2s infinite ease-in-out;
 }
 
 @keyframes sparkle {
-
-    0%,
-    100% {
+    0%, 100% {
         opacity: 0.3;
         transform: scale(1);
     }
-
     50% {
         opacity: 1;
         transform: scale(1.2);
     }
 }
 
+/* ============================================
+   IMAGEM DO POKÉMON
+   ============================================ */
 .pokeimg {
     top: -30px;
     display: flex;
@@ -113,89 +143,108 @@ body {
     width: 350px;
     height: auto;
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
-    animation: float 3s ease-in-out infinite;    
-    
+    animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-3px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
 }
 
+/* ============================================
+   CONTAINER PRINCIPAL
+   ============================================ */
 .container {
     bottom: 0;
     position: fixed;
     width: 100%;
-    height: 55%;
+    height: 65%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    z-index: 5;
 }
 
 .cont {
     border-radius: 30px 30px 0 0;
-    background: #fff;
-    padding: 0;
+    background: var(--primary-bg);
     margin: 0 8rem;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1500px;
     height: 100%;
     position: relative;
-    z-index: 5;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
-    
+    box-shadow: var(--shadow-heavy);
+    display: flex;
+    flex-direction: column;
 }
 
+/* ============================================
+   SISTEMA DE ABAS
+   ============================================ */
 .tabs-nav {
     display: flex;
-    justify-content: space-between;
-    margin: auto 20px;
-    gap: 0px;
-    border-bottom: 2px solid #f0f0f0;
-    background: #fff;
-    padding-top:120px;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin: 0 var(--spacing-md);
+    border-bottom: 2px solid var(--border-color);
+    background: var(--primary-bg);
+    padding-top: 120px;
+    flex-shrink: 0;
 }
 
 .tab-button {
-    flex: 1;
-    max-width: 180px;
-    padding: 20px 30px;
+    padding: var(--spacing-md) var(--spacing-xl);
     background: none;
     border: none;
     border-bottom: 3px solid transparent;
     font-size: 18px;
     font-weight: 500;
-    color: #999;
+    color: var(--text-muted);
     cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
 }
 
 .tab-button:hover {
-    color: #666;
+    color: var(--text-secondary);
 }
 
 .tab-button.active {
-    color: #000;
-    border-bottom: 3px solid #000;
+    color: var(--text-primary);
+    border-bottom-color: var(--text-primary);
     font-weight: 600;
 }
 
 .tab-content {
     display: none;
-    padding: 30px 60px;
-    animation: fadeIn 0.3s ease;
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    animation: fadeIn var(--transition-fast);
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .tab-content.active {
     display: block;
+}
+
+/* Scrollbar customizada */
+.tab-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tab-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.tab-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.tab-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 @keyframes fadeIn {
@@ -203,47 +252,54 @@ body {
         opacity: 0;
         transform: translateY(10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Types and Weaknesses section */
+/* ============================================
+   TIPOS E FRAQUEZAS
+   ============================================ */
 .typeinfo {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 40px 30px 40px;
-    border-bottom: 1px solid #f0f0f0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    padding: 0 var(--spacing-xl) var(--spacing-lg) var(--spacing-xl);
+    border-bottom: 1px solid var(--border-color);
 }
 
 #tipopoke,
 #weaknesspoke {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
 }
 
-#tipopoke {
-    text-align: left;
+#tipopoke { 
+    align-items: flex-start;
 }
 
-#weaknesspoke {
-    text-align: right;
+#weaknesspoke { 
+    align-items: flex-end;
 }
 
 #tipopoke p,
 #weaknesspoke p {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 12px;
-    color: #333;
+    color: var(--text-primary);
 }
 
 #TypesIMG,
 #WeaknessesIMG {
     display: flex;
-    gap: 8px;
+    gap: var(--spacing-xs);
     flex-wrap: wrap;
+}
+
+#TypesIMG {
+    justify-content: flex-start;
 }
 
 #WeaknessesIMG {
@@ -253,22 +309,23 @@ body {
 .type {
     display: inline-block;
     padding: 6px 16px;
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     font-size: 14px;
     font-weight: 600;
     color: #fff;
     text-transform: capitalize;
 }
 
-
-/* Stats section */
+/* ============================================
+   ESTATÍSTICAS DE GÊNERO E CAPTURA
+   ============================================ */
 .percentinfo {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 120px;
-    padding: 40px 40px 30px 40px;
-    border-bottom: 1px solid #f0f0f0;
+    padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg) var(--spacing-xl);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .genderrate,
@@ -285,16 +342,16 @@ body {
     align-items: center;
     font-size: 16px;
     font-weight: 500;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .gender-text-row span:first-child {
-    color: #3b4cca;
+    color: var(--male-color);
     font-size: 20px;
 }
 
 .gender-text-row span:last-child {
-    color: #ff69b4;
+    color: var(--female-color);
     font-size: 20px;
 }
 
@@ -304,7 +361,7 @@ body {
     gap: 10px;
     font-size: 16px;
     font-weight: 500;
-    color: #333;
+    color: var(--text-primary);
 }
 
 #pokebola {
@@ -318,7 +375,9 @@ body {
     gap: 15px;
 }
 
-/* Progress bars */
+/* ============================================
+   BARRAS DE PROGRESSO
+   ============================================ */
 .progress-gender-custom {
     position: relative;
     width: 200px;
@@ -336,9 +395,9 @@ body {
     left: 0;
     top: 0;
     height: 100%;
-    background-color: #3b4cca;
+    background-color: var(--male-color);
     border-radius: 10px 0 0 10px;
-    transition: width 0.3s ease;
+    transition: width var(--transition-fast);
 }
 
 .progress-text {
@@ -365,34 +424,37 @@ body {
     height: 100%;
     background-color: #4caf50;
     border-radius: 10px 0 0 10px;
-    transition: width 0.3s ease;
+    transition: width var(--transition-fast);
 }
 
 .catchrate-text {
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: var(--text-primary);
 }
 
-/* Description */
+/* ============================================
+   DESCRIÇÃO DO POKÉMON
+   ============================================ */
 .sobrepokemon {
-    padding: 30px 80px;
+    padding: var(--spacing-lg) 80px;
     text-align: center;
 }
 
 .sobrepokemon p {
     font-size: 16px;
     line-height: 1.8;
-    color: #666;
-    margin: 0;
+    color: var(--text-secondary);
 }
 
-/* Pokemon details bottom info */
+/* ============================================
+   INFORMAÇÕES INFERIORES
+   ============================================ */
 .pokemon-bottom-info {
     display: flex;
     justify-content: center;
-    gap: 60px;
-    padding: 20px 40px 30px 40px;
+    gap: var(--spacing-2xl);
+    padding: var(--spacing-md) var(--spacing-xl) var(--spacing-lg) var(--spacing-xl);
 }
 
 .info-item {
@@ -408,25 +470,194 @@ body {
 
 .info-item span {
     font-size: 16px;
-    color: #333;
+    color: var(--text-primary);
     font-weight: 500;
 }
 
-/* Responsive */
+/* ============================================
+   ABA DE ESTATÍSTICAS
+   ============================================ */
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: 10px 0;
+}
+
+.stat-row {
+    display: grid;
+    grid-template-columns: 120px 50px 1fr;
+    align-items: center;
+    gap: 15px;
+}
+
+.stat-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: capitalize;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+.stat-bar {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: var(--gradient-success);
+    border-radius: 10px;
+    transition: width var(--transition-smooth);
+}
+
+/* ============================================
+   ABA DE MOVIMENTOS
+   ============================================ */
+.moves-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-sm);
+    padding: 10px 0;
+}
+
+.move-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 16px;
+    background: var(--secondary-bg);
+    border-radius: var(--radius-sm);
+    border-left: 4px solid #4caf50;
+    transition: all var(--transition-fast);
+}
+
+.move-item:hover {
+    background: var(--border-color);
+    transform: translateX(5px);
+}
+
+.move-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: capitalize;
+}
+
+.move-learn {
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: var(--primary-bg);
+    padding: 4px 10px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+}
+
+/* ============================================
+   ABA DE EVOLUÇÕES
+   ============================================ */
+.evolutions-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) 0;
+    flex-wrap: wrap;
+}
+
+.evolution-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.evolution-arrow {
+    font-size: 40px;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+.evolution-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: var(--secondary-bg);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+    min-width: 180px;
+}
+
+.evolution-card:hover {
+    background: var(--border-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.evolution-img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.evolution-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: capitalize;
+    margin-top: 10px;
+}
+
+.evolution-id {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+.evolution-types {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.evolution-types .type {
+    font-size: 12px;
+    padding: 4px 12px;
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
 @media (max-width: 1200px) {
     .cont {
         margin: 0 4rem;
     }
-
+    
     .pokemon-id {
-        font-size: 150px;
         left: 40px;
     }
 }
 
 @media (max-width: 768px) {
+    .header {
+        padding: 0 2rem;
+    }
+
     .pokemon-id {
-        font-size: 100px;
         left: 20px;
         top: 20px;
     }
@@ -440,13 +671,18 @@ body {
     }
 
     .tab-button {
-        padding: 15px 20px;
+        padding: 15px var(--spacing-md);
         font-size: 16px;
+        max-width: 120px;
+    }
+
+    .tab-content {
+        padding: var(--spacing-md) var(--spacing-lg);
     }
 
     .typeinfo {
         flex-direction: column;
-        gap: 20px;
+        gap: var(--spacing-md);
     }
 
     #weaknesspoke {
@@ -459,10 +695,63 @@ body {
 
     .percentinfo {
         flex-direction: column;
-        gap: 30px;
+        gap: var(--spacing-lg);
     }
 
     .sobrepokemon {
-        padding: 20px 30px;
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .stat-row {
+        grid-template-columns: 100px 40px 1fr;
+        gap: 10px;
+    }
+
+    .stat-name,
+    .stat-value {
+        font-size: 14px;
+    }
+
+    .moves-container {
+        grid-template-columns: 1fr;
+    }
+
+    .evolutions-container {
+        flex-direction: column;
+    }
+
+    .evolution-arrow {
+        transform: rotate(90deg);
+        font-size: 30px;
+    }
+
+    .pokemon-bottom-info {
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0 1rem;
+        height: 60px;
+    }
+
+    .nav-arrow {
+        font-size: 40px;
+        padding: var(--spacing-sm);
+    }
+
+    .pokeimg img {
+        width: 250px;
+    }
+
+    .tabs-nav {
+        padding-top: 100px;
+    }
+
+    .tab-button {
+        font-size: 14px;
+        padding: var(--spacing-sm);
     }
 }

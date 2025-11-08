@@ -254,3 +254,35 @@
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
+@media (max-width: 1200px) {
+    #cards {
+        padding: 2rem 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #cards {
+        padding: 1rem;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .card-image img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card-name {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #cards {
+        grid-template-columns: 1fr;
+    }
+}
