@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/cards.css">
     <link rel="stylesheet" href="css/types.css">
@@ -49,6 +50,71 @@
         </div>
     </header>
 
+  <div class="filter-wrapper">
+    <button id="filter-toggle" class="filter-icon">
+        <img src="/assets/img/filter.png" alt="Filtro">
+    </button>
+
+  <div  id="filter-box" class="filter-box hidden">
+    <button class="type-btn" data-type="fire">
+      <img src="/assets/icons/fire.png" alt="Fire">
+    </button>
+    <button class="type-btn" data-type="water">
+      <img src="/assets/icons/water.png" alt="Water">
+    </button>
+    <button class="type-btn" data-type="grass">
+      <img src="/assets/icons/grass.png" alt="Grass">
+    </button>
+    <button class="type-btn" data-type="electric">
+      <img src="/assets/icons/electric.png" alt="Electric">
+    </button>
+    <button class="type-btn" data-type="psychic">
+      <img src="/assets/icons/psychic.png" alt="Psychic">
+    </button>
+    <button class="type-btn" data-type="ice">
+      <img src="/assets/icons/ice.png" alt="Ice">
+    </button>
+    <button class="type-btn" data-type="dragon">
+      <img src="/assets/icons/dragon.png" alt="Dragon">
+    </button>
+    <button class="type-btn" data-type="dark">
+      <img src="/assets/icons/dark.png" alt="Dark">
+    </button>
+    <button class="type-btn" data-type="fairy">
+      <img src="/assets/icons/fairy.png" alt="Fairy">
+    </button>
+    <button class="type-btn" data-type="normal">
+      <img src="/assets/icons/normal.png" alt="Normal">
+    </button>
+    <button class="type-btn" data-type="fighting">
+      <img src="/assets/icons/fighting.png" alt="Fighting">
+    </button>
+    <button class="type-btn" data-type="flying">
+      <img src="/assets/icons/flying.png" alt="Flying">
+    </button>
+    <button class="type-btn" data-type="poison">
+      <img src="/assets/icons/poison.png" alt="Poison">
+    </button>
+    <button class="type-btn" data-type="ground">
+      <img src="/assets/icons/ground.png" alt="Ground">
+    </button>
+    <button class="type-btn" data-type="rock">
+      <img src="/assets/icons/rock.png" alt="Rock">
+    </button>
+    <button class="type-btn" data-type="bug">
+      <img src="/assets/icons/bug.png" alt="Bug">
+    </button>
+    <button class="type-btn" data-type="ghost">
+      <img src="/assets/icons/ghost.png" alt="Ghost">
+    </button>
+    <button class="type-btn" data-type="steel">
+      <img src="/assets/icons/steel.png" alt="Steel">
+    </button>
+   </div>
+  </div>
+
+    <script type="module" src="./js/scriptFilter.js"></script>
+
     <main class="card-container">
         <section class="cards" id="cards">
             
@@ -57,5 +123,6 @@
 
 </body>
 <script type="module" src="main.js"></script>
+
 
 </html>
