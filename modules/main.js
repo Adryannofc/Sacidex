@@ -16,7 +16,7 @@ campoBusca.addEventListener("input", () => {
 
 // botão de favoritos
 favoriteButton.addEventListener("click", () => {
-  localStorage.setItem("pageFavorite","true");
+  localStorage.setItem("pageFavorite", "true");
   const getFavoritos = localStorage.getItem("favoritos");
   const parseFavoritos = JSON.parse(getFavoritos);
   main(parseFavoritos);
@@ -26,22 +26,26 @@ favoriteButton.addEventListener("click", () => {
 
 // verifica o tema atual do usuario
 verificarTheme();
-  const headertheme = document.querySelector('header');
-  const iconimglogo = document.querySelector('.icon');
-  const logo = document.querySelector('.sacidex');
-  
+const headertheme = document.querySelector('header');
+const iconimglogo = document.querySelector('.icon');
+const logo = document.querySelector('.sacidex');
+
 // botao do tema
 toggleTheme.addEventListener("click", () => {
   const getTheme = localStorage.getItem('theme');
   const cardtheme = document.querySelectorAll('.card');
   const id = document.querySelectorAll('.card-id');
-  
+  const cardPokeboll = document.querySelectorAll('.card-favoriteButton.removeCapture');
+
   if (getTheme === "dark") {
     // claro
     document.body.classList.remove("dark");
     headertheme.classList.remove("dark-header");
     cardtheme.forEach(card => card.classList.remove("dark-card"));
     id.forEach(idcard => idcard.classList.remove("dark"));
+    cardPokeboll.forEach(pokebollimg => {
+      pokebollimg.classList.remove('dark');
+    });
     toggleTheme.src = "/assets/img/moon-icon.png";
     iconimglogo.src = "/assets/img/pokebola-logo.png";
     logo.src = "/assets/img/logo-sacidex.png";
@@ -52,6 +56,9 @@ toggleTheme.addEventListener("click", () => {
     headertheme.classList.add("dark-header")
     cardtheme.forEach(card => card.classList.add("dark-card"));
     id.forEach(idcard => idcard.classList.add("dark"));
+    cardPokeboll.forEach(pokebollimg => {
+      pokebollimg.classList.add('dark');
+    });
     toggleTheme.src = "/assets/img/sunwhite.png";
     iconimglogo.src = "/assets/img/pokebola-logo-branca.png";
     logo.src = "/assets/img/logo-sacidex-branca.png";
@@ -69,23 +76,32 @@ function verificarTheme() {
   const cardtheme = document.querySelectorAll('.card');
   const logo = document.querySelector('.sacidex')
   const id = document.querySelectorAll('.card-id');
+  const cardPokeboll = document.querySelectorAll('.card-favoriteButton.removeCapture');
 
   document.addEventListener("DOMContentLoaded", verificarTheme);
 
-  
+
   if (getTheme === "dark") {
     document.body.classList.add("dark");
     headertheme.classList.add("dark-header")
     cardtheme.forEach(card => card.classList.add("dark-card"));
     id.forEach(idcard => idcard.classList.add("dark"));
+    cardPokeboll.forEach(pokebollimg => {
+      pokebollimg.classList.add('dark');
+    });
     toggleTheme.src = "/assets/img/sun.png";
     toggleTheme.src = "/assets/img/sunwhite.png";
     iconimglogo.src = "/assets/img/pokebola-logo-branca.png";
     logo.src = "/assets/img/logo-sacidex-branca.png";
-  } else { 
+    
+
+  } else {
     document.body.classList.remove("dark");
     headertheme.classList.remove("dark-header")
     id.forEach(idcard => idcard.classList.remove("dark"));
+    cardPokeboll.forEach(pokebollimg => {
+      pokebollimg.classList.remove('dark');
+    });
     toggleTheme.src = "/assets/img/moon-icon.png";
     iconimglogo.src = "/assets/img/pokebola-logo.png";
     logo.src = "/assets/img/logo-sacidex.png";
@@ -107,9 +123,9 @@ export async function main(lista) {
 
 // busca por localStorage 
 function buscaLocalStorage() {
-const storageBusca = localStorage.getItem("busca");
+  const storageBusca = localStorage.getItem("busca");
 
-  if(storageBusca) {
+  if (storageBusca) {
     const campoBusca = storageBusca.toLowerCase();
     const filtrados = pokemons.filter(p => p.name.toLowerCase().includes(campoBusca));
     localStorage.removeItem("busca");
@@ -121,22 +137,22 @@ const storageBusca = localStorage.getItem("busca");
 };
 
 // Verifica se veio da página de outra página para mostrar favoritos
-function outraPage() {  
- const storagePage = localStorage.getItem("page");
+function outraPage() {
+  const storagePage = localStorage.getItem("page");
 
-  if(storagePage === "outraPage") {
+  if (storagePage === "outraPage") {
     const getFavoritos = localStorage.getItem("favoritos");
     const parseFavoritos = JSON.parse(getFavoritos);
     localStorage.setItem("pageFavorite", "true");
     localStorage.removeItem("page");
     main(parseFavoritos);
   };
-  
+
 };
 
 function removeFavoritePage() {
-localStorage.removeItem("pageFavorite");
-localStorage.removeItem("clickFavorite");
+  localStorage.removeItem("pageFavorite");
+  localStorage.removeItem("clickFavorite");
 }
 
 //==== principais funcoes===== //
