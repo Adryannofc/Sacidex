@@ -5,29 +5,102 @@ const campoBusca = document.getElementById("busca");
 const favoriteButton = document.getElementById("favorite-btn");
 const container = document.getElementById("cards");
 const toggleTheme = document.getElementById("toggleTheme");
-const headertheme = document.querySelector("header");
-const iconimglogo = document.querySelector(".icon");
-const logo = document.querySelector(".sacidex");
 
-//===================//
-//==== TEMAS ========//
-//===================//
+// busca dinâmica
+campoBusca.addEventListener("input", () => {
+  const texto = campoBusca.value.toLowerCase();
+  const filtrados = pokemons.filter(p => p.name.toLowerCase().includes(texto));
+  main(filtrados);
+});
 
-function aplicarTema(tema) {
-  const isDark = tema === "dark";
-  const cards = document.querySelectorAll(".card");
-  const ids = document.querySelectorAll(".card-id");
+// botão de favoritos
+favoriteButton.addEventListener("click", () => {
+  localStorage.setItem("pageFavorite", "true");
+  const getFavoritos = localStorage.getItem("favoritos");
+  const parseFavoritos = JSON.parse(getFavoritos);
+  main(parseFavoritos);
 
-  document.body.classList.toggle("dark", isDark);
-  headertheme.classList.toggle("dark-header", isDark);
-  cards.forEach(card => card.classList.toggle("dark-card", isDark));
-  ids.forEach(id => id.classList.toggle("dark", isDark));
+});
 
-  if (isDark) {
+
+// verifica o tema atual do usuario
+verificarTheme();
+const headertheme = document.querySelector('header');
+const iconimglogo = document.querySelector('.icon');
+const logo = document.querySelector('.sacidex');
+
+// botao do tema
+toggleTheme.addEventListener("click", () => {
+  const getTheme = localStorage.getItem('theme');
+  const cardtheme = document.querySelectorAll('.card');
+  const id = document.querySelectorAll('.card-id');
+  const cardPokeboll = document.querySelectorAll('.card-favoriteButton.removeCapture');
+
+  if (getTheme === "dark") {
+    // claro
+    document.body.classList.remove("dark");
+    headertheme.classList.remove("dark-header");
+    cardtheme.forEach(card => card.classList.remove("dark-card"));
+    id.forEach(idcard => idcard.classList.remove("dark"));
+    cardPokeboll.forEach(pokebollimg => {
+      pokebollimg.classList.remove('dark');
+    });
+    toggleTheme.src = "/assets/img/moon-icon.png";
+    iconimglogo.src = "/assets/img/pokebola-logo.png";
+    logo.src = "/assets/img/logo-sacidex.png";
+    localStorage.setItem("theme", "light");
+  } else {
+    // escuro
+    document.body.classList.add("dark");
+    headertheme.classList.add("dark-header")
+    cardtheme.forEach(card => card.classList.add("dark-card"));
+    id.forEach(idcard => idcard.classList.add("dark"));
+    cardPokeboll.forEach(pokebollimg => {
+      pokebollimg.classList.add('dark');
+    });
     toggleTheme.src = "/assets/img/sunwhite.png";
     iconimglogo.src = "/assets/img/pokebola-logo-branca.png";
     logo.src = "/assets/img/logo-sacidex-branca.png";
+
+
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+// funcao que verifica o tema salvo
+function verificarTheme() {
+  const getTheme = localStorage.getItem("theme");
+  const headertheme = document.querySelector('header');
+  const iconimglogo = document.querySelector('.icon')
+  const cardtheme = document.querySelectorAll('.card');
+  const logo = document.querySelector('.sacidex')
+  const id = document.querySelectorAll('.card-id');
+  const cardPokeboll = document.querySelectorAll('.card-favoriteButton.removeCapture');
+
+  document.addEventListener("DOMContentLoaded", verificarTheme);
+
+
+  if (getTheme === "dark") {
+    document.body.classList.add("dark");
+    headertheme.classList.add("dark-header")
+    cardtheme.forEach(card => card.classList.add("dark-card"));
+    id.forEach(idcard => idcard.classList.add("dark"));
+    cardPokeboll.forEach(pokebollimg => {
+      pokebollimg.classList.add('dark');
+    });
+    toggleTheme.src = "/assets/img/sun.png";
+    toggleTheme.src = "/assets/img/sunwhite.png";
+    iconimglogo.src = "/assets/img/pokebola-logo-branca.png";
+    logo.src = "/assets/img/logo-sacidex-branca.png";
+    
+
   } else {
+    document.body.classList.remove("dark");
+    headertheme.classList.remove("dark-header")
+    id.forEach(idcard => idcard.classList.remove("dark"));
+    cardPokeboll.forEach(pokebollimg => {
+      pokebollimg.classList.remove('dark');
+    });
     toggleTheme.src = "/assets/img/moon-icon.png";
     iconimglogo.src = "/assets/img/pokebola-logo.png";
     logo.src = "/assets/img/logo-sacidex.png";
@@ -53,37 +126,44 @@ toggleTheme.addEventListener("click", () => {
 
 export async function main(lista) {
   container.innerHTML = "";
-  lista.forEach(item => container.appendChild(createPokemonCard(item)));
+
+  for (const item of lista) {
+    const card = createPokemonCard(item); // cria o elemento
+    container.appendChild(card);          // adiciona aqui
+  }
+
 }
 
-function carregarFavoritos() {
-  const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-  main(favoritos);
-}
+// busca por localStorage 
+function buscaLocalStorage() {
+  const storageBusca = localStorage.getItem("busca");
 
-function carregarBuscaSalva() {
-  const termo = localStorage.getItem("busca");
-  if (termo) {
-    const filtrados = pokemons.filter(p =>
-      p.name.toLowerCase().includes(termo.toLowerCase())
-    );
+  if (storageBusca) {
+    const campoBusca = storageBusca.toLowerCase();
+    const filtrados = pokemons.filter(p => p.name.toLowerCase().includes(campoBusca));
     localStorage.removeItem("busca");
     main(filtrados);
   } else {
     main(pokemons);
-  }
-}
+  };
 
-function carregarOutraPagina() {
-  const veioDeOutra = localStorage.getItem("page") === "outraPage";
-  if (veioDeOutra) {
-    carregarFavoritos();
+};
+
+// Verifica se veio da página de outra página para mostrar favoritos
+function outraPage() {
+  const storagePage = localStorage.getItem("page");
+
+  if (storagePage === "outraPage") {
+    const getFavoritos = localStorage.getItem("favoritos");
+    const parseFavoritos = JSON.parse(getFavoritos);
     localStorage.setItem("pageFavorite", "true");
     localStorage.removeItem("page");
-  }
-}
+    main(parseFavoritos);
+  };
 
-function resetarFavoritosTemporarios() {
+};
+
+function removeFavoritePage() {
   localStorage.removeItem("pageFavorite");
   localStorage.removeItem("clickFavorite");
 }
