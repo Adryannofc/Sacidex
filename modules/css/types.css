@@ -3,7 +3,7 @@ body.type-fire {
 }
 
 body.type-water {
-    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+    background: linear-gradient(135deg, #0099ff 0%, #0072ff 100%);
 }
 
 body.type-grass {
@@ -55,7 +55,7 @@ body.type-ground {
 }
 
 body.type-rock {
-    background: linear-gradient(135deg, #8a8a83 0%, #5e5e57 100%);
+    background: linear-gradient(135deg, #686868 0%, #8a8a83 100%);
 }
 
 body.type-bug {
