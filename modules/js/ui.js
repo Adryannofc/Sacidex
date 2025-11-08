@@ -98,6 +98,8 @@ export function createPokemonCard(pokemon) {
     // Função para verificar se o Pokémon já está favoritado
     function verificarCaptura() {
         const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+        // Verifica se o Pokémon já está favoritado
         const index = favoritos.findIndex(p => p.id === pokemon.id);
 
         if (index >= 0) {

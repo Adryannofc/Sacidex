@@ -135,7 +135,7 @@ export async function main(lista) {
 }
 
 // busca por localStorage 
-function buscaLocalStorage() {
+function carregarBuscaSalva() {
   const storageBusca = localStorage.getItem("busca");
 
   if (storageBusca) {
@@ -150,7 +150,7 @@ function buscaLocalStorage() {
 };
 
 // Verifica se veio da página de outra página para mostrar favoritos
-function outraPage() {
+function VerifcaroutraPage() {
   const storagePage = localStorage.getItem("page");
 
   if (storagePage === "outraPage") {
@@ -163,7 +163,7 @@ function outraPage() {
 
 };
 
-function removeFavoritePage() {
+function resetarFavoritePage() {
   localStorage.removeItem("pageFavorite");
   localStorage.removeItem("clickFavorite");
 }
@@ -187,7 +187,7 @@ favoriteButton.addEventListener("click", () => {
 //==== INICIALIZA ====//
 //===================//
 
-resetarFavoritosTemporarios();
+resetarFavoritePage();
 verificarTemaSalvo();
 carregarBuscaSalva();
-carregarOutraPagina();
+VerifcaroutraPage();
