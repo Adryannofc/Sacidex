@@ -29,7 +29,7 @@ const typeWeaknesses = {
 
 
 /**
- * 🚀 CARREGAR DETALHES DO POKEMON
+ * CARREGAR DETALHES DO POKEMON
  */
 async function loadDetail() {
 
@@ -41,7 +41,7 @@ async function loadDetail() {
         return;
     }
 
-    // ✅ BUSCA DIRETAMENTE NA API
+    // BUSCA DIRETAMENTE NA API
     const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
 
     const response = await fetch(url);
@@ -57,7 +57,7 @@ async function loadDetail() {
 
 
 /**
- * 🚀 Preenche os dados da página de detalhes
+ * Preenche os dados da página de detalhes
  */
 function fillPageWithPokemonData(pokemon) {
 
@@ -94,21 +94,18 @@ function fillPageWithPokemonData(pokemon) {
         weaknessContainer.appendChild(span);
     });
 
-    // PESO E ALTURA
+    
     document.querySelector('.pokemon-weight').textContent = `${pokemon.weight / 10}kg`;
     document.querySelector('.pokemon-height').textContent = `${pokemon.height / 10}m`;
 
-    // 🆕 PREENCHE ABA STATUS
     fillStatusTab(pokemon.stats);
-
-    // 🆕 PREENCHE ABA MOVES
     fillMovesTab(pokemon.moves);
 
 }
 
 
 /**
- * 🚀 Aplica gradiente do tipo no background
+ *Aplica gradiente do tipo no background
  */
 function applyBackgroundColor(type) {
     document.body.className = "";
@@ -117,7 +114,7 @@ function applyBackgroundColor(type) {
 
 
 /**
- * 🚀 Calcula fraquezas
+ * Calcula fraquezas
  */
 function getWeaknesses(types) {
     const set = new Set();
@@ -130,7 +127,7 @@ function getWeaknesses(types) {
 
 
 /**
- * 🚀 Tabs (status / sobre / movimentos)
+ * Tabs (status / sobre / movimentos)
  */
 function setupTabs() {
     const buttons = document.querySelectorAll('.tab-button');
@@ -150,7 +147,7 @@ function setupTabs() {
 
 
 /**
- * 🚀 Navegação entre pokemons
+ * Navegação entre pokemons
  */
 window.navigatePokemon = function (direction) {
     const params = new URLSearchParams(window.location.search);
@@ -166,7 +163,7 @@ window.navigatePokemon = function (direction) {
 
 
 /**
- * 🚀 Preenche aba de Status
+ * Preenche aba de Status
  */
 function fillStatusTab(stats) {
     const statusTab = document.getElementById('status-tab');
@@ -202,7 +199,7 @@ function fillStatusTab(stats) {
 
 
 /**
- * 🚀 Preenche aba de Moves
+ * Preenche aba de Moves
  */
 function fillMovesTab(moves) {
     const movesTab = document.getElementById('moves-tab');
@@ -250,7 +247,7 @@ function fillMovesTab(moves) {
 
 
 /**
- * 🚀 Carrega cadeia evolutiva
+ * Carrega cadeia evolutiva
  */
 async function loadEvolutionChain(speciesUrl) {
     try {
@@ -273,7 +270,7 @@ async function loadEvolutionChain(speciesUrl) {
 
 
 /**
- * 🚀 Preenche aba de Evoluções
+ * Preenche aba de Evoluções
  */
 async function fillEvolutionsTab(chain) {
     const evolutions = [];
@@ -336,5 +333,5 @@ async function fillEvolutionsTab(chain) {
 }
 
 
-// 🚀 roda ao abrir
+// roda ao abrir
 loadDetail();
