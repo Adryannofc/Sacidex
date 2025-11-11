@@ -142,3 +142,70 @@
 .dark .card:hover .card-image img {
     filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.3));
 }
+
+/* Quando o menu mobile estiver aberto no modo escuro, garantir contraste */
+body.dark header.menu-open .nav {
+    background-color: #1e1e1e; /* segue cor do header escuro */
+    border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+body.dark header.menu-open .nav a {
+    color: #e0e0e0; /* links claros sobre fundo escuro */
+}
+
+/* Nav arrows (modo escuro) */
+.dark .nav-arrow {
+    color: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    border-radius: 50%;
+}
+
+/* Ajustes para a caixa de filtro no modo escuro */
+.dark .filter-box {
+    background: #232323;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #e0e0e0;
+}
+
+.dark .type-btn {
+    background: #2a2a2a;
+    color: #e0e0e0;
+}
+
+.dark #filter-toggle {
+    background: rgba(255,255,255,0.04);
+}
+
+/* Container de detalhes (painel inferior) */
+.dark .cont {
+    background: #121212; /* painel escuro */
+    color: #e6e6e6;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+}
+
+.dark .tabs-nav {
+    background: #121212;
+    border-bottom-color: rgba(255,255,255,0.06);
+}
+
+.dark .tab-button {
+    color: #bdbdbd;
+}
+
+.dark .tab-button.active {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+.dark .tab-content {
+    background: transparent;
+    color: #e6e6e6;
+}
+
+.dark .sobrepokemon p,
+.dark .stat-name,
+.dark .stat-value,
+.dark .move-name {
+    color: #e0e0e0;
+}

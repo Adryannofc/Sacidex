@@ -4,17 +4,26 @@ import { pokemons } from '../js/api.js';
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('filter-toggle');
   const filterBox = document.getElementById('filter-box');
+  if (!filterBox) return; // protege caso o elemento não exista
   const buttons = filterBox.querySelectorAll('.type-btn');
 
   let tiposSelecionados = [];
 
-  main(pokemons);
+  // renderiza somente se já houver pokemons carregados, senão espera evento
+  if (pokemons && pokemons.length > 0) {
+    main(pokemons);
+  }
+
+  // quando todos os pokemons terminarem de carregar, renderiza a lista completa
+  document.addEventListener('pokemonsLoaded', () => main(pokemons));
 
   // alterna a visibilidade da caixa de filtro
-  toggle.addEventListener('click', (e) => {
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
     e.stopPropagation(); // impede fechamento imediato
     filterBox.classList.toggle('hidden');
-  });
+    });
+  }
 
   // fecha ao clicar fora
   document.addEventListener('click', (e) => {

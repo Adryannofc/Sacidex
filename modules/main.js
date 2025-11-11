@@ -1,10 +1,12 @@
-import { createPokemonCard } from "../modules/js/ui.js";
-import { pokemons } from "../modules/js/api.js";
+import { createPokemonCard } from "./js/ui.js";
+import { pokemons } from "./js/api.js";
 
 const campoBusca = document.getElementById("busca");
 const favoriteButton = document.getElementById("favorite-btn");
 const container = document.getElementById("cards");
-const toggleTheme = document.getElementById("toggleTheme");
+// botão de troca de tema (seleciona o botão que envolve a imagem, se existir)
+const toggleThemeBtn = document.querySelector('.toggle-theme button');
+const toggleThemeImg = document.getElementById("toggleTheme");
 
 // busca dinâmica
 campoBusca.addEventListener("input", () => {
@@ -23,102 +25,59 @@ favoriteButton.addEventListener("click", () => {
 });
 
 
-// verifica o tema atual do usuario
-verificarTheme();
+// tema: funções limpas e confiáveis
 const headertheme = document.querySelector('header');
 const iconimglogo = document.querySelector('.icon');
 const logo = document.querySelector('.sacidex');
 
-// botao do tema
-toggleTheme.addEventListener("click", () => {
-  const getTheme = localStorage.getItem('theme');
+function aplicarTema(tema) {
   const cardtheme = document.querySelectorAll('.card');
-  const id = document.querySelectorAll('.card-id');
+  const idEls = document.querySelectorAll('.card-id');
   const cardPokeboll = document.querySelectorAll('.card-favoriteButton.removeCapture');
 
-  if (getTheme === "dark") {
-    // claro
-    document.body.classList.remove("dark");
-    headertheme.classList.remove("dark-header");
-    cardtheme.forEach(card => card.classList.remove("dark-card"));
-    id.forEach(idcard => idcard.classList.remove("dark"));
-    cardPokeboll.forEach(pokebollimg => {
-      pokebollimg.classList.remove('dark');
-    });
-    toggleTheme.src = "/assets/img/moon-icon.png";
-    iconimglogo.src = "/assets/img/pokebola-logo.png";
-    logo.src = "/assets/img/logo-sacidex.png";
-    localStorage.setItem("theme", "light");
+  if (tema === 'dark') {
+    document.body.classList.add('dark');
+    headertheme && headertheme.classList.add('dark-header');
+    cardtheme.forEach(card => card.classList.add('dark-card'));
+    idEls.forEach(el => el.classList.add('dark'));
+    cardPokeboll.forEach(p => p.classList.add('dark'));
+    if (toggleThemeImg) toggleThemeImg.src = '/assets/img/sunwhite.png';
+    if (iconimglogo) iconimglogo.src = '/assets/img/pokebola-logo-branca.png';
+    if (logo) logo.src = '/assets/img/logo-sacidex-branca.png';
   } else {
-    // escuro
-    document.body.classList.add("dark");
-    headertheme.classList.add("dark-header")
-    cardtheme.forEach(card => card.classList.add("dark-card"));
-    id.forEach(idcard => idcard.classList.add("dark"));
-    cardPokeboll.forEach(pokebollimg => {
-      pokebollimg.classList.add('dark');
-    });
-    toggleTheme.src = "/assets/img/sunwhite.png";
-    iconimglogo.src = "/assets/img/pokebola-logo-branca.png";
-    logo.src = "/assets/img/logo-sacidex-branca.png";
-
-
-    localStorage.setItem("theme", "dark");
-  }
-});
-
-// funcao que verifica o tema salvo
-function verificarTheme() {
-  const getTheme = localStorage.getItem("theme");
-  const headertheme = document.querySelector('header');
-  const iconimglogo = document.querySelector('.icon')
-  const cardtheme = document.querySelectorAll('.card');
-  const logo = document.querySelector('.sacidex')
-  const id = document.querySelectorAll('.card-id');
-  const cardPokeboll = document.querySelectorAll('.card-favoriteButton.removeCapture');
-
-  document.addEventListener("DOMContentLoaded", verificarTheme);
-
-
-  if (getTheme === "dark") {
-    document.body.classList.add("dark");
-    headertheme.classList.add("dark-header")
-    cardtheme.forEach(card => card.classList.add("dark-card"));
-    id.forEach(idcard => idcard.classList.add("dark"));
-    cardPokeboll.forEach(pokebollimg => {
-      pokebollimg.classList.add('dark');
-    });
-    toggleTheme.src = "/assets/img/sun.png";
-    toggleTheme.src = "/assets/img/sunwhite.png";
-    iconimglogo.src = "/assets/img/pokebola-logo-branca.png";
-    logo.src = "/assets/img/logo-sacidex-branca.png";
-    
-
-  } else {
-    document.body.classList.remove("dark");
-    headertheme.classList.remove("dark-header")
-    id.forEach(idcard => idcard.classList.remove("dark"));
-    cardPokeboll.forEach(pokebollimg => {
-      pokebollimg.classList.remove('dark');
-    });
-    toggleTheme.src = "/assets/img/moon-icon.png";
-    iconimglogo.src = "/assets/img/pokebola-logo.png";
-    logo.src = "/assets/img/logo-sacidex.png";
+    document.body.classList.remove('dark');
+    headertheme && headertheme.classList.remove('dark-header');
+    cardtheme.forEach(card => card.classList.remove('dark-card'));
+    idEls.forEach(el => el.classList.remove('dark'));
+    cardPokeboll.forEach(p => p.classList.remove('dark'));
+    if (toggleThemeImg) toggleThemeImg.src = '/assets/img/moon-icon.png';
+    if (iconimglogo) iconimglogo.src = '/assets/img/pokebola-logo.png';
+    if (logo) logo.src = '/assets/img/logo-sacidex.png';
   }
 
-  localStorage.setItem("theme", tema);
+  localStorage.setItem('theme', tema);
 }
 
 function verificarTemaSalvo() {
-  const tema = localStorage.getItem("theme") || "light";
+  const tema = localStorage.getItem('theme') || 'light';
   aplicarTema(tema);
 }
 
-toggleTheme.addEventListener("click", () => {
-  const temaAtual = localStorage.getItem("theme");
-  const novoTema = temaAtual === "dark" ? "light" : "dark";
-  aplicarTema(novoTema);
-});
+// adiciona listener ao botão que envolve o ícone; fallback para imagem
+if (toggleThemeBtn) {
+  toggleThemeBtn.addEventListener('click', () => {
+    const atual = localStorage.getItem('theme') || 'light';
+    aplicarTema(atual === 'dark' ? 'light' : 'dark');
+  });
+} else if (toggleThemeImg) {
+  toggleThemeImg.addEventListener('click', () => {
+    const atual = localStorage.getItem('theme') || 'light';
+    aplicarTema(atual === 'dark' ? 'light' : 'dark');
+  });
+}
+
+// Verifica e aplica tema ao carregar
+document.addEventListener('DOMContentLoaded', verificarTemaSalvo);
 
 //===================//
 //==== FUNÇÕES ======//

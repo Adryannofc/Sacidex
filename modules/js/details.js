@@ -108,9 +108,72 @@ function fillPageWithPokemonData(pokemon) {
  *Aplica gradiente do tipo no background
  */
 function applyBackgroundColor(type) {
-    document.body.className = "";
+    // preservar se o usuário já está no tema escuro
+    const isDark = document.body.classList.contains('dark');
+    // limpa somente classes anteriores de tipo, preservando 'dark' se presente
+    document.body.className = isDark ? 'dark' : '';
     document.body.classList.add(`type-${type}`);
 }
+
+/* ==========================
+   Tema (dark/light) para a página de detalhes
+   ========================== */
+let toggleThemeBtn;
+let toggleThemeImg;
+let headerEl;
+let iconImg;
+let logoImg;
+
+function aplicarTemaDetalhes(tema) {
+    if (!headerEl) headerEl = document.querySelector('header');
+    if (!iconImg) iconImg = document.querySelector('.icon');
+    if (!logoImg) logoImg = document.querySelector('.sacidex');
+
+    if (tema === 'dark') {
+        document.body.classList.add('dark');
+        headerEl && headerEl.classList.add('dark-header');
+        // trocar logos para versão branca (caminho relativo nesta página)
+        if (toggleThemeImg) toggleThemeImg.src = '../../assets/img/sunwhite.png';
+        if (iconImg) iconImg.src = '../../assets/img/pokebola-logo-branca.png';
+        if (logoImg) logoImg.src = '../../assets/img/logo-sacidex-branca.png';
+    } else {
+        document.body.classList.remove('dark');
+        headerEl && headerEl.classList.remove('dark-header');
+        if (toggleThemeImg) toggleThemeImg.src = '../../assets/img/moon-icon.png';
+        if (iconImg) iconImg.src = '../../assets/img/pokebola-logo.png';
+        if (logoImg) logoImg.src = '../../assets/img/logo-sacidex.png';
+    }
+    localStorage.setItem('theme', tema);
+}
+
+function verificarTemaDetalhes() {
+    const tema = localStorage.getItem('theme') || 'light';
+    aplicarTemaDetalhes(tema);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // selecionar elementos só após DOM pronto
+    toggleThemeBtn = document.querySelector('.toggle-theme button');
+    toggleThemeImg = document.getElementById('toggleTheme');
+    headerEl = document.querySelector('header');
+    iconImg = document.querySelector('.icon');
+    logoImg = document.querySelector('.sacidex');
+
+    // anexar listeners de clique
+    if (toggleThemeBtn) {
+        toggleThemeBtn.addEventListener('click', () => {
+            const atual = localStorage.getItem('theme') || 'light';
+            aplicarTemaDetalhes(atual === 'dark' ? 'light' : 'dark');
+        });
+    } else if (toggleThemeImg) {
+        toggleThemeImg.addEventListener('click', () => {
+            const atual = localStorage.getItem('theme') || 'light';
+            aplicarTemaDetalhes(atual === 'dark' ? 'light' : 'dark');
+        });
+    }
+
+    verificarTemaDetalhes();
+});
 
 
 /**

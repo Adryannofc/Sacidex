@@ -33,22 +33,25 @@
             </ul>
         </nav>
 
+        <!-- Menu toggle (mobile) -->
+        <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">☰</button>
+
         <!--Search-->
-        <div class="search" id="search">
-            <input type="text" id="busca" placeholder="Buscar">
-            <button type="submit">
-                <img src="../assets/img/search-icon.png" alt="">
-            </button>
-        </div>
+    <div class="search" id="search">
+      <input type="text" id="busca" placeholder="Buscar" aria-label="Campo de busca">
+      <button type="submit" aria-label="Buscar" title="Buscar">
+        <img src="../assets/img/search-icon.png" alt="Ícone buscar">
+      </button>
+    </div>
 
         <div id="pokedex"></div>
 
         <!--Theme-->
-        <div class="toggle-theme">
-            <button>
-                <img id="toggleTheme" src="../assets/img/moon-icon.png" alt="Moon-icon"></img>
-            </button>
-        </div>
+    <div class="toggle-theme">
+      <button aria-label="Alternar tema" title="Alternar tema">
+        <img id="toggleTheme" src="../assets/img/moon-icon.png" alt="Alternar tema">
+      </button>
+    </div>
     </header>
 
     <!--Filtro-->
@@ -126,6 +129,21 @@
     </main>
 
 </body>
+<script>
+  (function () {
+    const toggle = document.getElementById('menu-toggle');
+    const header = document.querySelector('.header');
+    if (toggle && header) {
+      toggle.addEventListener('click', () => header.classList.toggle('menu-open'));
+      // fecha o menu ao clicar fora
+      document.addEventListener('click', (e) => {
+        if (!header.contains(e.target) && header.classList.contains('menu-open')) {
+          header.classList.remove('menu-open');
+        }
+      });
+    }
+  })();
+</script>
 <script type="module" src="main.js"></script>
 
 
