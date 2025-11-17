@@ -1,5 +1,5 @@
 import { createPokemonCard } from "./js/ui.js";
-import { pokemons } from "./js/api.js";
+import { pokemons, loadNextBatch, hasMorePokemon, resetPokemonPagination } from "./js/api.js";
 
 const campoBusca = document.getElementById("busca");
 const favoriteButton = document.getElementById("favorite-btn");
@@ -143,10 +143,41 @@ favoriteButton.addEventListener("click", () => {
 });
 
 //===================//
-//==== INICIALIZA ====//
+//==== INFINITE SCROLL ====//
 //===================//
 
-resetarFavoritePage();
-verificarTemaSalvo();
-carregarBuscaSalva();
-VerifcaroutraPage();
+const loader = document.getElementById('infinite-loader');
+let loading = false;
+
+async function renderNextBatch() {
+  if (loading || !hasMorePokemon()) return;
+  loading = true;
+  loader.classList.remove('hidden');
+  const pokemonsBatch = await loadNextBatch();
+  pokemonsBatch.forEach(pokemon => {
+    const card = createPokemonCard(pokemon);
+    container.appendChild(card);
+  });
+  loader.classList.add('hidden');
+  loading = false;
+}
+
+function onScroll() {
+  const scrollY = window.scrollY || window.pageYOffset;
+  const viewport = window.innerHeight;
+  const fullHeight = document.body.offsetHeight;
+  if (fullHeight - (scrollY + viewport) < 300) {
+    renderNextBatch();
+  }
+}
+
+function startInfiniteScroll() {
+  resetarFavoritePage();
+  verificarTemaSalvo();
+  resetPokemonPagination();
+  container.innerHTML = "";
+  renderNextBatch();
+  window.addEventListener('scroll', onScroll);
+}
+
+document.addEventListener('DOMContentLoaded', startInfiniteScroll);

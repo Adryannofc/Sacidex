@@ -2,67 +2,67 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/cards.css">
-    <link rel="stylesheet" href="css/types.css">
-    <link rel="stylesheet" href="css/darkmode.css">
-    <link rel="shortcut icon" href="../assets/img/pokebola-logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/types.css">
+  <link rel="stylesheet" href="css/darkmode.css">
+  <link rel="shortcut icon" href="../assets/img/pokebola-logo.png" type="image/x-icon">
 
-    <title>SaciDex - Home</title>
+  <title>SaciDex - Home</title>
 </head>
 
 <body>
-    <header class="header">
-        <!--Logo-->
-        <a class="logo" href="index.html">
-            <img class="icon" src="../assets/img/pokebola-logo.png" alt="Logo-Home">
-            <img class="sacidex" src="../assets/img/logo-sacidex.png" alt="">
-        </a>
+  <header class="header">
+    <!--Logo-->
+    <a class="logo" href="index.html">
+      <img class="icon" src="../assets/img/pokebola-logo.png" alt="Logo-Home">
+      <img class="sacidex" src="../assets/img/logo-sacidex.png" alt="">
+    </a>
 
-        <!--Links-->
-        <nav class="nav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Minigame</a></li>
-                <li><a href="#" id="favorite-btn">Favorite</a></li>
-                <li><a href="https://github.com/GuilhermeRM-a1/Sacidex.git" target="_blank">Github</a></li>
-            </ul>
-        </nav>
+    <!--Links-->
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Minigame</a></li>
+        <li><a href="#" id="favorite-btn">Favorite</a></li>
+        <li><a href="https://github.com/GuilhermeRM-a1/Sacidex.git" target="_blank">Github</a></li>
+      </ul>
+    </nav>
 
-        <!-- Menu toggle (mobile) -->
-        <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">☰</button>
+    <!-- Menu toggle (mobile) -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">☰</button>
 
-        <!--Search-->
+    <!--Search-->
     <div class="search" id="search">
-      <input type="text" id="busca" placeholder="Buscar" aria-label="Campo de busca">
+      <input type="text" id="busca" placeholder="Search" aria-label="Campo de busca">
       <button type="submit" aria-label="Buscar" title="Buscar">
         <img src="../assets/img/search-icon.png" alt="Ícone buscar">
       </button>
     </div>
 
-        <div id="pokedex"></div>
+    <div id="pokedex"></div>
 
-        <!--Theme-->
+    <!--Theme-->
     <div class="toggle-theme">
       <button aria-label="Alternar tema" title="Alternar tema">
         <img id="toggleTheme" src="../assets/img/moon-icon.png" alt="Alternar tema">
       </button>
     </div>
-    </header>
+  </header>
 
-    <!--Filtro-->
- <div class="filter-wrapper">
-      <!--botao filtro-->
+  <!--Filtro-->
+  <div class="filter-wrapper">
+    <!--botao filtro-->
     <button id="filter-toggle" class="filter-icon">
-        <img src="/assets/img/filter.png" alt="Filtro">
+      <img src="/assets/img/filter.png" alt="Filtro">
     </button>
 
-        <!--Elementos do filtro-->
-    <div  id="filter-box" class="filter-box hidden">
+    <!--Elementos do filtro-->
+    <div id="filter-box" class="filter-box hidden">
       <button class="type-btn" data-type="fire">
         <img src="/assets/icons/fire.png" alt="Fire">
       </button>
@@ -119,14 +119,21 @@
       </button>
     </div>
   </div>
-      <!--Script do filtro-->
-    <script type="module" src="./js/scriptFilter.js"></script>
+  <!--Script do filtro-->
+  <script type="module" src="./js/scriptFilter.js"></script>
 
-    <main class="card-container">
-        <section class="cards" id="cards">
-            
-        </section>
-    </main>
+  <main class="card-container">
+    <section class="cards" id="cards"></section>
+    <div id="infinite-loader" class="loader-wrapper hidden">
+      <span class="loader"></span>
+    </div>
+  </main>
+
+  <!-- Loading overlay -->
+  <div id="loading" class="loading-overlay" aria-live="polite" aria-busy="true">
+    <!-- From Uiverse.io by EmmaxPlay -->
+    <div class="spinner" role="status" aria-label="Carregando"></div>
+  </div>
 
 </body>
 <script>
@@ -145,6 +152,21 @@
   })();
 </script>
 <script type="module" src="main.js"></script>
+<script>
+  // Esconde o spinner quando todos os Pokémons forem carregados
+  document.addEventListener('pokemonsLoaded', () => {
+    const overlay = document.getElementById('loading');
+    if (overlay) overlay.classList.add('hide');
+  });
+
+  // Fallback: se algum erro impedir o evento, esconder após timeout razoável
+  setTimeout(() => {
+    const overlay = document.getElementById('loading');
+    if (overlay && !overlay.classList.contains('hide')) {
+      overlay.classList.add('hide');
+    }
+  }, 60000); // 60s
+</script>
 
 
 </html>

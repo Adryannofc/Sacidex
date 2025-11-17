@@ -48,10 +48,11 @@ async function loadDetail() {
     const pokemon = await response.json();
 
     fillPageWithPokemonData(pokemon);
-    
-    // Carrega dados adicionais para evoluções
+
+    // Carrega dados adicionais para evoluções e espécie
     await loadEvolutionChain(pokemon.species.url);
-    
+    await loadSpeciesData(pokemon.species.url);
+
     setupTabs();
 }
 
@@ -94,13 +95,93 @@ function fillPageWithPokemonData(pokemon) {
         weaknessContainer.appendChild(span);
     });
 
-    
+
     document.querySelector('.pokemon-weight').textContent = `${pokemon.weight / 10}kg`;
     document.querySelector('.pokemon-height').textContent = `${pokemon.height / 10}m`;
 
     fillStatusTab(pokemon.stats);
     fillMovesTab(pokemon.moves);
 
+}
+
+
+/**
+ * Carrega dados da espécie (descrição, gender_rate, catch_rate)
+ */
+async function loadSpeciesData(speciesUrl) {
+    try {
+        const response = await fetch(speciesUrl);
+        const speciesData = await response.json();
+
+        // Obter descrição em inglês (flavor_text)
+        const flavorText = speciesData.flavor_text_entries.find(
+            entry => entry.language.name === 'en'
+        );
+
+        const description = flavorText
+            ? flavorText.flavor_text.replace(/[\n\f]/g, ' ').trim()
+            : 'Descrição não disponível';
+
+        // Preencher descrição
+        document.querySelector('.sobrepokemon').innerHTML = `<p>${description}</p>`;
+
+        // Gender Rate
+        const genderRate = speciesData.gender_rate;
+        fillGenderRate(genderRate);
+
+        // Catch Rate
+        const catchRate = speciesData.capture_rate;
+        fillCatchRate(catchRate);
+
+    } catch (error) {
+        console.error("Erro ao carregar dados da espécie:", error);
+        document.querySelector('.sobrepokemon').innerHTML = `<p>Erro ao carregar descrição</p>`;
+    }
+}
+
+
+/**
+ * Preenche a taxa de gênero
+ */
+function fillGenderRate(genderRate) {
+    // Gender rate varia de -1 (sem gênero) a 8 (todas fêmeas)
+    // -1 = sem gênero, 0 = 100% macho, 8 = 100% fêmea
+
+    let malePercentage = 0;
+    let femalePercentage = 0;
+    let displayText = 'Sem Gênero';
+
+    if (genderRate === -1) {
+        displayText = 'Sem Gênero';
+    } else {
+        malePercentage = ((8 - genderRate) / 8) * 100;
+        femalePercentage = (genderRate / 8) * 100;
+        displayText = `${malePercentage.toFixed(1)}% / ${femalePercentage.toFixed(1)}%`;
+    }
+
+    // Atualizar barra de progresso
+    const progressFill = document.querySelector('.progress-fill-male');
+    progressFill.style.width = `${malePercentage}%`;
+
+    // Atualizar texto
+    document.querySelector('.progress-gender-custom .progress-text').textContent = displayText;
+}
+
+
+/**
+ * Preenche a taxa de captura
+ */
+function fillCatchRate(catchRate) {
+    // Catch rate é um valor de 0 a 255
+    // Calcular percentual
+    const catchPercentage = (catchRate / 255) * 100;
+
+    // Atualizar barra de progresso
+    const progressFill = document.querySelector('.progress-fill-catch');
+    progressFill.style.width = `${catchPercentage}%`;
+
+    // Atualizar texto
+    document.querySelector('.catchrate-text').textContent = `${catchRate}/255`;
 }
 
 
@@ -230,7 +311,7 @@ window.navigatePokemon = function (direction) {
  */
 function fillStatusTab(stats) {
     const statusTab = document.getElementById('status-tab');
-    
+
     const statsHTML = stats.map(stat => {
         const statName = stat.stat.name
             .replace('special-attack', 'Sp. Attack')
@@ -239,9 +320,9 @@ function fillStatusTab(stats) {
             .replace('attack', 'Attack')
             .replace('defense', 'Defense')
             .replace('speed', 'Speed');
-        
+
         const percentage = Math.min((stat.base_stat / 255) * 100, 100);
-        
+
         return `
             <div class="stat-row">
                 <div class="stat-name">${statName}</div>
@@ -266,7 +347,7 @@ function fillStatusTab(stats) {
  */
 function fillMovesTab(moves) {
     const movesTab = document.getElementById('moves-tab');
-    
+
     // Ordena moves por nível aprendido
     const sortedMoves = moves
         .filter(m => m.version_group_details[0])
@@ -279,7 +360,7 @@ function fillMovesTab(moves) {
     const movesHTML = sortedMoves.slice(0, 30).map(move => {
         const learnMethod = move.version_group_details[0].move_learn_method.name;
         const level = move.version_group_details[0].level_learned_at;
-        
+
         let learnInfo = '';
         if (learnMethod === 'level-up' && level > 0) {
             learnInfo = `Nível ${level}`;
@@ -316,10 +397,10 @@ async function loadEvolutionChain(speciesUrl) {
     try {
         const speciesResponse = await fetch(speciesUrl);
         const speciesData = await speciesResponse.json();
-        
+
         const evolutionResponse = await fetch(speciesData.evolution_chain.url);
         const evolutionData = await evolutionResponse.json();
-        
+
         await fillEvolutionsTab(evolutionData.chain);
     } catch (error) {
         console.error("Erro ao carregar evoluções:", error);
@@ -337,21 +418,21 @@ async function loadEvolutionChain(speciesUrl) {
  */
 async function fillEvolutionsTab(chain) {
     const evolutions = [];
-    
+
     // Função recursiva para extrair toda a cadeia
     function extractEvolutions(node) {
         const pokemonName = node.species.name;
         const pokemonId = node.species.url.split('/').filter(Boolean).pop();
-        
+
         evolutions.push({ name: pokemonName, id: pokemonId });
-        
+
         if (node.evolves_to.length > 0) {
             node.evolves_to.forEach(evo => extractEvolutions(evo));
         }
     }
-    
+
     extractEvolutions(chain);
-    
+
     // Busca imagens para cada evolução
     const evolutionsWithImages = await Promise.all(
         evolutions.map(async (evo) => {
@@ -369,12 +450,12 @@ async function fillEvolutionsTab(chain) {
             }
         })
     );
-    
+
     const evolutionsHTML = evolutionsWithImages.map((evo, index) => {
-        const typesHTML = evo.types ? evo.types.map(t => 
+        const typesHTML = evo.types ? evo.types.map(t =>
             `<span class="type ${t.type.name}">${t.type.name}</span>`
         ).join('') : '';
-        
+
         return `
             <div class="evolution-item">
                 ${index > 0 ? '<div class="evolution-arrow">→</div>' : ''}
@@ -387,7 +468,7 @@ async function fillEvolutionsTab(chain) {
             </div>
         `;
     }).join('');
-    
+
     document.getElementById('evolucoes-tab').innerHTML = `
         <div class="evolutions-container">
             ${evolutionsHTML}

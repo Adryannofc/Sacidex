@@ -1,47 +1,42 @@
 import { createPokemonCard } from "./ui.js";
 
-export const pokemons = []; // lista global
-
-const QUANTIDADE = 500;
-
-export async function loadPokemons() {
-    for (let id = 1; id <= QUANTIDADE; id++) {
-        await loadPokemon(id);
-    }
-    // sinaliza que o carregamento inicial terminou
-    document.dispatchEvent(new Event('pokemonsLoaded'));
-}
+export const pokemons = [];
+let currentPage = 0;
+const PAGE_SIZE = 20;
+const MAX_POKEMON = 1000;
 
 export async function loadPokemon(id) {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-
     try {
         const response = await fetch(url);
-
-        if (!response.ok) return;
-
+        if (!response.ok) return null;
         const pokemon = await response.json();
-
-        pokemons.push(pokemon); // salva no array global
-        // adiciona card à página somente se o container existir (aguarda DOM)
-        const cardsContainer = document.getElementById("cards");
-        if (cardsContainer) {
-            const card = createPokemonCard(pokemon);
-            cardsContainer.appendChild(card);
-        }
-
-        // notifica outras partes da aplicação que um Pokémon foi carregado
+        pokemons.push(pokemon);
         document.dispatchEvent(new CustomEvent('pokemonAdded', { detail: pokemon }));
-
+        return pokemon;
     } catch (error) {
         console.error("Erro ao carregar Pokémon:", error);
+        return null;
     }
 }
 
-// inicia o carregamento quando o DOM estiver pronto para evitar erro em containers nulos
-document.addEventListener('DOMContentLoaded', () => {
-    loadPokemons();
-});
+export async function loadNextBatch() {
+    const start = currentPage * PAGE_SIZE + 1;
+    const end = Math.min(start + PAGE_SIZE - 1, MAX_POKEMON);
+    const promises = [];
+    for (let id = start; id <= end; id++) {
+        promises.push(loadPokemon(id));
+    }
+    currentPage++;
+    const results = await Promise.all(promises);
+    return results.filter(Boolean); // retorna apenas os carregados
+}
 
-// quando todos carregarem, dispara evento (loadPokemons dispara internamente)
-// Para isso alteramos loadPokemons para sinalizar fim
+export function hasMorePokemon() {
+    return pokemons.length < MAX_POKEMON;
+}
+
+export function resetPokemonPagination() {
+    pokemons.length = 0;
+    currentPage = 0;
+}
