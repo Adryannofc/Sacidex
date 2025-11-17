@@ -148,18 +148,55 @@ favoriteButton.addEventListener("click", () => {
 
 const loader = document.getElementById('infinite-loader');
 let loading = false;
+export let activeTiposFilter = []; // Filtros de tipos ativos
+
+export function setActiveTiposFilter(tipos) {
+  activeTiposFilter = tipos;
+}
+
+export function getActiveTiposFilter() {
+  return activeTiposFilter;
+}
 
 async function renderNextBatch() {
   if (loading || !hasMorePokemon()) return;
   loading = true;
   loader.classList.remove('hidden');
-  const pokemonsBatch = await loadNextBatch();
-  pokemonsBatch.forEach(pokemon => {
+
+  let pokemonsToRender = [];
+
+  // Continua carregando lotes até ter pokémons suficientes ou acabar
+  while (pokemonsToRender.length < 20 && hasMorePokemon()) {
+    const pokemonsBatch = await loadNextBatch();
+
+    // Aplica filtro se houver tipos selecionados
+    const filtered = activeTiposFilter.length === 0
+      ? pokemonsBatch
+      : pokemonsBatch.filter(pokemon => {
+        const tiposDoPokemon = pokemon.types.map(t => t.type.name.toLowerCase());
+        return activeTiposFilter.every(tipo => tiposDoPokemon.includes(tipo));
+      });
+
+    pokemonsToRender.push(...filtered);
+
+    // Se não há filtro ativo, não precisa continuar carregando
+    if (activeTiposFilter.length === 0) break;
+  }
+
+  pokemonsToRender.forEach(pokemon => {
     const card = createPokemonCard(pokemon);
     container.appendChild(card);
   });
+
   loader.classList.add('hidden');
   loading = false;
+
+  // Se a página ainda não tem scroll e há mais pokémons, carrega mais
+  setTimeout(() => {
+    if (document.body.offsetHeight <= window.innerHeight && hasMorePokemon()) {
+      renderNextBatch();
+    }
+  }, 100);
 }
 
 function onScroll() {
@@ -177,6 +214,15 @@ function startInfiniteScroll() {
   resetPokemonPagination();
   container.innerHTML = "";
   renderNextBatch();
+  window.addEventListener('scroll', onScroll);
+}
+
+export function reloadWithFilters() {
+  resetPokemonPagination();
+  container.innerHTML = "";
+  renderNextBatch();
+  // Garante que o scroll listener está ativo
+  window.removeEventListener('scroll', onScroll);
   window.addEventListener('scroll', onScroll);
 }
 

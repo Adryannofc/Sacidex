@@ -1,5 +1,6 @@
 import { main } from '../main.js';
 import { pokemons } from '../js/api.js';
+import { setActiveTiposFilter, reloadWithFilters } from '../main.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('filter-toggle');
@@ -20,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // alterna a visibilidade da caixa de filtro
   if (toggle) {
     toggle.addEventListener('click', (e) => {
-    e.stopPropagation(); // impede fechamento imediato
-    filterBox.classList.toggle('hidden');
+      e.stopPropagation(); // impede fechamento imediato
+      filterBox.classList.toggle('hidden');
     });
   }
 
@@ -48,19 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log('Selecionados:', tiposSelecionados);
 
-      if (tiposSelecionados.length === 0) {
-        main(pokemons);
-        return;
-      }
+      // Atualiza o filtro ativo globalmente
+      setActiveTiposFilter(tiposSelecionados);
 
-      const filtrados = pokemons.filter(pokemon => {
-        const tiposDoPokemon = pokemon.types.map(t => t.type.name.toLowerCase());
-        return tiposSelecionados.every(tipo => tiposDoPokemon.includes(tipo));
-      });
-
-      main(filtrados);
-
-      
+      // Recarrega do zero com o filtro ativo e infinite scroll
+      reloadWithFilters();
     });
   });
 });
