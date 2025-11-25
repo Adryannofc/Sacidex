@@ -1,55 +1,85 @@
-# 🔴⚪ Sacidex (Pokédex)
+# 🔴⚪ SaciDex
 
-Bem-vindo(a) ao Sacidex! Este projeto é uma Pokédex digital desenvolvida para listar e exibir informações sobre diversos Pokémon. ⚡️
-<img width="1890" height="1052" alt="image" src="https://github.com/user-attachments/assets/2e851c43-4a08-41cb-baba-1f5e8a5c7d74" />
-<img width="1917" height="1049" alt="image" src="https://github.com/user-attachments/assets/96e10359-8d02-4a6c-8218-39ea814bcb9d" />
+<img width="1902" height="1053" alt="image" src="https://github.com/user-attachments/assets/105bb136-a550-4713-b6c7-019439fbeb24" />
 
-Este foi desenvolvido como parte de um Projeto Integrador (PI) pela equipe **Saciscode**, com o objetivo de aplicar conhecimentos de front-end para criar uma aplicação web interativa.
 
-## ✨ Funcionalidades Principais
+> *Uma Pokédex moderna, responsiva e cheia de magia brasileira, desenvolvida pela equipe Saciscode.*
 
-* **Listagem de Pokémon:** Exibe uma grade ou lista com vários Pokémon.
-* **Consumo de API:** Busca dados em tempo real da [PokeAPI](https://pokeapi.co/) (ou outra fonte de dados) para exibir informações precisas.
-* **Detalhes do Pokémon:** (Possivelmente) Ao clicar em um Pokémon, exibe seus status, tipos, habilidades, etc.
-* **Design Temático:** Limpa e minimalista.
+## 📖 Sobre o Projeto
 
-## 🚀 Tecnologias Utilizadas
+A **SaciDex** é uma aplicação web interativa que consome a [PokeAPI](https://pokeapi.co/) para listar, filtrar e exibir detalhes de Pokémon. O projeto foi desenvolvido com foco em performance, experiência do usuário (UX) e design limpo.
 
-O projeto foi construído utilizando as seguintes tecnologias:
+Diferente de listas comuns, a SaciDex oferece uma experiência imersiva com cores dinâmicas baseadas no tipo do Pokémon, modo escuro e interações fluídas.
 
-* **HTML5:** Para a estrutura semântica da Pokédex.
-* **CSS3:** Para estilização, layout (Flexbox/Grid) e o design temático.
-* **JavaScript (ES6+):** Para a lógica da aplicação, manipulação do DOM e realização das requisições (Fetch API) para a API.
+---
 
-## 🏁 Como Executar o Projeto
+## ✨ Funcionalidades Incríveis
 
-Como este é um projeto front-end estático, você não precisa de um servidor complexo para executá-lo. Basta seguir os passos:
+O projeto vai muito além do básico. Confira o que implementamos:
 
-1.  **Clone o repositório:**
-    ```bash
-    git clone [https://github.com/GuilhermeRM-a1/Sacidex.git](https://github.com/GuilhermeRM-a1/Sacidex.git)
-    ```
+* **📜 Scroll Infinito:** Navegação fluida sem necessidade de clicar em "próxima página". Carregamento dinâmico conforme o usuário desce a tela.
+* **🌙 Dark Mode & Light Mode:** Alternância completa de tema, salvando a preferência do usuário no `localStorage`.
+* **🔍 Filtro Avançado por Tipos:** Filtre os Pokémon por fogo, água, planta, etc., através de um menu lateral intuitivo.
+* **⭐ Sistema de Favoritos:** Salve seus Pokémon preferidos! Eles ficam armazenados no seu navegador para acesso rápido.
+* **✨ Modo Shiny:** Na página de detalhes, clique no botão de brilho (✦) para ver a versão rara (Shiny) do Pokémon.
+* **🎨 Cores Dinâmicas:** A interface se adapta à cor do tipo principal do Pokémon (ex: fundo vermelho para tipo Fogo).
+* **📱 Totalmente Responsivo:** Layout adaptável para celulares, tablets e desktops.
 
-2.  **Navegue até a pasta:**
-    ```bash
-    cd Sacidex
-    ```
+## 🛠️ Tecnologias Utilizadas
 
-3.  **Abra o arquivo principal:**
-    Abra o arquivo `index.html` diretamente no seu navegador de preferência (Google Chrome, Firefox, etc.).
+Projeto construído com **Vanilla JavaScript** moderno, focando nos fundamentos da web:
 
-E pronto! A Sacidex estará funcionando na sua máquina local. 💻
+* **HTML5 Semântico**
+* **CSS3** (Variáveis, Flexbox, Grid, Animações e Glassmorphism)
+* **JavaScript (ES6+)**
+    * *Fetch API* para consumo de dados.
+    * *ES Modules* para organização do código.
+    * *LocalStorage* para persistência de dados (favoritos e tema).
+    * *Intersection Observer* para animações de scroll.
 
-## 👨‍💻 Autores (Grupo Saciscode)
+---
 
-Este projeto foi desenvolvido pela equipe **Saciscode**, composta por:
+## 📸 Screenshots
 
-* Adryann ([@Adryann Felix](https://github.com/Adryannofc))
-* Guilherme ([@GuilhermeRM-a1](https://github.com/GuilhermeRM-a1))
-* Luan
-* Thiago
-* Pedro ([@PedroKleinhans](https://github.com/PedroKleinhans))
+| Home (Dark Mode) | Detalhes (Status) |
+|:---:|:---:|
+| <img width="1902" height="1053" alt="image" src="https://github.com/user-attachments/assets/110902db-f830-4821-90fc-35dbc7e91512" /> | <img width="1915" height="1050" alt="image" src="https://github.com/user-attachments/assets/9d57ed92-166a-4476-8220-01c6fda3da5a" />|
 
-## 📄 Licença
+---
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+
+## 🚀 Como Rodar o Projeto
+
+Como o projeto utiliza **ES Modules** (`import`/`export`), você precisará de um servidor local para evitar erros de CORS (Cross-Origin Resource Sharing) se abrir o arquivo diretamente.
+
+### Opção 1: VS Code (Recomendado)
+1.  Instale a extensão **Live Server** no VS Code.
+2.  Clique com o botão direito no arquivo `modules/index.html` (ou no `index.html` da raiz).
+3.  Selecione **"Open with Live Server"**.
+
+### Opção 2: Terminal (Python)
+Se você tem Python instalado:
+```bash
+# Clone o repositório
+git clone [https://github.com/GuilhermeRM-a1/Sacidex.git](https://github.com/GuilhermeRM-a1/Sacidex.git)
+
+# Entre na pasta
+cd Sacidex
+
+# Inicie um servidor simples
+python -m http.server
+# Acesse http://localhost:8000 no navegador
+```
+
+```
+Sacidex/
+├── assets/             # Imagens, ícones e protótipos
+├── modules/            # Código Fonte Principal
+│   ├── css/            # Estilos (cards.css, darkmode.css, details.css, etc.)
+│   ├── js/             # Lógica (api.js, details.js, ui.js, scriptFilter.js)
+│   ├── pages/          # Páginas secundárias (pokemon.html)
+│   ├── index.html      # Página Inicial
+│   ├── main.js         # Script principal
+│   └── style.css       # Estilos globais
+└── README.md
+```
