@@ -69,7 +69,7 @@ function aplicarTema(tema) {
 
 (function () {
   const toggle = document.getElementById("menu-toggle");
-  const header = document.querySelector(".header");
+  const header = document.querySelector("header");
   if (toggle && header) {
     toggle.addEventListener("click", () =>
       header.classList.toggle("menu-open")
