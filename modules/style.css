@@ -237,11 +237,11 @@ a:hover {
 
 
 .filter-wrapper {
+  display: flex;
   position: fixed;
-  top: 120px;
+  top: 135px;
   right: 20px;
   z-index: 200;
-  display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 8px;
@@ -264,7 +264,7 @@ a:hover {
 
 .filter-box {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   background: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
@@ -343,7 +343,7 @@ a:hover {
   .nav {
     display: none;
   }
-
+  
   .menu-toggle {
     display: inline-block;
   }
@@ -375,9 +375,10 @@ a:hover {
 
   /* Posicionar filtro mais acessível em mobile */
   .filter-wrapper {
-    top: auto;
-    bottom: 20px;
+    display: flex;
+    bottom: 60px;
     right: 16px;
+    flex-direction: column-reverse;
   }
 
   .filter-box {
