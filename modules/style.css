@@ -338,11 +338,12 @@ a:hover {
 
 /* Ajustes para telas pequenas */
 @media (max-width: 768px) {
+
   /* Esconder nav padrão e mostrar botão de menu */
   .nav {
     display: none;
   }
-  
+
   .menu-toggle {
     display: inline-block;
   }
@@ -370,6 +371,22 @@ a:hover {
 
   .search input {
     width: 140px;
+  }
+
+  /* Quando a busca é movida para fora do header no mobile */
+  .search.below-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: calc(70% - 2rem);
+    margin: 10px auto 6px;
+    position: relative;
+    order: initial;
+    z-index: 3;
+  }
+
+  .search.below-header input {
+    width: 100%;
   }
 
   /* Posicionar filtro mais acessível em mobile */

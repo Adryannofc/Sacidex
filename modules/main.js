@@ -67,6 +67,75 @@ function aplicarTema(tema) {
   localStorage.setItem("theme", tema);
 }
 
+(function () {
+  const toggle = document.getElementById("menu-toggle");
+  const header = document.querySelector(".header");
+  if (toggle && header) {
+    toggle.addEventListener("click", () =>
+      header.classList.toggle("menu-open")
+    );
+    // fecha o menu ao clicar fora
+    document.addEventListener("click", (e) => {
+      if (
+        !header.contains(e.target) &&
+        header.classList.contains("menu-open")
+      ) {
+        header.classList.remove("menu-open");
+      }
+    });
+  }
+})();
+
+// Move a barra de busca para fora do header no mobile
+(function () {
+  const MOBILE_QUERY = "(max-width: 768px)";
+  const header = document.querySelector(".header-home");
+  const search = header ? header.querySelector(".search") : null;
+  const main = document.querySelector("main.card-container");
+  if (!header || !search || !main) return;
+
+  // Placeholder para restaurar a posição original no desktop
+  const placeholder = document.createElement("div");
+  placeholder.id = "search-original-slot";
+  placeholder.style.display = "none";
+  search.after(placeholder);
+
+  const placeBelowHeader = () => {
+    // insere a busca logo antes do main (entre header e cards)
+    if (main.parentNode) {
+      main.parentNode.insertBefore(search, main);
+      search.classList.add("below-header");
+    }
+  };
+
+  const restoreToHeader = () => {
+    if (placeholder.parentNode) {
+      placeholder.parentNode.insertBefore(search, placeholder);
+      search.classList.remove("below-header");
+    }
+  };
+
+  const mq = window.matchMedia(MOBILE_QUERY);
+  const apply = (e) => (e.matches ? placeBelowHeader() : restoreToHeader());
+  apply(mq);
+  if (mq.addEventListener) mq.addEventListener("change", apply);
+  else mq.addListener(apply);
+})();
+
+// Esconde o spinner quando todos os Pokémons forem carregados
+document.addEventListener("pokemonsLoaded", () => {
+  const overlay = document.getElementById("loading");
+  if (overlay) overlay.classList.add("hide");
+});
+
+// Fallback: se algum erro impedir o evento, esconder após timeout razoável
+setTimeout(() => {
+  const overlay = document.getElementById("loading");
+  if (overlay && !overlay.classList.contains("hide")) {
+    overlay.classList.add("hide");
+  }
+}, 60000); // 60s
+
 function verificarTemaSalvo() {
   const tema = localStorage.getItem("theme") || "light";
   aplicarTema(tema);
