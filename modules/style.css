@@ -349,8 +349,8 @@ a:hover {
   }
 
   /* Header padding menor */
-  .header {
-    padding: 0 1rem;
+  .header-home {
+    padding: 0;
   }
 
   /* Tornar logo e search menores */
