@@ -767,7 +767,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .header {
+    .header-home {
         padding: 0 2rem;
     }
 

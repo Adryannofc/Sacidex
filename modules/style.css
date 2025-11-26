@@ -338,7 +338,6 @@ a:hover {
 
 /* Ajustes para telas pequenas */
 @media (max-width: 768px) {
-
   /* Esconder nav padrão e mostrar botão de menu */
   .nav {
     display: none;
@@ -350,7 +349,7 @@ a:hover {
 
   /* Header padding menor */
   .header-home {
-    padding: 0;
+    padding: 0 2rem;
   }
 
   /* Tornar logo e search menores */
