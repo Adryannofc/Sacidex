@@ -170,41 +170,41 @@
 
 
 
-.header {
+.header-home {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
-    padding: 0 6rem;
+    padding: 0 2rem;
     height: 80px;
     box-shadow: 1px 1px 5px #ccc;
     margin-bottom: 25px;
 }
 
-.header.dark-header {
+.header-home.dark-header {
     background-color: #252525;
 
 
 }
 
-.header.dark-header a {
+.header-home.dark-header a {
     color: white;
 
 }
 
-.header.dark-header .search input {
+.header-home.dark-header .search input {
     background-color: #464646;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 
 
 }
 
-.header.dark-header .search button {
+.header-home.dark-header .search button {
     background-color: #464646;
 }
 
 
-.header.dark-header .search button:hover {
+.header-home.dark-header .search button:hover {
     transform: scale(1.05);
     color: rgb(255, 255, 255);
     background-color: rgb(91, 91, 91);

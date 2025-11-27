@@ -767,14 +767,19 @@ body {
 }
 
 @media (max-width: 768px) {
-    .header {
+    .header-home {
         padding: 0 2rem;
     }
 
     .pokemon-id {
-        left: 20px;
-        top: 95px;
-        font-size: clamp(60px, 12vw, 100px);
+        left: 0px;
+        top: 0px;
+        font-size: clamp(80px, 15vw, 120px);
+    }
+
+    .sparkle {
+        top: 15%;
+        left: 270px;
     }
 
     .nav-arrow {
@@ -805,12 +810,14 @@ body {
     }
 
     .cont {
-        margin: 0 1rem;
+        margin: 0;
+        border-radius: 20px 20px 0 0;
     }
 
     .tabs-nav {
-        padding-top: 140px;
+        padding-top: 80px;
         gap: var(--spacing-lg);
+        border-radius: 20PX;
     }
 
     .tab-button {
@@ -984,7 +991,7 @@ body {
     }
 
     .cont {
-        margin: 0 0.5rem;
+        margin: 0;
         border-radius: 20px 20px 0 0;
     }
 
