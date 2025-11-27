@@ -13,14 +13,7 @@ const container = document.getElementById("cards");
 const toggleThemeBtn = document.querySelector(".toggle-theme button");
 const toggleThemeImg = document.getElementById("toggleTheme");
 
-// busca dinâmica
-campoBusca.addEventListener("input", () => {
-  const texto = campoBusca.value.toLowerCase();
-  const filtrados = pokemons.filter((p) =>
-    p.name.toLowerCase().includes(texto)
-  );
-  main(filtrados);
-});
+
 
 // botão de favoritos
 favoriteButton.addEventListener("click", () => {
@@ -28,6 +21,8 @@ favoriteButton.addEventListener("click", () => {
   const getFavoritos = localStorage.getItem("favoritos");
   const parseFavoritos = JSON.parse(getFavoritos);
   main(parseFavoritos);
+
+
 });
 
 // tema: funções limpas e confiáveis
@@ -184,6 +179,18 @@ campoBusca.addEventListener("input", () => {
   const filtrados = pokemons.filter((p) =>
     p.name.toLowerCase().includes(texto)
   );
+  console.log(filtrados.length);
+  if (filtrados.length ===  1) {
+    loader.innerHTML = " ";
+    main(filtrados);
+    return;
+  }
+
+  if (filtrados.length ===   0) {
+    loader.innerHTML = "<p>Nenhum pokémon encontrado.</p>";
+    return;
+  }
+
   main(filtrados);
 });
 
