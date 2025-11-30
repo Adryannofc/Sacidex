@@ -1,6 +1,6 @@
 export const pokemons = [];
 let currentPage = 0;
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 20 ;
 const MAX_POKEMON = 1025;
 
 export async function loadPokemon(id) {
@@ -39,3 +39,19 @@ export function resetPokemonPagination() {
     currentPage = 0;
 }
 
+let allPokemonList = null;
+
+// Armazena a lista completa de nomes de pokémons
+export async function getAllPokemonList() {
+  if (allPokemonList) return allPokemonList;
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`);
+    if (!res.ok) return []; // Retorna lista vazia em caso de erro
+    const json = await res.json();
+    allPokemonList = (json.results || []).map((r) => r.name);
+    return allPokemonList;
+  } catch (err) {
+    console.error("Erro ao buscar lista de pokémons:", err);
+    return [];
+  }
+}
