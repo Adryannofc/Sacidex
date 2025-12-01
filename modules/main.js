@@ -174,9 +174,12 @@ function resetarFavoritePage() {
 //===================//
 
 async function renderNextBatch() {
+
+
   if (loading || !hasMorePokemon()) return;
   loading = true;
   loader.classList.remove("hidden");
+  console.debug('Iniciando fetch de batches');
 
   let pokemonsToRender = [];
 
@@ -199,6 +202,8 @@ async function renderNextBatch() {
 
     if (activeTiposFilter.length === 0) break;
   }
+
+  console.debug('Total a renderizar:', pokemonsToRender.length);
 
   pokemonsToRender.forEach((pokemon) => {
     const card = createPokemonCard(pokemon);
@@ -316,6 +321,86 @@ function setupSearch() {
 //===================//
 //==== FAVORITES ====//
 //===================//
+
+
+
+
+async function carregarFavoritos() {
+  const raw = localStorage.getItem("favoritos") || "[]";
+  let favoritos;
+  try {
+    favoritos = JSON.parse(raw);
+  } catch {
+    favoritos = [];
+  }
+
+  const containerEl = container; // já capturado no topo do arquivo
+  const loaderEl = loader;
+
+  // Se não houver favoritos, limpa a tela e mostra mensagem clara
+  if (!Array.isArray(favoritos) || favoritos.length === 0) {
+    if (containerEl) containerEl.innerHTML = "";
+    if (loaderEl) {
+      loaderEl.classList.remove("hidden");
+      loaderEl.innerHTML = "<p>Nenhum pokémon capturado.</p>";
+    }
+    return;
+  }
+
+  // Normaliza itens para passar ao loadWithLimit (aceita id ou name)
+  const idsOuNomes = favoritos
+    .map((f) => {
+      if (!f) return null;
+      if (typeof f === "object") return f.id ?? f.name ?? f.species?.name ?? null;
+      return String(f);
+    })
+    .filter(Boolean);
+
+  if (idsOuNomes.length === 0) {
+    if (containerEl) containerEl.innerHTML = "";
+    if (loaderEl) {
+      loaderEl.classList.remove("hidden");
+      loaderEl.innerHTML = "<p>Nenhum pokémon capturado.</p>";
+    }
+    return;
+  }
+
+  loaderEl.classList.remove("hidden");
+  loaderEl.innerHTML = "<p>Carregando favoritos...</p>";
+
+  try {
+    const pokemons = await loadWithLimit(idsOuNomes, 5);
+    if (containerEl) containerEl.innerHTML = "";
+    main(pokemons);
+    // caso loadWithLimit retorne vazio, mostra mensagem
+    if (!pokemons || pokemons.length === 0) {
+      if (containerEl) containerEl.innerHTML = "";
+      loaderEl.classList.remove("hidden");
+      loaderEl.innerHTML = "<p>Nenhum pokémon capturado.</p>";
+    } else {
+      loaderEl.classList.add("hidden");
+      loaderEl.innerHTML = "";
+    }
+  } catch (err) {
+    console.error("Erro ao carregar favoritos:", err);
+    if (containerEl) containerEl.innerHTML = "";
+    if (loaderEl) loaderEl.innerHTML = "<p>Erro ao carregar favoritos. Veja console.</p>";
+  }
+}
+
+function setupFavoritesButton() {
+  if (!favoriteButton) {
+    // botão não existe no DOM — evitar erro
+    return;
+  }
+
+  favoriteButton.addEventListener("click", async () => {
+    localStorage.setItem("pageFavorite", "true");
+    // Chama a função de carregar favoritos definida acima
+    if (typeof carregarFavoritos === "function") {
+      await carregarFavoritos();
+      // opcional: rolar para o topo
+      window.scrollTo({ top: 0, behavior: "smooth" });
 
 function setupFavoritesButton() {
   favoriteButton.addEventListener("click", () => {
