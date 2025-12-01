@@ -174,8 +174,6 @@ function resetarFavoritePage() {
 //===================//
 
 async function renderNextBatch() {
-
-
   if (loading || !hasMorePokemon()) return;
   loading = true;
   loader.classList.remove("hidden");
@@ -322,9 +320,6 @@ function setupSearch() {
 //==== FAVORITES ====//
 //===================//
 
-
-
-
 async function carregarFavoritos() {
   const raw = localStorage.getItem("favoritos") || "[]";
   let favoritos;
@@ -396,18 +391,9 @@ function setupFavoritesButton() {
 
   favoriteButton.addEventListener("click", async () => {
     localStorage.setItem("pageFavorite", "true");
-    // Chama a função de carregar favoritos definida acima
     if (typeof carregarFavoritos === "function") {
       await carregarFavoritos();
-      // opcional: rolar para o topo
       window.scrollTo({ top: 0, behavior: "smooth" });
-
-function setupFavoritesButton() {
-  favoriteButton.addEventListener("click", () => {
-    localStorage.setItem("pageFavorite", "true");
-    // Assumindo que carregarFavoritos() existe
-    if (typeof carregarFavoritos === "function") {
-      carregarFavoritos();
     }
   });
 }
