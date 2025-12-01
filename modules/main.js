@@ -174,15 +174,33 @@ function resetarFavoritePage() {
 //===================//
 
 async function renderNextBatch() {
-  if (loading || !hasMorePokemon()) return;
+  console.debug('renderNextBatch called', { loading, containerExists: !!container });
+  if (!container) {
+    console.error('Elemento #cards não encontrado no DOM. Verifique o id no HTML.');
+    return;
+  }
+
+  // verifica se a função existe antes de chamar
+  if (typeof hasMorePokemon !== 'function' || typeof loadNextBatch !== 'function') {
+    console.error('Funções hasMorePokemon/loadNextBatch não estão disponíveis (verifique exportações em js/api.js)');
+    return;
+  }
+
+  console.debug('hasMorePokemon() =>', hasMorePokemon());
+  if (loading || !hasMorePokemon()) {
+    console.debug('Abortando renderNextBatch: loading ou sem mais pokemons');
+    return;
+  }
+
   loading = true;
   loader.classList.remove("hidden");
+  console.debug('Iniciando fetch de batches');
 
   let pokemonsToRender = [];
 
   while (pokemonsToRender.length < 20 && hasMorePokemon()) {
     const pokemonsBatch = await loadNextBatch();
-
+    console.debug('batch carregado, tamanho:', pokemonsBatch?.length);
     const filtered =
       activeTiposFilter.length === 0
         ? pokemonsBatch
@@ -199,6 +217,8 @@ async function renderNextBatch() {
 
     if (activeTiposFilter.length === 0) break;
   }
+
+  console.debug('Total a renderizar:', pokemonsToRender.length);
 
   pokemonsToRender.forEach((pokemon) => {
     const card = createPokemonCard(pokemon);
@@ -317,12 +337,85 @@ function setupSearch() {
 //==== FAVORITES ====//
 //===================//
 
+
+
+
+async function carregarFavoritos() {
+  const raw = localStorage.getItem("favoritos") || "[]";
+  let favoritos;
+  try {
+    favoritos = JSON.parse(raw);
+  } catch {
+    favoritos = [];
+  }
+
+  const containerEl = container; // já capturado no topo do arquivo
+  const loaderEl = loader;
+
+  // Se não houver favoritos, limpa a tela e mostra mensagem clara
+  if (!Array.isArray(favoritos) || favoritos.length === 0) {
+    if (containerEl) containerEl.innerHTML = "";
+    if (loaderEl) {
+      loaderEl.classList.remove("hidden");
+      loaderEl.innerHTML = "<p>Nenhum pokémon capturado.</p>";
+    }
+    return;
+  }
+
+  // Normaliza itens para passar ao loadWithLimit (aceita id ou name)
+  const idsOuNomes = favoritos
+    .map((f) => {
+      if (!f) return null;
+      if (typeof f === "object") return f.id ?? f.name ?? f.species?.name ?? null;
+      return String(f);
+    })
+    .filter(Boolean);
+
+  if (idsOuNomes.length === 0) {
+    if (containerEl) containerEl.innerHTML = "";
+    if (loaderEl) {
+      loaderEl.classList.remove("hidden");
+      loaderEl.innerHTML = "<p>Nenhum pokémon capturado.</p>";
+    }
+    return;
+  }
+
+  loaderEl.classList.remove("hidden");
+  loaderEl.innerHTML = "<p>Carregando favoritos...</p>";
+
+  try {
+    const pokemons = await loadWithLimit(idsOuNomes, 5);
+    if (containerEl) containerEl.innerHTML = "";
+    main(pokemons);
+    // caso loadWithLimit retorne vazio, mostra mensagem
+    if (!pokemons || pokemons.length === 0) {
+      if (containerEl) containerEl.innerHTML = "";
+      loaderEl.classList.remove("hidden");
+      loaderEl.innerHTML = "<p>Nenhum pokémon capturado.</p>";
+    } else {
+      loaderEl.classList.add("hidden");
+      loaderEl.innerHTML = "";
+    }
+  } catch (err) {
+    console.error("Erro ao carregar favoritos:", err);
+    if (containerEl) containerEl.innerHTML = "";
+    if (loaderEl) loaderEl.innerHTML = "<p>Erro ao carregar favoritos. Veja console.</p>";
+  }
+}
+
 function setupFavoritesButton() {
-  favoriteButton.addEventListener("click", () => {
+  if (!favoriteButton) {
+    // botão não existe no DOM — evitar erro
+    return;
+  }
+
+  favoriteButton.addEventListener("click", async () => {
     localStorage.setItem("pageFavorite", "true");
-    // Assumindo que carregarFavoritos() existe
+    // Chama a função de carregar favoritos definida acima
     if (typeof carregarFavoritos === "function") {
-      carregarFavoritos();
+      await carregarFavoritos();
+      // opcional: rolar para o topo
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   });
 }
