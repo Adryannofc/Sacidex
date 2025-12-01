@@ -174,24 +174,9 @@ function resetarFavoritePage() {
 //===================//
 
 async function renderNextBatch() {
-  console.debug('renderNextBatch called', { loading, containerExists: !!container });
-  if (!container) {
-    console.error('Elemento #cards não encontrado no DOM. Verifique o id no HTML.');
-    return;
-  }
 
-  // verifica se a função existe antes de chamar
-  if (typeof hasMorePokemon !== 'function' || typeof loadNextBatch !== 'function') {
-    console.error('Funções hasMorePokemon/loadNextBatch não estão disponíveis (verifique exportações em js/api.js)');
-    return;
-  }
 
-  console.debug('hasMorePokemon() =>', hasMorePokemon());
-  if (loading || !hasMorePokemon()) {
-    console.debug('Abortando renderNextBatch: loading ou sem mais pokemons');
-    return;
-  }
-
+  if (loading || !hasMorePokemon()) return;
   loading = true;
   loader.classList.remove("hidden");
   console.debug('Iniciando fetch de batches');
@@ -200,7 +185,7 @@ async function renderNextBatch() {
 
   while (pokemonsToRender.length < 20 && hasMorePokemon()) {
     const pokemonsBatch = await loadNextBatch();
-    console.debug('batch carregado, tamanho:', pokemonsBatch?.length);
+
     const filtered =
       activeTiposFilter.length === 0
         ? pokemonsBatch
@@ -416,6 +401,13 @@ function setupFavoritesButton() {
       await carregarFavoritos();
       // opcional: rolar para o topo
       window.scrollTo({ top: 0, behavior: "smooth" });
+
+function setupFavoritesButton() {
+  favoriteButton.addEventListener("click", () => {
+    localStorage.setItem("pageFavorite", "true");
+    // Assumindo que carregarFavoritos() existe
+    if (typeof carregarFavoritos === "function") {
+      carregarFavoritos();
     }
   });
 }
