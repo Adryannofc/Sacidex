@@ -20,93 +20,116 @@ export function createPokemonCard(pokemon) {
 
     button.classList.add("card-favoriteButton");
 
-    // Animação de partículas ao favoritar
-    button.addEventListener('click', (e) => {
-        const isActive = button.classList.contains('active');
-        button.classList.toggle('active');
+    // Função que emite partículas (apenas quando favoritado)
+    function emitParticles(target) {
+        const numStars = 15;
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('span');
+            star.classList.add('star');
 
-        if (!isActive) {
-            particleTimeout = setTimeout(() => {
-                const numStars = 15;
-                for (let i = 0; i < numStars; i++) {
-                    const star = document.createElement('span');
-                    star.classList.add('star');
+            const distance = 50 + Math.random() * 50;
+            const xDir = (Math.random() - 0.5) * distance * 2;
+            const yDir = -distance;
 
-                    const distance = 50 + Math.random() * 50;
-                    const xDir = (Math.random() - 0.5) * distance * 2;
-                    const yDir = -distance;
+            star.style.setProperty('--x', `${xDir}px`);
+            star.style.setProperty('--y', `${yDir}px`);
 
-                    star.style.setProperty('--x', `${xDir}px`);
-                    star.style.setProperty('--y', `${yDir}px`);
+            target.appendChild(star);
 
-                    button.appendChild(star);
-
-                    setTimeout(() => {
-                        star.remove();
-                    }, 3000);
-                }
-            }, 3300);
-        } else {
-            clearTimeout(particleTimeout);
-            const stars = button.querySelectorAll('.star');
-            stars.forEach(star => star.remove());
+            setTimeout(() => {
+                star.remove();
+            }, 3000);
         }
-    });
+    }
 
-    // Impede o redirecionamento ao clicar no botão
-    button.addEventListener('click', function (event) {
-        event.preventDefault();
-    });
+    // remove partículas já existentes no botão
+    function clearParticles(target) {
+        const stars = target.querySelectorAll('.star');
+        stars.forEach(s => s.remove());
+    }
 
-    // Gerencia favoritos no localStorage
+    // Unifica lógica de clique: toggle favorito + animação apenas ao favoritar
     button.addEventListener("click", (event) => {
-        event.stopPropagation(); // Impede clique no botão de abrir o card
+        event.preventDefault();
+        event.stopPropagation(); // impede abrir o card
 
+        // Lê flag de estar na página de favoritos
         const pageFavorite = localStorage.getItem("pageFavorite");
-        if (pageFavorite === 'true') {
-            localStorage.setItem("clickFavorite", 'true');
-        }
 
+        // Carrega lista atual (usa chave "favoritos")
         const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
         const index = favoritos.findIndex(p => p.id === pokemon.id);
+        const isCurrentlyFavorited = index >= 0;
+        const willBeFavorited = !isCurrentlyFavorited;
 
-        if (index >= 0) {
-            // Se já estiver, remove (desfavorita)
-            favoritos.splice(index, 1);
-            button.classList.remove('active');
+        // Cancela qualquer emissão agendada anterior para evitar múltiplos brilhos
+        if (particleTimeout) {
+            clearTimeout(particleTimeout);
+            particleTimeout = 0;
+        }
+
+        if (!willBeFavorited) {
+            // remover favorito
+            if (isCurrentlyFavorited) favoritos.splice(index, 1);
+            button.classList.remove('Capture', 'active');
             button.classList.add('removeCapture');
+
+            // limpa partículas visíveis (caso tenham sido geradas)
+            clearParticles(button);
         } else {
-            // Se não estiver, adiciona
+            // adicionar favorito
             favoritos.push(pokemon);
             button.classList.remove('removeCapture');
-            button.classList.add('active');
+            button.classList.add('Capture', 'active');
+
+            // agenda emissão de partículas; se o usuário desfavorar antes, o timeout é cancelado
+            particleTimeout = setTimeout(() => {
+                // só emite se o botão ainda estiver favoritado
+                if (button.classList.contains('Capture')) {
+                    emitParticles(button);
+                }
+                particleTimeout = 0;
+            }, 3000); // ajuste para 3000 se realmente quiser 3s de espera
         }
 
+        // salva
         localStorage.setItem("favoritos", JSON.stringify(favoritos));
 
-        function verificarFavoritePage() {
-            if (pageFavorite === 'true') {
-                localStorage.removeItem("clickFavorite");
-                const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-                main(favoritos);
+        // Se estiver na página de favoritos, re-renderiza a lista atualizada
+        if (pageFavorite === 'true') {
+            const atuais = JSON.parse(localStorage.getItem("favoritos")) || [];
+            const containerEl = document.getElementById('cards');
+            const loaderEl = document.getElementById('infinite-loader');
+
+            if (!atuais || atuais.length === 0) {
+                // limpa a tela e mostra mensagem clara quando não há favoritos
+                if (containerEl) containerEl.innerHTML = "";
+                if (loaderEl) {
+                    loaderEl.classList.remove('hidden');
+                    loaderEl.innerHTML = "<p>Nenhum pokémon capturado.</p>";
+                }
+            } else {
+                // tem favoritos: oculta loader e renderiza
+                if (loaderEl) {
+                    loaderEl.classList.add('hidden');
+                    loaderEl.innerHTML = "";
+                }
+                main(atuais);
             }
         }
-
-        verificarFavoritePage();
     });
 
-    // Função para verificar se o Pokémon já está favoritado
+    // Função para verificar se o Pokémon já está favoritado ao renderizar o card
     function verificarCaptura() {
         const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-
-        // Verifica se o Pokémon já está favoritado
         const index = favoritos.findIndex(p => p.id === pokemon.id);
 
         if (index >= 0) {
+            // ajuste: usa classe 'Capture' para indicar favoritado
             button.classList.remove('removeCapture');
             button.classList.add('Capture');
         } else {
-            button.classList.remove('Capture');
+            button.classList.remove('Capture', 'active');
             button.classList.add('removeCapture');
         }
     }

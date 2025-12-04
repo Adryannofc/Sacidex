@@ -775,11 +775,12 @@ body {
         left: 0px;
         top: 0px;
         font-size: clamp(80px, 15vw, 120px);
+        letter-spacing: 1px;
     }
 
     .sparkle {
-        top: 15%;
-        left: 270px;
+        top: -12%;
+        left: 230px;
     }
 
     .nav-arrow {
