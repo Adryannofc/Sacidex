@@ -2,38 +2,6 @@
     background-color: #121212;
 }
 
-.dark .header {
-    background-color: #1e1e1e;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-}
-
-.dark .nav a {
-    color: #e0e0e0;
-}
-
-.dark .nav a:hover {
-    color: #ffffff;
-}
-
-.dark .search input {
-    background-color: #2a2a2a;
-    color: #e0e0e0;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-.dark .search input::placeholder {
-    color: #757575;
-}
-
-.dark .search button {
-    background-color: #2a2a2a;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-.dark .search button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
 /* Tema escuro para página de detalhes */
 .dark .cont {
     background: #252525;
@@ -177,37 +145,46 @@
     background-color: #ffffff;
     padding: 0 2rem;
     height: 80px;
-    box-shadow: 1px 1px 10px #cccccc17;
+    box-shadow: 1px 1px 10px rgba(204, 204, 204, 0.09);
     margin-bottom: 25px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header-home.dark-header {
-    background-color: #252525;
+    background-color: #1e1e1e;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 
 
 }
 
 .header-home.dark-header a {
-    color: white;
-
+    color: #e0e0e0;
 }
 
 .header-home.dark-header .search input {
-    background-color: #464646;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
 
-
+.header-home.dark-header .search input::placeholder {
+    color: #757575;
 }
 
 .header-home.dark-header .search button {
-    background-color: #464646;
+    background-color: #2a2a2a;
 }
-
 
 .header-home.dark-header .search button:hover {
     transform: scale(1.05);
-    color: rgb(255, 255, 255);
-    background-color: rgb(91, 91, 91);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-home.dark-header .search button img {
+    filter: brightness(0) invert(1);
 }
 
 .header.dark-header .dark-mode {
@@ -260,27 +237,25 @@
     filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.3));
 }
 
-/* Quando o menu mobile estiver aberto no modo escuro, garantir contraste */
 body.dark header.menu-open .nav {
     background-color: #1e1e1e;
-    /* segue cor do header escuro */
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
 
 body.dark header.menu-open .nav a {
     color: #e0e0e0;
-    /* links claros sobre fundo escuro */
 }
 
-/* Nav arrows (modo escuro) */
+body.dark header.menu-open .nav a:hover {
+    color: #ffffff;
+}
+
 .dark .nav-arrow {
     color: rgba(255, 255, 255, 0.95);
     background: none;
-    /* remove fundo oval no modo escuro */
     box-shadow: none;
-    /* remove sombra que destacava oval */
     border-radius: 0;
-    /* sem forma circular */
 }
 
 /* Ajustes para a caixa de filtro no modo escuro */
@@ -322,7 +297,11 @@ body.dark header.menu-open .nav a {
 
 .dark #menu-toggle {
     color: #e0e0e0;
-}  ;
+}
+
+.header-home.dark-header #menu-toggle {
+    color: #e0e0e0;
+}
 
 /* Container de detalhes (painel inferior) */
 .dark .cont {

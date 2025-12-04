@@ -432,10 +432,12 @@ header.menu-open .nav ul {
   align-items: center;
 }
 
-/* garantir que o header e botões fiquem acima do conteúdo fixo */
-.header {
-  position: relative;
-  z-index: 300;
+.header-home {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .toggle-theme {
